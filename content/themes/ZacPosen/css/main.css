@@ -1,0 +1,54 @@
+/*
+	Copyright (C) Hotel Existence LLC - All Rights Reserved
+	Unauthorized copying of this file via any medium is strictly prohibited
+	Proprietary and confidential
+	Written by Thomas Brodin <thomasbrodin@gmail.com>, 2014 */
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
+body {
+  font-family: 'proxima nova','Helvetica Neue',Helvetica,Arial,sans-serif;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px; }
+
+b, strong {
+  font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif; }
+
+/* #Font-Face
+================================================== */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("fonts/fontawesome-webfont.eot");
+  src: url("fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/fontawesome-webfont.woff") format("woff"), url("fonts/fontawesome-webfont.ttf") format("truetype"), url("fonts/fontawesome-webfont.svg#fontawesomeregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'proxima nova light';
+  src: url("fonts/ProximaNova-Light.eot");
+  /* IE9 Compat Modes */
+  src: url("fonts/ProximaNova-Light.eot?#iefix") format("embedded-opentype"), url("fonts/ProximaNova-Light.woff") format("woff"), url("fonts/ProximaNova-Light.ttf") format("truetype"), url("fonts/ProximaNova-Light.svg#df838d10753ef83b07b73ceb962b3ea2") format("svg");
+  /* Legacy iOS */
+  font-style: normal;
+  font-weight: 200; }
+@font-face {
+  font-family: 'proxima nova';
+  src: url("fonts/ProximaNova-Regular.eot");
+  /* IE9 Compat Modes */
+  src: url("fonts/ProximaNova-Regular.eot?#iefix") format("embedded-opentype"), url("fonts/ProximaNova-Regular.woff") format("woff"), url("fonts/ProximaNova-Regular.ttf") format("truetype"), url("fonts/ProximaNova-Regular.svg#00408f2b5f50ac35631d9f676cb29e44") format("svg");
+  /* Legacy iOS */
+  font-style: normal;
+  font-weight: 400; }
+@font-face {
+  font-family: 'proxima nova semibold';
+  src: url("fonts/ProximaNova-Semibold.eot");
+  /* IE9 Compat Modes */
+  src: url("fonts/ProximaNova-Semibold.eot?#iefix") format("embedded-opentype"), url("fonts/ProximaNova-Semibold.woff") format("woff"), url("fonts/ProximaNova-Semibold.ttf") format("truetype"), url("fonts/ProximaNova-Semibold.svg#00408f2b5f50ac35631d9f676cb29e44") format("svg");
+  /* Legacy iOS */
+  font-style: normal;
+  font-weight: 600; }
+/* #GLOBALS
+================================================== */

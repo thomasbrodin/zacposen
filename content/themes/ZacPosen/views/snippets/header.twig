@@ -1,0 +1,114 @@
+{% block header %}
+	<header class="main-header" >
+		<div class="bg"></div>
+			<div class="row top">
+				<div class="columns menu-container text-center uppercase">
+					<div class="main-menu">
+						<nav class="nav-main" role="navigation">
+							<ul class="nav">
+							{% for mainitem in menu.get_items %}
+								<li class="nav-item{{mainitem.classes | join(' ')}}">
+									<a class="nav-item-link" title="{{mainitem.title}}" href="{{mainitem.get_link}}">{{mainitem.title}}</a>
+									{% if mainitem.get_children %}
+										<ul class="sub-nav">
+												<li class="row">
+													{% for child in mainitem.get_children %}
+														<div class="sub-nav-item columns">
+															<a class="nav-link" title="{{child.title}}" href="{{child.get_link}}">
+																<span class="semibold">{{child.title}}</span>
+															</a>
+															{% if child.get_children %}
+																	<ul>
+																		{% for subchild in child.get_children %}
+																				<li>
+																					<a class="nav-link" title="{{subchild.title}}" href="{{subchild.get_link}}">{{subchild.title}}</a>
+																				</li>
+																			{% endfor %}
+																		</ul>
+															{% endif %}
+														</div>
+													{% endfor %}
+												</li>
+										</ul>
+									{% endif %}
+								</li>
+							{% endfor %}
+							</ul>
+						</nav><!-- #nav -->
+					</div><!-- .main-menu-->
+				</div><!-- .menu-container -->
+
+				<div class="mobile-tools">
+							<a class="menu" href="">MENU</a>
+				</div><!-- .mobile-tools -->
+
+			</div>
+
+			<div class="main-menu-dropdown-panel">
+						<div class="row text-center uppercase">
+								<span class="glyph circle"></span>
+						</div>
+			</div>
+
+			<div class="mobile-menu">
+				<nav role="navigation">
+					<ul>
+					{% for mainitem in menu.get_items %}
+						<li class="nav-item {{mainitem.classes | join(' ')}}">
+							<a class="nav-item-link" href="{{mainitem.get_link}}">{{mainitem.title}}</a>
+							{% if mainitem.get_children %}
+								<ul class="sub-nav">
+										<li class="row">
+											{% for child in mainitem.get_children %}
+												<div class="sub-nav-item columns">
+													<a class="nav-link" href="{{child.get_link}}">
+														<span class="semibold">{{child.title}}</span>
+													</a>
+													{% if child.get_children %}
+															<ul>
+																{% for subchild in child.get_children %}
+																		<li>
+																			<a class="nav-link" href="{{subchild.get_link}}">{{subchild.title}}</a>
+																		</li>
+																	{% endfor %}
+																</ul>
+													{% endif %}
+												</div>
+											{% endfor %}
+										</li>
+								</ul>
+							{% endif %}
+						</li>
+					{% endfor %}
+					</ul>
+				</nav><!-- #nav -->
+			</div>
+
+			{% if childpages %}
+				<div class="bottom-row">
+					<div class="row">
+						<div class="text-center uppercase">
+							<ul class="child-pages">
+								{{ childpages }}
+							</ul>
+						</div>
+				</div>
+			{% elseif pages %}
+				<div class="bottom-row">
+					<div class="row">
+						<div class="text-center uppercase">
+							<ul class="child-pages">
+								{% for childpages in pages %}
+								<li class="page_item {% if loop.first %}current_page_item{% endif %}">
+									<a class="smoothy" href="#{{childpages.post_name}}">
+									{{childpages.post_title}}
+									</a>
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
+				</div>
+			{% endif %}
+
+	</header>
+{% endblock %}

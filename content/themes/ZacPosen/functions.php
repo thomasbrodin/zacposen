@@ -15,15 +15,20 @@ class StarterSite extends TimberSite {
 		add_theme_support( 'menus' );
 		add_filter( 'timber_context', array( $this, 'add_to_context' ) );
 		add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
+		add_action( 'widgets_init', array($this,'hex_widgets_init'));
 		add_action('wp_enqueue_scripts', array($this, 'load_scripts'));
 		add_action('wp_enqueue_scripts', array($this, 'load_styles'));
 		add_action('init', array($this,  'removeHeadLinks'));
+		register_nav_menus( array(
+				'primary' => 'Menu',
+				'secondary' => 'Footer',
+			) );
 		parent::__construct();
 	}
 
 	function load_scripts(){
 		wp_enqueue_script('jquery');
-		wp_enqueue_script( 'modernizr', THEME_URL . '/js/modernizr-2.8.3.min.js', array('jquery'), false, false);
+		wp_enqueue_script( 'modernizr', THEME_URL . '/js/custom.modernizr.js', array('jquery'), false, false);
 		wp_enqueue_script( 'main-compressed', THEME_URL . '/js/main-min.js', array('jquery'), '', true);
 	}
 
@@ -39,8 +44,26 @@ class StarterSite extends TimberSite {
 			remove_action( 'wp_print_styles', 'print_emoji_styles' );
 		}
 
+	function hex_widgets_init() {
+			register_sidebar(
+				array(
+					'name' => 'Footer',
+					'id' => 'footer_sidebar',
+					'before_widget' => '<div class="widget">',
+					'after_widget' => '</div>',
+					'before_title' => '<h3>',
+					'after_title' => '</h3>',
+				)
+			);
+		}
 	function add_to_context( $context ) {
-		$context['menu'] = new TimberMenu();
+		$context['menu'] = new TimberMenu('primary');
+		$context['footer_menu'] = new TimberMenu('secondary');
+		$context['footer_sidebar'] = Timber::get_widgets('footer_sidebar');
+
+		$context ['worldZ'] = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=7&echo=0' );
+		$context ['houseZ'] = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=2&echo=0' );
+
 		$context['site'] = $this;
 		return $context;
 	}

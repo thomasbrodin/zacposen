@@ -1,14 +1,121 @@
+$screen: new-breakpoint(min-width 768px);
 $smallscreen: new-breakpoint(max-width 992px);
 $mobile: new-breakpoint(max-width 768px);
+$backgroundColor:#555e5e;
 
 body {
-		font-family: 'proxima nova','Helvetica Neue',Helvetica,Arial,sans-serif;
+		font-family: 'proxima nova light','Helvetica Neue',Helvetica,Arial,sans-serif;
 		background: #ffffff;
 		-webkit-font-smoothing: antialiased;
-		font-size:14px
+		font-size:13px
 }
 b, strong {
 		font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'proxima nova light','Helvetica Neue',Helvetica,Arial,sans-serif;
+	font-weight: normal;
+	text-transform: uppercase!important;
+	letter-spacing: 1.8pt!important;
+	text-align: center!important
+}
+
+.white {
+	color:white!important
+}
+.black {
+	color:black!important
+}
+.text-center {
+	text-align: center!important;
+}
+.tracking {
+	letter-spacing: 0.05em
+}
+.uppercase {
+	text-transform: uppercase!important;
+	letter-spacing: 0.18pt;
+}
+
+.semibold {
+		font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+.regular {
+		font-family: 'proxima nova','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+a, a:link, a:visited {
+		color: #fff;
+		text-decoration: none;
+		@include transition(all ease-in-out);
+}
+a:hover {
+	font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif;
+	letter-spacing: 0pt;
+}
+
+.current-menu-ancestor a,
+.current-menu-item a,
+.dropdown.active a {
+	font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif;
+	letter-spacing: 0;
+}
+
+a span.semibold {
+	letter-spacing: 0
+}
+
+.current_page_item:not(.nav-item) a {
+	font-family: 'proxima nova','Helvetica Neue',Helvetica,Arial,sans-serif;
+	border-bottom:2px solid white;
+	padding-bottom: 2px;
+	letter-spacing: 0pt;
+}
+.current_page_item:not(.nav-item) a:hover {
+	font-family: 'proxima nova','Helvetica Neue',Helvetica,Arial,sans-serif;
+	letter-spacing: 0pt;
+}
+.page_item:not(.nav-item) a:hover {
+	border-bottom:2px solid white;
+	padding-bottom: 2px;
+}
+
+.glyph {
+				font-family: 'FontAwesome';
+				speak: none;
+				font-style: normal;
+				font-weight: normal;
+				font-variant: normal;
+				text-transform: none;
+				line-height: 1;
+				-webkit-font-smoothing: antialiased;
+}
+
+.arrow-down:before {
+				content: "\f078";
+}
+
+.circle {
+	margin: -13px -20px;
+	position: absolute;
+	font-size: 4px;
+	color:white
+}
+.circle:before {
+	content: "\f111";
+}
+.plus, .minus {
+	font-size: 0.9em;
+	position: relative;
+	margin-left: 5px;
+}
+.minus:before {
+	content: "\f068";
+}
+.plus:before {
+	content: "\f067";
 }
 /* #Font-Face
 ================================================== */

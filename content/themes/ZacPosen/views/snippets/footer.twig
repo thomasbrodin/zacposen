@@ -1,0 +1,36 @@
+{% block footer %}
+	<footer>
+
+		<div class="container">
+			<div class="row uppercase text-center">
+				<div class="col-4">
+					<h3>The house of Z</h3>
+					<ul>
+						{{ houseZ }}
+					</ul>
+				</div>
+				<div class="col-4">
+					<h3>The World of Zac Posen</h3>
+					<ul>
+						{{ worldZ }}
+					</ul>
+				</div>
+				<div class="col-4">
+					{{ footer_sidebar }}
+				</div>
+				<div class="col-4">
+					<nav class="nav-secondary" role="navigation">
+						<ul class="nav">
+						{% for item in footer_menu.get_items %}
+							<li class="nav-item{{item.classes | join(' ')}}">
+								<a class="nav-item-link" title="{{item.title}}" href="{{item.get_link}}">{{item.title}}</a>
+							</li>
+						{% endfor %}
+						</ul>
+					</nav><!-- #nav -->
+				</div>
+			</div>
+		</div>
+
+	</footer>
+{% endblock %}

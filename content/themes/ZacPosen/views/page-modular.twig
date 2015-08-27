@@ -1,0 +1,126 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<div id="{{post.post_type}}" class="builder">
+
+		<div class="header-image">
+
+			{% if post.get_field('header_image') %}
+					<div class="header-background" style="background-image:url('{{TimberImage(post.get_field('header_image')).src}}')"></div>
+			{% endif %}
+
+			<div class="container header-caption text-center {{post.get_field('text_color')}}">
+				<div class="two-third">
+					{% if post.get_field('collection_logo') %}
+						<img class="collection" src="{{TimberImage(post.get_field('collection_logo')).get_src|resize(400)}}" />
+					{% endif %}
+					{% if post.get_field('collection_title') %}
+						<h1 class="uppercase"><span class="semibold">{{post.get_field('collection_title')}}</span> Collection</h1>							<div class="dash"></div>
+					{% else %}
+						<h1 class="uppercase hyphenate">{{post.title}}</h1>
+					{% endif %}
+					{% if post.get_field('page_caption') %}
+						<p class="tracking">{{post.get_field('page_caption')}}</p>
+					{% endif %}
+					{% if post.get_field('link_video') %}
+						<p class="uppercase link-video">
+							<a href="{{post.get_field('link_video')}}">Watch the fashion show</a>
+						</p>
+					{% endif %}
+					</div>
+				</div>
+		</div>
+
+		{% if pages %}
+			{% for childpages in pages %}
+
+				{% if childpages %}
+					<section id={{childpages.post_name}}>
+
+						{% set posts = TimberPost(childpages) %}
+						{% set headerImg = posts.get_field('header_image') %}
+
+						{% for post in posts.get_field('page_blocks') %}
+
+							{% if post.acf_fc_layout == 'text_2_col' %}
+
+								{% if headerImg %}
+										<div class="section-header-img">
+											<div class="section-header-bg" style="background-image:url('{{TimberImage(headerImg.id).src}}')">
+											</div>
+										</div>
+								{% endif %}
+								<div class="container">
+									<h2>{{posts.title}}</h2>
+									<pre>{{ post|print_r}}</pre>
+								</div>
+
+							{% elseif post.acf_fc_layout == 'text_4_col' %}
+
+								<<div class="container">
+									<h2>{{posts.title}}</h2>
+										<pre>{{ post|print_r}}</pre>
+								</div>
+
+							{% elseif post.acf_fc_layout == 'grid' %}
+								<h2>{{posts.title}}</h2>
+								{% for image in post.grid_img %}
+											<article>
+													<figure>
+															<img src="{{TimberImage(image.id).get_src|resize(480)}}" />
+													</figure>
+											</article>
+								{% endfor %}
+
+							{% elseif post.acf_fc_layout == 'row_thumbs' %}
+
+										{% for row in post.row_img %}
+												<img src="{{TimberImage(row.col_img_1).src}}"/>
+												<img src="{{TimberImage(row.col_img_2).src}}"/>
+												<img src="{{TimberImage(row.col_img_3).src}}"/>
+										{% endfor %}
+
+							{% elseif post.acf_fc_layout == 'slider' %}
+										<h2>{{posts.title}}</h2>
+									{% for image in post.slider_img %}
+										<article>
+												<figure>
+														<img src="{{TimberImage(image.id).get_src|resize(300)}}" />
+												</figure>
+										</article>
+									{% endfor %}
+
+							{% elseif post.acf_fc_layout == 'socials' %}
+
+								<h2>{{posts.title}}</h2>
+								<pre>{{ post|print_r}}</pre>
+
+							{% endif %}
+
+						{% endfor %}
+					</section>
+				{% endif %}
+
+			{% endfor %}
+		{% else %}
+			<section id="collection">
+									<div class="row">
+										{% for image in post.get_field('collection_img') %}
+													<article>
+															<figure>
+																	<img src="{{TimberImage(image.id).get_src|resize(480)}}" />
+															</figure>
+													</article>
+											{% endfor %}
+									</div>
+			</section>
+		{% endif %}
+
+		{% if post.can_edit %}
+						<a class="edit" href="{{post.get_edit_url}}">Edit me!</a>
+		{% endif %}
+
+	</div><!-- page -->
+
+{% endblock %}

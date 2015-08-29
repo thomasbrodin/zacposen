@@ -3,15 +3,15 @@ jQuery( document ).ready( function( $ ) {
 					ROOT = $('html, body');
 					PAGE = $('body');
 					HEADER = $('.main-header');
-		$('a.smoothy').click(function() {
-			 var href = $.attr(this, 'href');
-			 ROOT.stop().animate({
-					 scrollTop: $(href).offset().top 
-			 }, 500, function () {
-					 window.location.hash = href;
-			 });
-			 return false;
-		});
+	$('a.smoothy').click(function() {
+		 var href = $.attr(this, 'href');
+		 ROOT.stop().animate({
+				 scrollTop: $(href).offset().top
+		 }, 500, function () {
+				 window.location.hash = href;
+		 });
+		 return false;
+	});
 	mainMenu = function() {
 			var container, dropdown_panel, links, main_header, main_menu_dropdown_timer, slideUpPanel, startTimer, stopResetTimer;
 			dropdown_panel = $(".main-menu-dropdown-panel .row");
@@ -100,6 +100,49 @@ jQuery( document ).ready( function( $ ) {
 			});
 	};
 	mobileMenu();
+	//FANCYBOX
+	$(".fancybox")
+			.attr('rel', 'gallery')
+			.fancybox({
+				padding : 0,
+				margin : [70, 60, 70, 60],
+				maxWidth: "100%",
+				maxHeight: "100%",
+				autoResize	: true,
+				fitToView	: false,
+				nextEffect : 'fade',
+				prevEffect : 'fade',
+				openEffect : 'elastic',
+				closeEffect : 'elastic',
+				helpers : {
+					title : {
+						type : 'over'
+					}
+				},
+				afterShow : function() {
+					// stButtons.locateElements();
+					$(".fancybox-title").hide();
+					$(".fancybox-wrap").hover(function() {
+							$(".fancybox-title").stop(true,true).slideDown(200);
+						}, function() {
+							$(".fancybox-title").stop(true,true).slideUp(200);
+					});
+				},
+				afterLoad: function() {
+					this.title = this.title ? this.title + buildShareThis(this.href) : buildShareThis(this.href);
+				},
+	});
+	function buildShareThis(url){
+		var customShareThis  = "<div class='socials'>";
+			customShareThis += "<span class='st_tumblr_large' displayText='Tumblr' st_url='"+url+"'></span>";
+			customShareThis += "<span class='st_pinterest_large' displayText='Pinterest' st_url='"+url+"' st_img='"+url+"'></span>";
+			customShareThis += "<span class='st_googleplus_large' displayText='Google +' st_url='"+url+"'></span>";
+			customShareThis += "<span class='st_instagram_large' displayText='instagram' st_url='"+url+"'></span>";
+			customShareThis += "<span class='st_twitter_large' displayText='Tweet' st_url='"+url+"'></span>";
+			customShareThis += "<span class='st_facebook_large' displayText='Facebook' st_url='"+url+"'></span>";
+			customShareThis += "</div>";
+			return customShareThis;
+	}
 	instagramFeed = function() {
 			var client_id, feed_url, getImages, items_to_load, username;
 			client_id = home_widget_instagram_client_id;

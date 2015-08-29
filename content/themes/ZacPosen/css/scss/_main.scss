@@ -44,11 +44,9 @@ section {
 		}
 		.col-2 {
 			@include span-columns(6);
-			@include omega(2n);
 		}
 		.col-4 {
 			@include span-columns(3);
-			@include omega(3n);
 		}
 	}
 	section:not(#collection) {
@@ -290,6 +288,7 @@ section {
 		height: 560px;
 		width: 100%;
 		margin-top:-70px;
+		margin-bottom: 70px;
 		.section-header-bg {
 			position: absolute;
 			height: 100%;
@@ -309,7 +308,34 @@ section {
 	}
 	p {
 		line-height: 1.4;
-		font-size: 1.2em
+		font-size: 1.2em;
+		&.desc {
+			margin-top: -30px;
+			margin-bottom: 50px
+		}
+	}
+	.col-4 {
+		img {
+			margin-bottom: 30px
+		}
+		p {
+			padding:0 1em
+		}
+		a.button {
+			text-transform: uppercase;
+			letter-spacing: 0.18pt;
+			text-align: center;
+			display: block;
+			padding: 1.2em 0;
+			font-size: 1.2em;
+		}
+	}
+	.thumbs {
+		img {
+			float:left;
+			display: block;
+			height:300px
+		}
 	}
 	.grid {
 		@include outer-container(100%);

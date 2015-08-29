@@ -62,18 +62,27 @@
 									{% elseif post.acf_fc_layout == 'text_4_col' %}
 
 										<div class="container">
-											<h2>{{posts.title}}</h2>
+												<h2>{{posts.title}}</h2>
+												<p class="desc text-center">{{post.card_desc}}</p>
 												<div class="col-4">
-
+														<img src="{{TimberImage(post.card_1_img).get_src|resize(300)}}" />
+														<p class="text-center">{{post.card_1_desc}}</p>
+														<a target="blank" class="button" href="{{post.card_1_url}}">Learn More</a>
 												</div>
 												<div class="col-4">
-
+													<img src="{{TimberImage(post.card_1_img).get_src|resize(300)}}" />
+														<p class="text-center">{{post.card_2_desc}}</p>
+														<a target="blank" class="button" href="{{post.card_2_url}}">Learn More</a>
 												</div>
 												<div class="col-4">
-
+													<img src="{{TimberImage(post.card_1_img).get_src|resize(300)}}" />
+														<p class="text-center">{{post.card_3_desc}}</p>
+														<a target="blank" class="button" href="{{post.card_3_url}}">Learn More</a>
 												</div>
 												<div class="col-4">
-
+													<img src="{{TimberImage(post.card_1_img).get_src|resize(300)}}" />
+														<p class="text-center">{{post.card_4_desc}}</p>
+														<a target="blank" class="button" href="{{post.card_4_url}}">Learn More</a>
 												</div>
 										</div>
 
@@ -92,7 +101,7 @@
 									{% elseif post.acf_fc_layout == 'row_thumbs' %}
 
 											{% for row in post.row_img %}
-													<div class="row">
+													<div class="row thumbs">
 														<img src="{{TimberImage(row.col_img_1).src}}"/>
 														<img src="{{TimberImage(row.col_img_2).src}}"/>
 														<img src="{{TimberImage(row.col_img_3).src}}"/>

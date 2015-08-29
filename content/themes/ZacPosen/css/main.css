@@ -1013,10 +1013,6 @@ section .container {
     width: 48.821174201%; }
     section .container .col-2:last-child {
       margin-right: 0; }
-    section .container .col-2:nth-child(2n) {
-      margin-right: 0; }
-    section .container .col-2:nth-child(2n+1) {
-      clear: left; }
   section .container .col-4 {
     float: left;
     display: block;
@@ -1024,10 +1020,6 @@ section .container {
     width: 23.2317613015%; }
     section .container .col-4:last-child {
       margin-right: 0; }
-    section .container .col-4:nth-child(3n) {
-      margin-right: 0; }
-    section .container .col-4:nth-child(3n+1) {
-      clear: left; }
 section section:not(#collection) {
   padding: 70px 0; }
   @media screen and (max-width: 768px) {
@@ -1235,7 +1227,8 @@ section section:not(#collection) {
     overflow: hidden;
     height: 560px;
     width: 100%;
-    margin-top: -70px; }
+    margin-top: -70px;
+    margin-bottom: 70px; }
     #page .section-header-img .section-header-bg {
       position: absolute;
       height: 100%;
@@ -1252,6 +1245,24 @@ section section:not(#collection) {
   #page p {
     line-height: 1.4;
     font-size: 1.2em; }
+    #page p.desc {
+      margin-top: -30px;
+      margin-bottom: 50px; }
+  #page .col-4 img {
+    margin-bottom: 30px; }
+  #page .col-4 p {
+    padding: 0 1em; }
+  #page .col-4 a.button {
+    text-transform: uppercase;
+    letter-spacing: 0.18pt;
+    text-align: center;
+    display: block;
+    padding: 1.2em 0;
+    font-size: 1.2em; }
+  #page .thumbs img {
+    float: left;
+    display: block;
+    height: 300px; }
   #page .grid {
     max-width: 100%;
     margin-left: auto;

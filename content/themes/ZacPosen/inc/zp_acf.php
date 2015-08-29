@@ -13,7 +13,7 @@ acf_add_local_field_group(array (
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array (
-				'width' => '',
+				'width' => '50',
 				'class' => '',
 				'id' => '',
 			),
@@ -21,6 +21,33 @@ acf_add_local_field_group(array (
 				'collection' => 'Collection Page',
 				'editorial' => 'Main Editorial Page',
 				'section' => 'Section in Editorial Page',
+			),
+			'default_value' => array (
+			),
+			'allow_null' => 0,
+			'multiple' => 0,
+			'ui' => 0,
+			'ajax' => 0,
+			'placeholder' => '',
+			'disabled' => 0,
+			'readonly' => 0,
+		),
+		array (
+			'key' => 'field_55e202064a25f',
+			'label' => 'Section Background Color',
+			'name' => 'sel_bg_color',
+			'type' => 'select',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => 50,
+				'class' => '',
+				'id' => '',
+			),
+			'choices' => array (
+				'transparent' => 'White',
+				'colored' => 'Grey',
 			),
 			'default_value' => array (
 			),
@@ -239,7 +266,7 @@ acf_add_local_field_group(array (
 						array (
 							'key' => 'field_55d9d820d94aa',
 							'label' => 'Column Left',
-							'name' => 'text_col_1',
+							'name' => 'col_left',
 							'type' => 'wysiwyg',
 							'instructions' => '',
 							'required' => 0,
@@ -257,7 +284,7 @@ acf_add_local_field_group(array (
 						array (
 							'key' => 'field_55d9d8a5d94ac',
 							'label' => 'Column Right',
-							'name' => 'text_col_2',
+							'name' => 'col_right',
 							'type' => 'wysiwyg',
 							'instructions' => '',
 							'required' => 0,

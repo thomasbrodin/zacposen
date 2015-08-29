@@ -8,6 +8,8 @@
 @import "normalize";
 @import "reset";
 @import "fonts";
+@import "overlay";
+
 
 /* #GLOBALS
 ================================================== */
@@ -40,10 +42,17 @@ section {
 		.two-third {
 			@include span-columns(8)
 		}
+		.col-2 {
+			@include span-columns(6);
+			@include omega(2n);
+		}
+		.col-4 {
+			@include span-columns(3);
+			@include omega(3n);
+		}
 	}
-	section {
+	section:not(#collection) {
 		padding: 70px 0;
-		min-height: 600px;
 		@media screen and (max-width: 768px) {
 			 padding: 30px 0;
 		}
@@ -231,7 +240,6 @@ section {
 			max-width:390px;
 		}
 		h1{
-			font-size:em(30);
 			margin-top: 2em;
 			margin-bottom: 1em;
 			&.hyphenate {
@@ -281,6 +289,7 @@ section {
 		overflow: hidden;
 		height: 560px;
 		width: 100%;
+		margin-top:-70px;
 		.section-header-bg {
 			position: absolute;
 			height: 100%;
@@ -290,6 +299,28 @@ section {
 			background-repeat: no-repeat;
 			background-position: top center;
 			background-size: cover;
+		}
+	}
+	h2 {
+		margin-bottom: 60px
+	}
+	h3 {
+		margin-bottom: 40px
+	}
+	p {
+		line-height: 1.4;
+		font-size: 1.2em
+	}
+	.grid {
+		@include outer-container(100%);
+		@include clearfix;
+		article {
+			width:16.66666667%;
+			display:block;
+			float:left;
+			img{
+				display: block
+			}
 		}
 	}
 }
@@ -313,10 +344,8 @@ footer {
 			}
 			.col-4 {
 				@include span-columns(3);
-				h3 {
-					margin-bottom:20px;
-					letter-spacing: 0.18pt;
-					font-size: em(21)
+				h4 {
+					margin-bottom:15px;
 				}
 				nav {
 					border-left:1px solid #aaafaf

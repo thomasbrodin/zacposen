@@ -1,7 +1,7 @@
 <?php
 
 include_once('inc/zp_acf.php');
-include_once ('inc/hexplugins.php');
+include_once('inc/hexplugins.php');
 
 if ( ! class_exists( 'Timber' ) ) {
 	add_action( 'admin_notices', function() {
@@ -54,8 +54,8 @@ class StarterSite extends TimberSite {
 					'id' => 'footer_sidebar',
 					'before_widget' => '<div class="widget">',
 					'after_widget' => '</div>',
-					'before_title' => '<h3>',
-					'after_title' => '</h3>',
+					'before_title' => '<h4>',
+					'after_title' => '</h4>',
 				)
 			);
 		}

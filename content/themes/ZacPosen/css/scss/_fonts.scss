@@ -46,6 +46,14 @@ h4 {
 	letter-spacing: 0.18pt;
 	font-size: em(21)
 }
+h5 {
+	font-family: 'proxima nova light','Helvetica Neue',Helvetica,Arial,sans-serif;
+	font-weight: normal;
+	text-transform: uppercase!important;
+	letter-spacing: 1pt!important;
+	text-align: center!important;
+	font-size: em(18)
+}
 
 .white {
 	color:white!important
@@ -58,8 +66,11 @@ h4 {
 	color:white!important
 }
 .transparent {
-	background:transparent!important;
+	background:white!important;
 	color:black!important
+}
+.justify {
+	text-align:justify!important;
 }
 .text-center {
 	text-align: center!important;
@@ -71,7 +82,6 @@ h4 {
 	text-transform: uppercase!important;
 	letter-spacing: 0.18pt;
 }
-
 .semibold {
 		font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif;
 }

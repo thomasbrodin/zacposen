@@ -9,6 +9,10 @@ if ( ! class_exists( 'Timber' ) ) {
 		} );
 	return;
 }
+if( function_exists('acf_add_options_page') ) {
+		acf_add_options_page();
+}
+
 define('THEME_URL', get_template_directory_uri());
 
 class StarterSite extends TimberSite {
@@ -60,6 +64,8 @@ class StarterSite extends TimberSite {
 			);
 		}
 	function add_to_context( $context ) {
+		$context['options'] = get_fields('options');
+
 		$context['menu'] = new TimberMenu('primary');
 		$context['footer_menu'] = new TimberMenu('secondary');
 		$context['footer_sidebar'] = Timber::get_widgets('footer_sidebar');

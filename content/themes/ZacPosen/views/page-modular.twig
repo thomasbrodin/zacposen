@@ -65,22 +65,22 @@
 												<h2>{{posts.title}}</h2>
 												<p class="desc text-center">{{post.card_desc}}</p>
 												<div class="col-4">
-														<img src="{{TimberImage(post.card_1_img).get_src|resize(300)}}" />
+														<img src="{{TimberImage(post.card_1_img).get_src}}" />
 														<p class="text-center">{{post.card_1_desc}}</p>
 														<a target="blank" class="button" href="{{post.card_1_url}}">Learn More</a>
 												</div>
 												<div class="col-4">
-													<img src="{{TimberImage(post.card_1_img).get_src|resize(300)}}" />
+													<img src="{{TimberImage(post.card_2_img).get_src}}" />
 														<p class="text-center">{{post.card_2_desc}}</p>
 														<a target="blank" class="button" href="{{post.card_2_url}}">Learn More</a>
 												</div>
 												<div class="col-4">
-													<img src="{{TimberImage(post.card_1_img).get_src|resize(300)}}" />
+													<img src="{{TimberImage(post.card_3_img).get_src}}" />
 														<p class="text-center">{{post.card_3_desc}}</p>
 														<a target="blank" class="button" href="{{post.card_3_url}}">Learn More</a>
 												</div>
 												<div class="col-4">
-													<img src="{{TimberImage(post.card_1_img).get_src|resize(300)}}" />
+													<img src="{{TimberImage(post.card_4_img).get_src}}" />
 														<p class="text-center">{{post.card_4_desc}}</p>
 														<a target="blank" class="button" href="{{post.card_4_url}}">Learn More</a>
 												</div>
@@ -98,30 +98,30 @@
 												{% endfor %}
 											</div>
 
-									{% elseif post.acf_fc_layout == 'row_thumbs' %}
-
-											{% for row in post.row_img %}
-													<div class="row thumbs">
-														<img src="{{TimberImage(row.col_img_1).src}}"/>
-														<img src="{{TimberImage(row.col_img_2).src}}"/>
-														<img src="{{TimberImage(row.col_img_3).src}}"/>
-													</div>
-											{% endfor %}
-
 									{% elseif post.acf_fc_layout == 'slider' %}
+										<div class="loading" id="press">
 												<h2>{{posts.title}}</h2>
-											{% for image in post.slider_img %}
-												<article>
-														<figure>
-																<img src="{{TimberImage(image.id).get_src|resize(300)}}" />
-														</figure>
-												</article>
-											{% endfor %}
+												<div id="press-slider" class="flexslider">
+														<!--    Controls slider       -->
+															<nav>
+															</nav>
+														<ul class="slides">
+																		{% for image in post.slider_img %}
+																				<li class="press">
+																								<img class="press-img" src="{{TimberImage(image.id).get_src|resize(300)}}" />
+																				</li>
+																		{% endfor %}
+														</ul>
+													</div>
+												</div>
 
-									{% elseif post.acf_fc_layout == 'socials' %}
-
-										<h2>{{posts.title}}</h2>
-										<pre>{{ post|print_r}}</pre>
+									{% elseif post.acf_fc_layout == 'social' %}
+										<div id="social-feed">
+											<h2>{{post.feed_t}}</h2>
+										</div>
+										<div class="follow-us transparent">
+												<h2>FOLLOW US</h2>
+										</div>
 
 									{% endif %}
 							{% endfor %}

@@ -132,6 +132,43 @@ jQuery( document ).ready( function( $ ) {
 					this.title = this.title ? this.title + buildShareThis(this.href) : buildShareThis(this.href);
 				},
 	});
+	// Sliders
+	$(window).load(function() {
+		$('#press-slider').flexslider({
+			animation: "slide",
+			animationLoop: false,
+			slideshow: false,
+			itemWidth: 300,
+			itemMargin:50,
+			keyboard: true,
+			move:1,
+			slideshowSpeed: 7000,
+			animationSpeed: 600,
+			directionNav: true,
+			controlsContainer: "#press-slider nav",
+			controlNav: false,
+			minItems: getGridSize(),
+			maxItems: getGridSize(),
+			start: function(slider){
+				flexslider = slider;
+				$('#press').removeClass('loading');
+			}
+		});
+	});
+	//Resizes
+	if ( ($("#press-slider").length) && ($(window).width() > 768) ){
+		$(window).on('resize', function() {
+			var gridSize = getGridSize();
+			flexslider.vars.minItems = gridSize;
+			flexslider.vars.maxItems = gridSize;
+		});
+	}
+	function getGridSize() {
+				return (window.innerWidth < 320) ? 1 :
+							 (window.innerWidth < 400) ? 2 :
+							 (window.innerWidth < 992) ? 3 :
+							 (window.innerWidth < 1200) ? 4 : 5 ;
+	}
 	function buildShareThis(url){
 		var customShareThis  = "<div class='socials'>";
 			customShareThis += "<span class='st_tumblr_large' displayText='Tumblr' st_url='"+url+"'></span>";

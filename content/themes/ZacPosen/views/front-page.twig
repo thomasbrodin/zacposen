@@ -1,5 +1,81 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<img src="{{site.theme.link}}/img/home.jpg">
+
+<div id="page" class="home">
+	<div class="header-image">
+
+		{% if post.get_field('H_header_img') %}
+				<div class="header-background" style="background-image:url('{{TimberImage(post.get_field('H_header_img')).src}}')"></div>
+		{% endif %}
+
+		<div class="container header-caption text-center">
+			<div class="two-third off-left">
+				{% if post.get_field('H_collec_logo') %}
+					<img class="collection" src="{{TimberImage(post.get_field('H_collec_logo')).get_src|resize(400)}}" />
+				{% endif %}
+				</div>
+			</div>
+	</div>
+
+	{% if post.get_field('row_img') %}
+		{% for row in post.get_field('row_img') %}
+				<div class="row thumbs">
+					<article{% if row.sel_col %} class="{{row.sel_col}}"{% endif %}>
+						<figure>
+							<a href="{{row.col_link_1}}">
+								<img src="{{TimberImage(row.col_img_1).src}}"/>
+								<div>
+									<figcaption>
+										{% if row.col_lg_1 %}
+											<img src="{{TimberImage(row.col_lg_1).src}}"/>
+										{% elseif row.col_title_1 %}
+											<h5 class="{{row.color_1}}">{{row.col_title_1}}
+												<span><b>Explore</b></span>
+											</h5>
+										{% endif %}
+									</figcaption>
+								</div>
+							</a>
+						</figure>
+					</article>
+					<article{% if row.sel_col %} class="{{row.sel_col}}"{% endif %}>
+						<figure>
+							<a href="{{row.col_link_2}}">
+								<img src="{{TimberImage(row.col_img_2).src}}"/>
+								<div>
+									<figcaption>
+										{% if row.col_lg_2 %}
+											<img src="{{TimberImage(row.col_lg_2).src}}"/>
+										{% elseif row.col_title_2 %}
+											<h5 class="{{row.color_2}}">{{row.col_title_2}}
+												<span><b>Explore</b></span>
+											</h5>
+										{% endif %}
+									</figcaption>
+								</div>
+							</a>
+						</figure>
+					</article>
+					{% if row.col_img_3 %}
+					<article {% if row.sel_col %} class="{{row.sel_col}}"{% endif %}>
+						<figure>
+							<a href="{{row.col_link_3}}">
+								<img src="{{TimberImage(row.col_img_3).src}}"/>
+								<div>
+									<figcaption>
+										{% if row.col_lg_3 %}
+											<img src="{{TimberImage(row.col_lg_3).src}}"/>
+										{% endif %}
+									</figcaption>
+								</div>
+							</a>
+						</figure>
+					</article>
+					{% endif %}
+				</div>
+		{% endfor %}
+
+	{% endif %}
+
 {% endblock %}

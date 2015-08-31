@@ -25,7 +25,7 @@
 					{% endif %}
 					{% if post.get_field('link_video') %}
 						<p class="uppercase link-video">
-							<a target="blank" href="{{post.get_field('link_video')}}">Watch the fashion show</a>
+							<a class="fancy-video fancybox.iframe" href="{{post.get_field('link_video')}}">Watch the fashion show</a>
 						</p>
 					{% endif %}
 					</div>
@@ -174,10 +174,6 @@
 											{% endfor %}
 									</div>
 				</section>
-		{% endif %}
-
-		{% if post.can_edit %}
-						<a class="edit" href="{{post.get_edit_url}}">Edit me!</a>
 		{% endif %}
 
 	</div><!-- page -->

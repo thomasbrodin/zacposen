@@ -194,6 +194,13 @@ acf_add_local_field_group(array (
 						'value' => 'editorial',
 					),
 				),
+				array (
+					array (
+						'field' => 'field_55d9e37e1ab6f',
+						'operator' => '==',
+						'value' => 'collection',
+					),
+				),
 			),
 			'wrapper' => array (
 				'width' => '',

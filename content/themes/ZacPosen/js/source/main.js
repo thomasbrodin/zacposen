@@ -132,6 +132,15 @@ jQuery( document ).ready( function( $ ) {
 					this.title = this.title ? this.title + buildShareThis(this.href) : buildShareThis(this.href);
 				},
 	});
+	$('a.fancy-video').fancybox({
+			maxWidth	: 900,
+			maxHeight	: 600,
+			padding:0,
+			fitToView	: false,
+			width		: '70%',
+			height		: '70%',
+			autoSize	: false,
+		});
 	// Sliders
 	$(window).load(function() {
 		$('#press-slider').flexslider({

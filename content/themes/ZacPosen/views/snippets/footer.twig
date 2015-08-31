@@ -6,14 +6,38 @@
 				<div class="col-4">
 					<h4>The house of Z</h4>
 					<ul>
-						{{ houseZ }}
+						{% if houseZ %}
+							{% for childpages in houseZ %}
+							<li class="page_item">
+								<a class="smoothy" href="{{site.link}}/house-of-z/#{{childpages.post_name}}">
+								{{childpages.post_title}}
+								</a>
+							</li>
+							{% endfor %}
+						{% endif %}
 					</ul>
 				</div>
 				<div class="col-4">
 					<h4>The World of Zac Posen</h4>
 					<ul>
-						{{ worldZ }}
+						{% if worldZ %}
+							{% for childpages in worldZ[:2] %}
+								<li class="page_item">
+									<a class="smoothy" href="{{site.link}}/the-world-of-z/#{{childpages.post_name}}">
+										{{childpages.post_title}}
+									</a>
+								</li>
+							{% endfor %}
+						{% endif %}
 					</ul>
+					<div class='socials'>
+						<span class='st_facebook_large' displayText='Facebook' st_url='"+url+"'></span>
+						<span class='st_twitter_large' displayText='Tweet' st_url='"+url+"'></span>
+						<span class='st_instagram_large' displayText='instagram' st_url='"+url+"'></span>
+						<span class='st_pinterest_large' displayText='Pinterest' st_url='"+url+"' st_img='"+url+"'></span>
+						<span class='st_googleplus_large' displayText='Google +' st_url='"+url+"'></span>
+						<span class='st_tumblr_large' displayText='Tumblr' st_url='"+url+"'></span>
+					</div>
 				</div>
 				<div class="col-4">
 					{{ footer_sidebar }}

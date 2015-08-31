@@ -257,51 +257,10 @@
 	background: rgba(0, 0, 0, .5);
 	width: 100%;
 }
-.fancybox-title .socials{
-
-}
 /* buttons */
 .fancybox-title .socials span{
-	float: right;
-	padding:4px;
-	cursor: pointer;
-	display: inline-block;
-	font: normal normal normal 14px/1 FontAwesome;
-	font-size: inherit;
-	text-rendering: auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	font-size: 1.3em;
-	color:white;
+	float: right!important;
 }
 .stButton .stLarge{
 	display: none!important;
-}
-
-span.st_googleplus_large:before {
-	content: "\f0d5";
-/*  	background: url("../img/google.png") no-repeat scroll left top transparent;
-*/}
-span.st_facebook_large:before {
-	content: "\f09a";
-/*  background: url("../img/facebook.png") no-repeat scroll left top transparent;
-*/}
-span.st_twitter_large:before {
-		content: "\f099";
-/* 	background: url("../img/twitter.png") no-repeat scroll left top transparent;*/
-}
-span.st_tumblr_large:before {
-		content: "\f173";
-/* 	background: url("../img/tumblr.png") no-repeat scroll left top transparent;
-*/}
-span.st_pinterest_large:before {
-	content: "\f0d2";
-/* 	background: url("../img/pinterest.png") no-repeat scroll left top transparent;
-*/}
-span.st_instagram_large:before {
-	content: "\f16d";
-/* 	background: url("../img/pinterest.png") no-repeat scroll left top transparent;
-*/}
-.fancybox-title .socials span:hover{
-	opacity: 0.7
 }

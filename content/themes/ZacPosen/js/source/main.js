@@ -191,7 +191,7 @@ jQuery( document ).ready( function( $ ) {
 					return;
 			}
 			feed_url = 'https://api.instagram.com/v1/users/296922654/media/recent/?client_id=' + client_id;
-			items_to_load = 5;
+			items_to_load = 6;
 			if (!home_widget_twitter_enabled && !home_widget_blog_enabled) {
 					items_to_load += 6;
 					$('.instagram-widget .items').addClass('wide');

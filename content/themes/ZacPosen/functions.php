@@ -10,7 +10,10 @@ if ( ! class_exists( 'Timber' ) ) {
 	return;
 }
 if( function_exists('acf_add_options_page') ) {
-		acf_add_options_page();
+	acf_add_options_page(array(
+		'page_title' 	=> 'Socials',
+		'menu_title'	=> 'Follow Us',
+	));
 }
 
 define('THEME_URL', get_template_directory_uri());
@@ -69,9 +72,20 @@ class StarterSite extends TimberSite {
 		$context['menu'] = new TimberMenu('primary');
 		$context['footer_menu'] = new TimberMenu('secondary');
 		$context['footer_sidebar'] = Timber::get_widgets('footer_sidebar');
-
-		$context ['worldZ'] = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=7&echo=0' );
-		$context ['houseZ'] = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=2&echo=0' );
+		$argsWZ = array(
+						'post_type' => 'page',
+						'child_of' => 7,
+						'sort_column' => 'menu_order',
+						'sort_order' => 'ASC',
+		);
+		$argsHZ = array(
+						'post_type' => 'page',
+						'child_of' => 2,
+						'sort_column' => 'menu_order',
+						'sort_order' => 'ASC',
+		);
+		$context ['worldZ'] = get_pages( $argsWZ );
+		$context ['houseZ'] = get_pages( $argsHZ );
 
 		$context['site'] = $this;
 		return $context;

@@ -12,6 +12,10 @@ body {
 b, strong {
 		font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
+p{
+	font-size:1.2em;
+	line-height: 1.4
+}
 
 h1 {
 	font-family: 'proxima nova light','Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -97,32 +101,23 @@ a, a:link, a:visited {
 		color: #fff;
 		text-decoration: none;
 		@include transition(all ease-in-out);
+		font-family: 'proxima nova';
+		opacity: 0.8;
 }
 a:hover {
-	font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif;
-	letter-spacing: 0pt;
+	opacity: 1!important
 }
 
-.current-menu-ancestor a,
-.current-menu-item a,
-.dropdown.active a {
-	font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif;
+span.semibold {
 	letter-spacing: 0;
-}
-
-a span.semibold {
-	letter-spacing: 0
+	line-height: 22px;
+	padding: 0 20px;
+	color:white
 }
 
 .current_page_item:not(.nav-item) a {
-	font-family: 'proxima nova','Helvetica Neue',Helvetica,Arial,sans-serif;
 	border-bottom:2px solid white;
 	padding-bottom: 2px;
-	letter-spacing: 0pt;
-}
-.current_page_item:not(.nav-item) a:hover {
-	font-family: 'proxima nova','Helvetica Neue',Helvetica,Arial,sans-serif;
-	letter-spacing: 0pt;
 }
 .page_item:not(.nav-item) a:hover {
 	border-bottom:2px solid white;
@@ -145,7 +140,7 @@ a span.semibold {
 }
 
 .circle {
-	// margin: -13px -2px;
+	margin: -13px -2px;
 	position: absolute;
 	font-size: 4px;
 	color:white

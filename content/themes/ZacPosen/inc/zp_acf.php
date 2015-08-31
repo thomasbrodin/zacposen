@@ -100,7 +100,7 @@ acf_add_local_field_group(array (
 				),
 			),
 			'wrapper' => array (
-				'width' => 35,
+				'width' => 33,
 				'class' => '',
 				'id' => '',
 			),
@@ -132,7 +132,7 @@ acf_add_local_field_group(array (
 				),
 			),
 			'wrapper' => array (
-				'width' => 35,
+				'width' => 33,
 				'class' => '',
 				'id' => '',
 			),
@@ -161,7 +161,7 @@ acf_add_local_field_group(array (
 				),
 			),
 			'wrapper' => array (
-				'width' => 30,
+				'width' => 100,
 				'class' => '',
 				'id' => '',
 			),
@@ -178,6 +178,30 @@ acf_add_local_field_group(array (
 			'placeholder' => '',
 			'disabled' => 0,
 			'readonly' => 0,
+		),
+		array (
+			'key' => 'field_55d8e4ca181c2',
+			'label' => 'Video Link',
+			'name' => 'link_video',
+			'type' => 'url',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => array (
+				array (
+					array (
+						'field' => 'field_55d9e37e1ab6f',
+						'operator' => '==',
+						'value' => 'collection',
+					),
+				),
+			),
+			'wrapper' => array (
+				'width' => 33,
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
 		),
 		array (
 			'key' => 'field_55d8e499181c1',
@@ -214,30 +238,6 @@ acf_add_local_field_group(array (
 			'new_lines' => 'br',
 			'readonly' => 0,
 			'disabled' => 0,
-		),
-		array (
-			'key' => 'field_55d8e4ca181c2',
-			'label' => 'Video Link',
-			'name' => 'link_video',
-			'type' => 'url',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => array (
-				array (
-					array (
-						'field' => 'field_55d9e37e1ab6f',
-						'operator' => '==',
-						'value' => 'collection',
-					),
-				),
-			),
-			'wrapper' => array (
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'placeholder' => '',
 		),
 		array (
 			'key' => 'field_55d8e44b181bf',

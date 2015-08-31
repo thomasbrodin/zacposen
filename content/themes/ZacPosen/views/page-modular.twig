@@ -50,11 +50,11 @@
 										{% endif %}
 
 											<div class="container">
-												<div class="col-2">
+												<div class="col-2 justify">
 													<h3>{{posts.title}}</h3>
 													{{post.col_left}}
 												</div>
-												<div class="col-2">
+												<div class="col-2 justify">
 													{{post.col_right}}
 												</div>
 											</div>
@@ -67,22 +67,30 @@
 												<div class="col-4">
 														<img src="{{TimberImage(post.card_1_img).get_src}}" />
 														<p class="text-center">{{post.card_1_desc}}</p>
-														<a target="blank" class="button" href="{{post.card_1_url}}">Learn More</a>
+														{% if post.card_1_url %}
+															<a target="blank" class="button" href="{{post.card_1_url}}">Learn More</a>
+														{% endif %}
 												</div>
 												<div class="col-4">
 													<img src="{{TimberImage(post.card_2_img).get_src}}" />
 														<p class="text-center">{{post.card_2_desc}}</p>
-														<a target="blank" class="button" href="{{post.card_2_url}}">Learn More</a>
+														{% if post.card_2_url %}
+															<a target="blank" class="button" href="{{post.card_2_url}}">Learn More</a>
+														{% endif %}
 												</div>
 												<div class="col-4">
 													<img src="{{TimberImage(post.card_3_img).get_src}}" />
 														<p class="text-center">{{post.card_3_desc}}</p>
-														<a target="blank" class="button" href="{{post.card_3_url}}">Learn More</a>
+														{% if post.card_3_url %}
+															<a target="blank" class="button" href="{{post.card_3_url}}">Learn More</a>
+														{% endif %}
 												</div>
 												<div class="col-4">
 													<img src="{{TimberImage(post.card_4_img).get_src}}" />
 														<p class="text-center">{{post.card_4_desc}}</p>
-														<a target="blank" class="button" href="{{post.card_4_url}}">Learn More</a>
+														{% if post.card_4_url %}
+															<a target="blank" class="button" href="{{post.card_4_url}}">Learn More</a>
+														{% endif %}
 												</div>
 										</div>
 

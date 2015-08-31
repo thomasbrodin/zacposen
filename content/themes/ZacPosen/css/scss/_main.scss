@@ -50,14 +50,27 @@ section {
 		.col-2 {
 			@include span-columns(6);
 		}
+		.colored .col-2 {
+			margin-top: 60px;
+			margin-bottom: 60px
+		}
 		.col-4 {
 			@include span-columns(3);
 		}
 	}
-	section:not(#collection) {
+	section:not(.colored) {
 		padding: 70px 0;
 		@media screen and (max-width: 768px) {
 			 padding: 30px 0;
+		}
+	}
+	&.colored {
+		.col-2 {
+			margin-top: 60px;
+			margin-bottom: 60px
+		}
+		.col-4 {
+			margin-bottom: 60px
 		}
 	}
 }
@@ -101,7 +114,7 @@ section {
 								display: inline-block;
 								a {
 									line-height: 30px;
-									padding: 0 60px
+									padding: 0 88px
 								}
 							}
 							.sub-nav {
@@ -141,7 +154,7 @@ section {
 				padding-bottom: 40px;
 				@include media($screen) {
 					padding:0 40px;
-					max-width: 960px;
+					max-width: 900px;
 					margin:0 auto;
 				}
 				.col-3 {
@@ -308,12 +321,13 @@ section {
 	h2 {
 		margin-bottom: 60px
 	}
+	.colored h2 {
+		padding-top:60px
+	}
 	h3 {
 		margin-bottom: 40px
 	}
 	p {
-		line-height: 1.4;
-		font-size: 1.2em;
 		&.desc {
 			margin-top: -30px;
 			margin-bottom: 50px
@@ -453,7 +467,7 @@ section {
 				div {
 					position: absolute;
 					text-align: left;
-					top: 40%;
+					top: 33%;
 					width: 100%;
 					figcaption {
 						margin-left: 4em;
@@ -466,17 +480,18 @@ section {
 							max-height:50px;
 						}
 						h5 {
-							font-size:em(28);
+							font-size:em(36);
 							max-width:170px;
-							margin:0 auto
+							margin:0 auto;
+							line-height: 1.2
 						}
 						p {
-							padding:0;
+							padding: 0 3em;
 							font-family: 'proxima nova light','Helvetica Neue',Helvetica,Arial,sans-serif;
-							text-align: center!important;
-							font-size:em(14)!important;
-							line-height:1.6!important;
-							margin-top: 1em;
+							text-align: center !important;
+							font-size: 0.875em !important;
+							line-height: 1.8!important;
+							margin-top: 1.2em;
 							span{
 								display:block;
 								font-size:em(20);

@@ -184,7 +184,7 @@
 	overflow: hidden;
 	display: none;
 	z-index: 8010;
-	background: rgba(0,0,0,0.6);
+	background: rgba(85,93,95,0.6);
 }
 
 .fancybox-overlay-fixed {
@@ -254,13 +254,16 @@
 	color: #000;
 	padding: 10px;
 	background: #000;
-	background: rgba(0, 0, 0, .5);
+	background: transparent;
 	width: 100%;
+	.socials {
+		padding:0;
+		span {
+			text-align: center;
+		}
+	}
 }
 /* buttons */
-.fancybox-title .socials span{
-	float: right!important;
-}
 .stButton .stLarge{
 	display: none!important;
 }

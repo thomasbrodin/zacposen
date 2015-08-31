@@ -14,9 +14,7 @@
 												<li class="row">
 													{% for child in mainitem.get_children %}
 														<div class="sub-nav-item columns">
-															<a class="nav-link" title="{{child.title}}" href="{{child.get_link}}">
-																<span class="semibold">{{child.title}}</span>
-															</a>
+															<span class="semibold">{{child.title}}</span>
 															{% if child.get_children %}
 																	<ul>
 																		{% for subchild in child.get_children %}

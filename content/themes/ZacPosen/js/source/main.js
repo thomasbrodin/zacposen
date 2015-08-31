@@ -60,15 +60,15 @@ jQuery( document ).ready( function( $ ) {
 					});
 			};
 			main_menu_dropdown_timer = '';
-			if (Modernizr.touch === false) {
-					$('.main-header').mouseenter(function() {
-							return stopResetTimer();
-					}).mouseleave(function() {
-							if ($('.main-header').hasClass('dropdown-open')) {
-									return startTimer();
-							}
-					});
-			}
+			// if (Modernizr.touch === false) {
+			// 		$('.main-header').mouseenter(function() {
+			// 				return stopResetTimer();
+			// 		}).mouseleave(function() {
+			// 				if ($('.main-header').hasClass('dropdown-open')) {
+			// 						return startTimer();
+			// 				}
+			// 		});
+			// }
 			startTimer = function() {
 					return main_menu_dropdown_timer = setTimeout((function() {
 							slideUpPanel();
@@ -180,10 +180,6 @@ jQuery( document ).ready( function( $ ) {
 	}
 	function buildShareThis(url){
 		var customShareThis  = "<div class='socials'>";
-			customShareThis += "<span class='st_tumblr_large' displayText='Tumblr' st_url='"+url+"'></span>";
-			customShareThis += "<span class='st_pinterest_large' displayText='Pinterest' st_url='"+url+"' st_img='"+url+"'></span>";
-			customShareThis += "<span class='st_googleplus_large' displayText='Google +' st_url='"+url+"'></span>";
-			customShareThis += "<span class='st_instagram_large' displayText='instagram' st_url='"+url+"'></span>";
 			customShareThis += "<span class='st_twitter_large' displayText='Tweet' st_url='"+url+"'></span>";
 			customShareThis += "<span class='st_facebook_large' displayText='Facebook' st_url='"+url+"'></span>";
 			customShareThis += "</div>";

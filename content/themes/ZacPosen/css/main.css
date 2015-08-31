@@ -535,6 +535,10 @@ body {
 b, strong {
   font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif; }
 
+p {
+  font-size: 1.2em;
+  line-height: 1.4; }
+
 h1 {
   font-family: 'proxima nova light','Helvetica Neue',Helvetica,Arial,sans-serif;
   font-weight: normal;
@@ -614,30 +618,22 @@ a, a:link, a:visited {
   text-decoration: none;
   -webkit-transition: all ease-in-out;
   -moz-transition: all ease-in-out;
-  transition: all ease-in-out; }
+  transition: all ease-in-out;
+  font-family: 'proxima nova';
+  opacity: 0.8; }
 
 a:hover {
-  font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif;
-  letter-spacing: 0pt; }
+  opacity: 1 !important; }
 
-.current-menu-ancestor a,
-.current-menu-item a,
-.dropdown.active a {
-  font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif;
-  letter-spacing: 0; }
-
-a span.semibold {
-  letter-spacing: 0; }
+span.semibold {
+  letter-spacing: 0;
+  line-height: 22px;
+  padding: 0 20px;
+  color: white; }
 
 .current_page_item:not(.nav-item) a {
-  font-family: 'proxima nova','Helvetica Neue',Helvetica,Arial,sans-serif;
   border-bottom: 2px solid white;
-  padding-bottom: 2px;
-  letter-spacing: 0pt; }
-
-.current_page_item:not(.nav-item) a:hover {
-  font-family: 'proxima nova','Helvetica Neue',Helvetica,Arial,sans-serif;
-  letter-spacing: 0pt; }
+  padding-bottom: 2px; }
 
 .page_item:not(.nav-item) a:hover {
   border-bottom: 2px solid white;
@@ -657,6 +653,7 @@ a span.semibold {
   content: "\f078"; }
 
 .circle {
+  margin: -13px -2px;
   position: absolute;
   font-size: 4px;
   color: white; }
@@ -867,7 +864,7 @@ a span.semibold {
   overflow: hidden;
   display: none;
   z-index: 8010;
-  background: rgba(0, 0, 0, 0.6); }
+  background: rgba(85, 93, 95, 0.6); }
 
 .fancybox-overlay-fixed {
   position: fixed;
@@ -928,13 +925,14 @@ a span.semibold {
   color: #000;
   padding: 10px;
   background: #000;
-  background: rgba(0, 0, 0, 0.5);
+  background: transparent;
   width: 100%; }
+  .fancybox-title-over-wrap .socials {
+    padding: 0; }
+    .fancybox-title-over-wrap .socials span {
+      text-align: center; }
 
 /* buttons */
-.fancybox-title .socials span {
-  float: right !important; }
-
 .stButton .stLarge {
   display: none !important; }
 
@@ -1098,6 +1096,9 @@ section .container {
     width: 48.821174201%; }
     section .container .col-2:last-child {
       margin-right: 0; }
+  section .container .colored .col-2 {
+    margin-top: 60px;
+    margin-bottom: 60px; }
   section .container .col-4 {
     float: left;
     display: block;
@@ -1105,11 +1106,16 @@ section .container {
     width: 23.2317613015%; }
     section .container .col-4:last-child {
       margin-right: 0; }
-section section:not(#collection) {
+section section:not(.colored) {
   padding: 70px 0; }
   @media screen and (max-width: 768px) {
-    section section:not(#collection) {
+    section section:not(.colored) {
       padding: 30px 0; } }
+section.colored .col-2 {
+  margin-top: 60px;
+  margin-bottom: 60px; }
+section.colored .col-4 {
+  margin-bottom: 60px; }
 
 /* HEADER
 ================================================== */
@@ -1157,7 +1163,7 @@ section section:not(#collection) {
             display: inline-block; }
             .main-header .row .menu-container .main-menu .nav-main .nav li a {
               line-height: 30px;
-              padding: 0 60px; }
+              padding: 0 88px; }
           .main-header .row .menu-container .main-menu .nav-main .sub-nav {
             display: none; }
     .main-header .row .mobile-tools {
@@ -1187,7 +1193,7 @@ section section:not(#collection) {
       @media screen and (min-width: 768px) {
         .main-header .main-menu-dropdown-panel .row {
           padding: 0 40px;
-          max-width: 960px;
+          max-width: 900px;
           margin: 0 auto; } }
       .main-header .main-menu-dropdown-panel .row .col-3 {
         float: left;
@@ -1325,14 +1331,13 @@ section section:not(#collection) {
       background-size: cover; }
   #page h2 {
     margin-bottom: 60px; }
+  #page .colored h2 {
+    padding-top: 60px; }
   #page h3 {
     margin-bottom: 40px; }
-  #page p {
-    line-height: 1.4;
-    font-size: 1.2em; }
-    #page p.desc {
-      margin-top: -30px;
-      margin-bottom: 50px; }
+  #page p.desc {
+    margin-top: -30px;
+    margin-bottom: 50px; }
   #page .col-4 img {
     margin-bottom: 30px;
     max-width: 200px;
@@ -1452,7 +1457,7 @@ section section:not(#collection) {
     .home .thumbs article figure div {
       position: absolute;
       text-align: left;
-      top: 40%;
+      top: 33%;
       width: 100%; }
       .home .thumbs article figure div figcaption {
         margin-left: 4em;
@@ -1465,16 +1470,17 @@ section section:not(#collection) {
           max-width: 180px;
           max-height: 50px; }
         .home .thumbs article figure div figcaption h5 {
-          font-size: 1.75em;
+          font-size: 2.25em;
           max-width: 170px;
-          margin: 0 auto; }
+          margin: 0 auto;
+          line-height: 1.2; }
         .home .thumbs article figure div figcaption p {
-          padding: 0;
+          padding: 0 3em;
           font-family: 'proxima nova light','Helvetica Neue',Helvetica,Arial,sans-serif;
           text-align: center !important;
           font-size: 0.875em !important;
-          line-height: 1.6 !important;
-          margin-top: 1em; }
+          line-height: 1.8 !important;
+          margin-top: 1.2em; }
           .home .thumbs article figure div figcaption p span {
             display: block;
             font-size: 1.25em;

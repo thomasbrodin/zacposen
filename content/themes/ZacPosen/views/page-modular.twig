@@ -122,13 +122,38 @@
 										<div class="follow-us transparent">
 												<h2>FOLLOW US HERE</h2>
 												<div class='socials'>
-													<span class='st_facebook_large' displayText='Facebook' st_url='"+url+"'></span>
-													<span class='st_twitter_large' displayText='Tweet' st_url='"+url+"'></span>
-													<span class='st_instagram_large' displayText='instagram' st_url='"+url+"'></span>
-													<span class='st_pinterest_large' displayText='Pinterest' st_url='"+url+"' st_img='"+url+"'></span>
-													<span class='st_tumblr_large' displayText='Tumblr' st_url='"+url+"'></span>
+													{% if option.facebook %}
+															<a href="{{option.facebook}}" target="_blank">
+																<span class='st_facebook_large' displayText='Facebook'></span>
+															</a>
+														{% endif %}
+														{% if option.twitter %}
+															<a href="{{option.twitter}}" target="_blank">
+																<span class='st_twitter_large' displayText='Tweet'></span>
+																</a>
+														{% endif %}
+														{% if option.instagram %}
+															<a href="{{option.instagram}}" target="_blank">
+																<span class='st_instagram_large' displayText='instagram'></span>
+															</a>
+														{% endif %}
+														{% if option.pinterest %}
+															<a href="{{option.pinterest}}" target="_blank">
+																<span class='st_pinterest_large' displayText='Pinterest'></span>
+															</a>
+														{% endif %}
+														{% if option.tumblr %}
+															<a href="{{option.tumblr}}" target="_blank">
+																<span class='st_tumblr_large' displayText='Tumblr'></span>
+																</a>
+														{% endif %}
+														{% if option.you_tube %}
+															<a href="{{option.you_tube}}" target="_blank">
+																<span class='st_youtube_large' displayText='YouTube'></span>
+															</a>
+														{% endif %}
+													</div>
 												</div>
-										</div>
 
 									{% endif %}
 							{% endfor %}

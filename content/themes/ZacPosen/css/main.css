@@ -579,6 +579,9 @@ h5 {
 .black {
   color: black !important; }
 
+.grey {
+  color: #555e5e !important; }
+
 .colored {
   background-color: #555e5e !important;
   color: white !important; }
@@ -654,7 +657,6 @@ a span.semibold {
   content: "\f078"; }
 
 .circle {
-  margin: -13px -20px;
   position: absolute;
   font-size: 4px;
   color: white; }
@@ -931,52 +933,10 @@ a span.semibold {
 
 /* buttons */
 .fancybox-title .socials span {
-  float: right;
-  padding: 4px;
-  cursor: pointer;
-  display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 1.3em;
-  color: white; }
+  float: right !important; }
 
 .stButton .stLarge {
   display: none !important; }
-
-span.st_googleplus_large:before {
-  content: "\f0d5";
-  /*  	background: url("../img/google.png") no-repeat scroll left top transparent;
-  */ }
-
-span.st_facebook_large:before {
-  content: "\f09a";
-  /*  background: url("../img/facebook.png") no-repeat scroll left top transparent;
-  */ }
-
-span.st_twitter_large:before {
-  content: "\f099";
-  /* 	background: url("../img/twitter.png") no-repeat scroll left top transparent;*/ }
-
-span.st_tumblr_large:before {
-  content: "\f173";
-  /* 	background: url("../img/tumblr.png") no-repeat scroll left top transparent;
-  */ }
-
-span.st_pinterest_large:before {
-  content: "\f0d2";
-  /* 	background: url("../img/pinterest.png") no-repeat scroll left top transparent;
-  */ }
-
-span.st_instagram_large:before {
-  content: "\f16d";
-  /* 	background: url("../img/pinterest.png") no-repeat scroll left top transparent;
-  */ }
-
-.fancybox-title .socials span:hover {
-  opacity: 0.7; }
 
 /*
  * jQuery FlexSlider v2.2.0
@@ -1116,7 +1076,8 @@ footer, #wrap:after {
 section .container {
   max-width: 1170px;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  padding: 0 30px; }
   section .container::after {
     clear: both;
     content: "";
@@ -1196,7 +1157,7 @@ section section:not(#collection) {
             display: inline-block; }
             .main-header .row .menu-container .main-menu .nav-main .nav li a {
               line-height: 30px;
-              padding: 0 20px; }
+              padding: 0 60px; }
           .main-header .row .menu-container .main-menu .nav-main .sub-nav {
             display: none; }
     .main-header .row .mobile-tools {
@@ -1409,8 +1370,7 @@ section section:not(#collection) {
         display: block; }
         #page .grid article figure img {
           display: block;
-          width: 125%;
-          max-width: none; }
+          max-width: 100%; }
   #page #press {
     -webkit-transition: opacity 0.7s ease;
     -moz-transition: opacity 0.7s ease;
@@ -1447,6 +1407,18 @@ section section:not(#collection) {
       padding-left: 100px; }
       #page #press #press-slider .slides li.press {
         margin: 0 50px; }
+  #page .follow-us {
+    padding: 70px 0 140px;
+    margin-bottom: -70px; }
+    #page .follow-us h2 {
+      color: #555e5e; }
+    #page .follow-us .socials {
+      text-align: center;
+      padding: 2em 0; }
+      #page .follow-us .socials span {
+        padding: 0 0.5em;
+        font-size: 2em;
+        color: #555e5e; }
 
 /* Home */
 .home .thumbs::after {
@@ -1470,7 +1442,6 @@ section section:not(#collection) {
       display: block; }
     .home .thumbs article figure img {
       display: block;
-      min-height: 100%;
       max-width: 100%;
       position: relative;
       -webkit-transition: opacity 0.35s;
@@ -1485,7 +1456,7 @@ section section:not(#collection) {
       width: 100%; }
       .home .thumbs article figure div figcaption {
         margin-left: 4em;
-        max-width: 20%;
+        max-width: 45%;
         display: inline-block;
         vertical-align: middle;
         -webkit-backface-visibility: hidden;
@@ -1494,17 +1465,27 @@ section section:not(#collection) {
           max-width: 180px;
           max-height: 50px; }
         .home .thumbs article figure div figcaption h5 {
-          font-size: 1.75em; }
-          .home .thumbs article figure div figcaption h5 span {
+          font-size: 1.75em;
+          max-width: 170px;
+          margin: 0 auto; }
+        .home .thumbs article figure div figcaption p {
+          padding: 0;
+          font-family: 'proxima nova light','Helvetica Neue',Helvetica,Arial,sans-serif;
+          text-align: center !important;
+          font-size: 0.875em !important;
+          line-height: 1.6 !important;
+          margin-top: 1em; }
+          .home .thumbs article figure div figcaption p span {
             display: block;
-            font-size: 0.5em;
-            padding: 2em 0 0; }
-            .home .thumbs article figure div figcaption h5 span b {
+            font-size: 1.25em;
+            padding: 1.5em 0 0;
+            text-transform: uppercase; }
+            .home .thumbs article figure div figcaption p span b {
               border-bottom: 2px solid;
               padding-bottom: 1px; }
-          .home .thumbs article figure div figcaption h5.white span b {
+          .home .thumbs article figure div figcaption p.white span b {
             border-color: white; }
-          .home .thumbs article figure div figcaption h5.black span b {
+          .home .thumbs article figure div figcaption p.black span b {
             border-color: black; }
 
 /* FOOTER
@@ -1550,3 +1531,45 @@ footer {
             display: block;
             list-style: none;
             line-height: 28px; }
+
+/* Social buttons */
+.socials {
+  padding-top: 2em; }
+  .socials span {
+    padding: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1.3em;
+    color: white; }
+
+.stButton .stLarge {
+  display: none !important; }
+
+span.st_googleplus_large:before {
+  content: "\f0d5"; }
+
+span.st_facebook_large:before {
+  content: "\f09a"; }
+
+span.st_twitter_large:before {
+  content: "\f099"; }
+
+span.st_tumblr_large:before {
+  content: "\f173"; }
+
+span.st_pinterest_large:before {
+  content: "\f0d2"; }
+
+span.st_instagram_large:before {
+  content: "\f16d"; }
+
+span.st_youtube_large:before {
+  content: "\f16a"; }
+
+.socials span:hover {
+  opacity: 0.7; }

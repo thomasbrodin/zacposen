@@ -61,6 +61,9 @@ h5 {
 .black {
 	color:black!important
 }
+.grey {
+	color:$backgroundColor!important;
+}
 .colored {
 	background-color:$backgroundColor!important;
 	color:white!important
@@ -142,7 +145,7 @@ a span.semibold {
 }
 
 .circle {
-	margin: -13px -20px;
+	// margin: -13px -2px;
 	position: absolute;
 	font-size: 4px;
 	color:white

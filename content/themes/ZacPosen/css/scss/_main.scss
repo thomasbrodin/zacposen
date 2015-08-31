@@ -101,7 +101,7 @@ section {
 								display: inline-block;
 								a {
 									line-height: 30px;
-									padding: 0 20px
+									padding: 0 60px
 								}
 							}
 							.sub-nav {
@@ -352,8 +352,7 @@ section {
 				display: block;
 				img{
 					display: block;
-					min-height: 100%;
-					max-width: 130%;
+					max-width: 100%;
 				}
 			}
 		}
@@ -405,6 +404,7 @@ section {
 	}
 	.follow-us {
 		padding:70px 0 140px;
+		margin-bottom:-70px;
 		h2 {
 			color:$backgroundColor;
 		}
@@ -443,7 +443,6 @@ section {
 				}
 				img {
 					display: block;
-					min-height: 100%;
 					max-width: 100%;
 					position: relative;
 					@include transition(opacity 0.35s);
@@ -458,7 +457,7 @@ section {
 					width: 100%;
 					figcaption {
 						margin-left: 4em;
-						max-width: 20%;
+						max-width: 45%;
 						display: inline-block;
 						vertical-align: middle;
 						@include backface-visibility(hidden);
@@ -468,10 +467,21 @@ section {
 						}
 						h5 {
 							font-size:em(28);
+							max-width:170px;
+							margin:0 auto
+						}
+						p {
+							padding:0;
+							font-family: 'proxima nova light','Helvetica Neue',Helvetica,Arial,sans-serif;
+							text-align: center!important;
+							font-size:em(14)!important;
+							line-height:1.6!important;
+							margin-top: 1em;
 							span{
 								display:block;
-								font-size:em(8);
-								padding:2em 0 0;
+								font-size:em(20);
+								padding:1.5em 0 0;
+								text-transform: uppercase;
 								b {
 									border-bottom:2px solid;
 									padding-bottom:1px
@@ -551,31 +561,27 @@ footer {
 .stButton .stLarge{
 	display: none!important;
 }
-
 span.st_googleplus_large:before {
 	content: "\f0d5";
-/*  	background: url("../img/google.png") no-repeat scroll left top transparent;
-*/}
+}
 span.st_facebook_large:before {
 	content: "\f09a";
-/*  background: url("../img/facebook.png") no-repeat scroll left top transparent;
-*/}
+}
 span.st_twitter_large:before {
 		content: "\f099";
-/* 	background: url("../img/twitter.png") no-repeat scroll left top transparent;*/
 }
 span.st_tumblr_large:before {
 		content: "\f173";
-/* 	background: url("../img/tumblr.png") no-repeat scroll left top transparent;
-*/}
+}
 span.st_pinterest_large:before {
 	content: "\f0d2";
-/* 	background: url("../img/pinterest.png") no-repeat scroll left top transparent;
-*/}
+}
 span.st_instagram_large:before {
 	content: "\f16d";
-/* 	background: url("../img/pinterest.png") no-repeat scroll left top transparent;
-*/}
+}
+span.st_youtube_large:before {
+	content: "\f16a";
+}
 .socials span:hover{
 	opacity: 0.7
 }

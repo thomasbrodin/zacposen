@@ -126,6 +126,7 @@
 									{% elseif post.acf_fc_layout == 'social' %}
 										<div id="social-feed">
 											<h2>{{post.feed_t}}</h2>
+											<div id="instafeed"></div>
 										</div>
 										<div class="follow-us transparent">
 												<h2>FOLLOW US HERE</h2>
@@ -173,7 +174,7 @@
 									<div class="grid">
 										{% for image in post.get_field('collection_img') %}
 													<article>
-															<figure>
+															<figure class="collection">
 																<a class="fancybox" data-fancybox-group="gallery" rel="gallery" href="{{TimberImage(image.id).get_src}}">
 																		<img src="{{TimberImage(image.id).get_src|resize(480)}}" />
 																</a>

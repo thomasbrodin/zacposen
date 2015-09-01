@@ -58,7 +58,7 @@ section {
 			@include span-columns(3);
 		}
 	}
-	section:not(.colored) {
+	section:not(.colored):not(#collection) {
 		padding: 70px 0;
 		@media screen and (max-width: 768px) {
 			 padding: 30px 0;
@@ -259,6 +259,7 @@ section {
 		@include transform(translateY(-50%));
 		img.collection {
 			max-width:390px;
+			max-height: 130px;
 		}
 		h1{
 			margin-top: 2em;
@@ -420,6 +421,19 @@ section {
 				li.press{
 					margin:0 50px
 				}
+			}
+		}
+	}
+	#instafeed {
+		@include outer-container(100%);
+		@include clearfix;
+		article {
+			width:33.33%;
+			float:left;
+			display: block;
+			img {
+				width:100%;
+				display: block
 			}
 		}
 	}

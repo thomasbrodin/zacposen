@@ -792,6 +792,9 @@ span.semibold {
   height: 15px;
   text-indent: -9999px; }
 
+.fancybox-overlay.transparent .fancybox-close {
+  background: url("../img/cross-b.png") center center no-repeat; }
+
 .fancybox-close:hover {
   opacity: 0.7; }
 
@@ -828,6 +831,12 @@ span.semibold {
 
 .fancybox-next span {
   background-image: url("../img/arrow-right.png"); }
+
+.fancybox-overlay.transparent .fancybox-next span {
+  background-image: url("../img/arrow-right-b.png"); }
+
+.fancybox-overlay.transparent .fancybox-prev span {
+  background-image: url("../img/arrow-left-b.png"); }
 
 .fancybox-prev span {
   left: -60px; }
@@ -1113,10 +1122,10 @@ section .container {
     width: 23.2317613015%; }
     section .container .col-4:last-child {
       margin-right: 0; }
-section section:not(.colored) {
+section section:not(.colored):not(#collection) {
   padding: 70px 0; }
   @media screen and (max-width: 768px) {
-    section section:not(.colored) {
+    section section:not(.colored):not(#collection) {
       padding: 30px 0; } }
 section.colored .col-2 {
   margin-top: 60px;
@@ -1289,7 +1298,8 @@ section.colored .col-4 {
     -o-transform: translateY(-50%);
     transform: translateY(-50%); }
     #page .header-caption img.collection {
-      max-width: 390px; }
+      max-width: 390px;
+      max-height: 130px; }
     #page .header-caption h1 {
       margin-top: 2em;
       margin-bottom: 1em; }
@@ -1423,6 +1433,25 @@ section.colored .col-4 {
           right: 180px; } }
     #page #press #press-slider .slides li.press {
       margin: 0 50px; }
+  #page #instafeed {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto; }
+    #page #instafeed::after {
+      clear: both;
+      content: "";
+      display: table; }
+    #page #instafeed::after {
+      clear: both;
+      content: "";
+      display: table; }
+    #page #instafeed article {
+      width: 33.33%;
+      float: left;
+      display: block; }
+      #page #instafeed article img {
+        width: 100%;
+        display: block; }
   #page .follow-us {
     padding: 70px 0 140px;
     margin-bottom: -70px; }

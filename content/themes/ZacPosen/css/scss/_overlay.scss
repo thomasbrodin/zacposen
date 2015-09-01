@@ -97,6 +97,9 @@
 	height:15px;
 	text-indent: -9999px
 }
+.fancybox-overlay.transparent .fancybox-close {
+	background: url('../img/cross-b.png') center center no-repeat;
+}
 
 .fancybox-close:hover {
 	opacity: 0.7
@@ -140,6 +143,12 @@
 	 background-image: url('../img/arrow-right.png');
 }
 
+.fancybox-overlay.transparent .fancybox-next span{
+	background-image: url('../img/arrow-right-b.png');
+}
+.fancybox-overlay.transparent .fancybox-prev span {
+	background-image: url('../img/arrow-left-b.png');
+}
 .fancybox-prev span {
 	left: -60px;
 }

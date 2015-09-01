@@ -187,55 +187,19 @@ jQuery( document ).ready( function( $ ) {
 			customShareThis += "</div>";
 			return customShareThis;
 	}
-	instagramFeed = function() {
-			var client_id, feed_url, getImages, items_to_load, username;
-			client_id = home_widget_instagram_client_id;
-			if (client_id.length < 1) {
-					client_id = 'b9250ffaa750473497707f1f507165dd';
-			}
-			username = $('.instagram-widget').attr('data-username');
-			if (username.length < 1) {
-					return;
-			}
-			feed_url = 'https://api.instagram.com/v1/users/296922654/media/recent/?client_id=' + client_id;
-			items_to_load = 6;
-			if (!home_widget_twitter_enabled && !home_widget_blog_enabled) {
-					items_to_load += 6;
-					$('.instagram-widget .items').addClass('wide');
-			}
-			$.ajax({
-					dataType: "jsonp",
-					url: 'https://api.instagram.com/v1/users/search?q=' + username + '&client_id=' + client_id,
-					success: function(response) {}
-			}).done(function(data) {
-					var user, user_id, _i, _len, _ref;
-					user_id = '';
-					_ref = data.data;
-					for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-							user = _ref[_i];
-							if (username === user.username) {
-									user_id = user.id;
-									break;
-							}
-					}
-					return getImages(user_id);
-			});
-			return getImages = function(user_id) {
-					return $.ajax({
-							dataType: "jsonp",
-							url: 'https://api.instagram.com/v1/users/' + user_id + '/media/recent/?client_id=' + client_id,
-							success: function(response) {}
-					}).done(function(data) {
-							var i, img_src, _i, _results;
-							_results = [];
-							for (i = _i = 0; 0 <= items_to_load ? _i <= items_to_load : _i >= items_to_load; i = 0 <= items_to_load ? ++_i : --_i) {
-									img_src = data.data[i].images.low_resolution.url;
-									img_src = img_src.replace("http:", "https:");
-									_results.push($('.instagram-widget .items').append('<a class="item" target="_blank" href="' + data.data[i].link + '"><img src="' + img_src + '" /></a>'));
-							}
-							return _results;
-					});
-			};
-	};
+	var clientID = $('instafeed').data('client');
+	var accessToken = $('instafeed').data('access');
+	console.log (clientID)
+	var feed = new Instafeed({
+		target: 'instafeed',
+		get: 'user',
+		userId: 23551779,
+		accessToken: '23551779.467ede5.f656d2bb157448be93c223e661bde45e',
+		resolution: 'standard_resolution',
+		limit: 6,
+		sortBy: 'most-recent',
+		template: '<article><figure><img src="{{image}}" /></figure></article>'
+	});
+	feed.run();
 
 });

@@ -527,7 +527,7 @@ table {
   border-spacing: 0; }
 
 body {
-  font-family: 'proxima nova light','Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-family: 'proxima nova','Helvetica Neue',Helvetica,Arial,sans-serif;
   background: #ffffff;
   -webkit-font-smoothing: antialiased;
   font-size: 13px; }
@@ -626,10 +626,11 @@ a:hover {
   opacity: 1 !important; }
 
 span.semibold {
-  letter-spacing: 0;
   line-height: 22px;
-  padding: 0 20px;
-  color: white; }
+  letter-spacing: 0.5pt; }
+
+.page_item, .nav-item {
+  font-size: 1.125em; }
 
 .current_page_item:not(.nav-item) a {
   border-bottom: 2px solid white;
@@ -865,6 +866,12 @@ span.semibold {
   display: none;
   z-index: 8010;
   background: rgba(85, 93, 95, 0.6); }
+
+.fancybox-overlay.colored {
+  background: rgba(85, 93, 95, 0.6) !important; }
+
+.fancybox-overlay.transparent {
+  background: rgba(250, 250, 250, 0.8) !important; }
 
 .fancybox-overlay-fixed {
   position: fixed;
@@ -1163,7 +1170,7 @@ section.colored .col-4 {
             display: inline-block; }
             .main-header .row .menu-container .main-menu .nav-main .nav li a {
               line-height: 30px;
-              padding: 0 88px; }
+              padding: 0 81px; }
           .main-header .row .menu-container .main-menu .nav-main .sub-nav {
             display: none; }
     .main-header .row .mobile-tools {
@@ -1203,6 +1210,10 @@ section.colored .col-4 {
         opacity: 0; }
         .main-header .main-menu-dropdown-panel .row .col-3:last-child {
           margin-right: 0; }
+        .main-header .main-menu-dropdown-panel .row .col-3 span.semibold {
+          padding: 0 20px;
+          color: white;
+          letter-spacing: 0.18pt; }
         .main-header .main-menu-dropdown-panel .row .col-3 a {
           line-height: 22px;
           padding: 0 20px; }
@@ -1247,7 +1258,7 @@ section.colored .col-4 {
       .main-header .bottom-row .row ul li {
         list-style: none;
         display: inline-block;
-        padding: 0 20px; }
+        padding: 0 40px; }
 
 /* PAGE
 ================================================== */
@@ -1258,7 +1269,7 @@ section.colored .col-4 {
     position: relative;
     background-color: white;
     overflow: hidden;
-    height: 620px;
+    height: 650px;
     width: 100%; }
     #page .header-image .header-background {
       position: absolute;
@@ -1373,6 +1384,8 @@ section.colored .col-4 {
         height: 350px;
         overflow: hidden;
         display: block; }
+        #page .grid article figure.collection {
+          height: 320px; }
         #page .grid article figure img {
           display: block;
           max-width: 100%; }
@@ -1392,26 +1405,24 @@ section.colored .col-4 {
     #page #press #press-slider .flex-direction-nav a {
       display: block;
       text-decoration: none;
-      width: 15px;
+      width: 16px;
       height: 40px;
       margin: -20px 0 0;
       text-indent: -9999px; }
     #page #press #press-slider .flex-direction-nav .flex-prev {
-      background: url(../img/arrow-left.png) no-repeat;
+      background: url(../img/arrow-left-b.png) no-repeat;
       left: 5%; }
       @media screen and (min-width: 1280px) {
         #page #press #press-slider .flex-direction-nav .flex-prev {
-          left: 6%; } }
+          left: 180px; } }
     #page #press #press-slider .flex-direction-nav .flex-next {
-      background: url(../img/arrow-right.png) no-repeat;
+      background: url(../img/arrow-right-b.png) no-repeat;
       right: 4%; }
       @media screen and (min-width: 1280px) {
         #page #press #press-slider .flex-direction-nav .flex-next {
-          right: 6%; } }
-    #page #press #press-slider .slides {
-      padding-left: 100px; }
-      #page #press #press-slider .slides li.press {
-        margin: 0 50px; }
+          right: 180px; } }
+    #page #press #press-slider .slides li.press {
+      margin: 0 50px; }
   #page .follow-us {
     padding: 70px 0 140px;
     margin-bottom: -70px; }
@@ -1423,7 +1434,7 @@ section.colored .col-4 {
       #page .follow-us .socials span {
         padding: 0 0.5em;
         font-size: 2em;
-        color: #555e5e; }
+        color: #555e5e !important; }
 
 /* Home */
 .home .thumbs::after {
@@ -1550,8 +1561,13 @@ footer {
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 1.3em;
-    color: white; }
+    font-size: 1.3em; }
+
+.fancybox-overlay.colored .socials span {
+  color: white !important; }
+
+.fancybox-overlay.transparent .socials span {
+  color: black !important; }
 
 .stButton .stLarge {
   display: none !important; }

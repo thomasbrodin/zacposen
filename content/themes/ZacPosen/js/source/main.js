@@ -60,15 +60,15 @@ jQuery( document ).ready( function( $ ) {
 					});
 			};
 			main_menu_dropdown_timer = '';
-			// if (Modernizr.touch === false) {
-			// 		$('.main-header').mouseenter(function() {
-			// 				return stopResetTimer();
-			// 		}).mouseleave(function() {
-			// 				if ($('.main-header').hasClass('dropdown-open')) {
-			// 						return startTimer();
-			// 				}
-			// 		});
-			// }
+			if (Modernizr.touch === false) {
+					$('.main-header').mouseenter(function() {
+							return stopResetTimer();
+					}).mouseleave(function() {
+							if ($('.main-header').hasClass('dropdown-open')) {
+									return startTimer();
+							}
+					});
+			}
 			startTimer = function() {
 					return main_menu_dropdown_timer = setTimeout((function() {
 							slideUpPanel();
@@ -121,6 +121,8 @@ jQuery( document ).ready( function( $ ) {
 				},
 				afterShow : function() {
 					// stButtons.locateElements();
+					var bgColor = $('#page section').attr('class');
+					$(".fancybox-overlay").addClass(bgColor);
 					$(".fancybox-title").hide();
 					$(".fancybox-wrap").hover(function() {
 							$(".fancybox-title").stop(true,true).slideDown(200);

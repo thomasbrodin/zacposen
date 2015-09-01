@@ -13,7 +13,7 @@ acf_add_local_field_group(array (
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array (
-				'width' => '50',
+				'width' => 33,
 				'class' => '',
 				'id' => '',
 			),
@@ -41,13 +41,41 @@ acf_add_local_field_group(array (
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array (
-				'width' => 50,
+				'width' => 33,
 				'class' => '',
 				'id' => '',
 			),
 			'choices' => array (
 				'transparent' => 'White',
 				'colored' => 'Grey',
+			),
+			'default_value' => array (
+			),
+			'allow_null' => 0,
+			'multiple' => 0,
+			'ui' => 0,
+			'ajax' => 0,
+			'placeholder' => '',
+			'disabled' => 0,
+			'readonly' => 0,
+		),
+		array (
+			'key' => 'field_55e60876f8376',
+			'label' => 'Section Text & Icon Color',
+			'name' => 'sel_color',
+			'type' => 'select',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => 33,
+				'class' => '',
+				'id' => '',
+			),
+			'choices' => array (
+				'white' => 'White',
+				'grey' => 'Grey',
+				'black' => 'Black',
 			),
 			'default_value' => array (
 			),
@@ -143,41 +171,6 @@ acf_add_local_field_group(array (
 			'maxlength' => '',
 			'readonly' => 0,
 			'disabled' => 0,
-		),
-		array (
-			'key' => 'field_55d8eef12df5d',
-			'label' => 'Title & Caption Color',
-			'name' => 'text_color',
-			'type' => 'select',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => array (
-				array (
-					array (
-						'field' => 'field_55d9e37e1ab6f',
-						'operator' => '==',
-						'value' => 'editorial',
-					),
-				),
-			),
-			'wrapper' => array (
-				'width' => 100,
-				'class' => '',
-				'id' => '',
-			),
-			'choices' => array (
-				'black' => 'Black',
-				'white' => 'White',
-			),
-			'default_value' => array (
-			),
-			'allow_null' => 0,
-			'multiple' => 0,
-			'ui' => 0,
-			'ajax' => 0,
-			'placeholder' => '',
-			'disabled' => 0,
-			'readonly' => 0,
 		),
 		array (
 			'key' => 'field_55d8e4ca181c2',

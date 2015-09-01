@@ -4,7 +4,7 @@ $mobile: new-breakpoint(max-width 768px);
 $backgroundColor:#555e5e;
 
 body {
-		font-family: 'proxima nova light','Helvetica Neue',Helvetica,Arial,sans-serif;
+		font-family: 'proxima nova','Helvetica Neue',Helvetica,Arial,sans-serif;
 		background: #ffffff;
 		-webkit-font-smoothing: antialiased;
 		font-size:13px
@@ -109,12 +109,12 @@ a:hover {
 }
 
 span.semibold {
-	letter-spacing: 0;
 	line-height: 22px;
-	padding: 0 20px;
-	color:white
+	letter-spacing: 0.5pt
 }
-
+.page_item, .nav-item {
+	font-size:em(18)
+}
 .current_page_item:not(.nav-item) a {
 	border-bottom:2px solid white;
 	padding-bottom: 2px;

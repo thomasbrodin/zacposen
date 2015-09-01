@@ -10,7 +10,7 @@
 					<div class="header-background" style="background-image:url('{{TimberImage(post.get_field('header_image')).src}}')"></div>
 			{% endif %}
 
-			<div class="container header-caption text-center {{post.get_field('text_color')}}">
+			<div class="container header-caption text-center {{post.get_field('sel_color')}}">
 				<div class="two-third">
 					{% if post.get_field('collection_logo') %}
 						<img class="collection" src="{{TimberImage(post.get_field('collection_logo')).get_src|resize(400)}}" />

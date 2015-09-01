@@ -186,7 +186,12 @@
 	z-index: 8010;
 	background: rgba(85,93,95,0.6);
 }
-
+.fancybox-overlay.colored {
+	background: rgba(85,93,95,0.6)!important
+}
+.fancybox-overlay.transparent {
+	background: rgba(250,250,250,0.8)!important
+}
 .fancybox-overlay-fixed {
 	position: fixed;
 	bottom: 0;

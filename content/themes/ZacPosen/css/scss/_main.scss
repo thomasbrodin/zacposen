@@ -27,14 +27,39 @@ html, body {
 /* sticky Footer */
 #wrap {
 	min-height: 100%;
-	margin-bottom: -220px
+	margin-bottom: -220px;
+	@include media($mobile) {
+	margin-bottom:0
+	}
 }
 #wrap:after {
 	content: "";
 	display: block;
+	@include media($mobile) {
+	margin-bottom:0
+	}
 }
 footer, #wrap:after {
 	height: 220px;
+	@include media($mobile) {
+		height: auto;
+	}
+}
+#loader{
+	position:fixed;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	width:100%;
+	height:100%;
+	background: url('../img/preloader.gif') center center no-repeat;
+	background-color:#fff;
+	z-index: 2
+}
+#content {
+	z-index: 1;
+	position:relative
 }
 /* main */
 section {
@@ -49,17 +74,24 @@ section {
 		}
 		.col-2 {
 			@include span-columns(6);
-		}
-		.colored .col-2 {
-			margin-top: 60px;
-			margin-bottom: 60px
+			@include media($mobile) {
+				@include span-columns(1);
+				margin-right: 0!important
+			}
 		}
 		.col-4 {
 			@include span-columns(3);
+			@include media($mobile) {
+				@include span-columns(1);
+				margin-right: 0!important
+			}
 		}
 	}
 	section:not(.colored):not(#collection) {
 		padding: 70px 0;
+		@include media($mobile) {
+			padding:30px 0
+		}
 		@media screen and (max-width: 768px) {
 			 padding: 30px 0;
 		}
@@ -67,10 +99,20 @@ section {
 	&.colored {
 		.col-2 {
 			margin-top: 60px;
-			margin-bottom: 60px
+			margin-bottom: 60px;
+			@include media($mobile) {
+				margin-top: 30px;
+				margin-bottom: 0;
+				&:last-child {
+					margin-bottom: 60px
+				}
+			}
 		}
 		.col-4 {
-			margin-bottom: 60px
+			margin-bottom: 60px;
+			@include media($mobile) {
+				margin-bottom: 30px;
+			}
 		}
 	}
 }
@@ -80,9 +122,8 @@ section {
 .main-header {
 		@include outer-container(100%);
 		position: relative;
-		z-index: 2;
+		z-index: 3;
 		width: 100%;
-
 		.bg {
 			position: absolute;
 			width: 100%;
@@ -159,6 +200,9 @@ section {
 				padding-top: 30px;
 				padding-bottom: 15px;
 				min-height: 50px;
+				@include media($mobile) {;
+					padding-top: 20px;
+				}
 			}
 		}
 
@@ -247,6 +291,11 @@ section {
 							list-style: none;
 							display: inline-block;
 							padding:0 40px;
+							@include media($mobile) {
+								display: block;
+								line-height: 2.4;
+								font-size: em(15)!important
+							}
 						}
 					}
 				}
@@ -264,6 +313,9 @@ section {
 		overflow: hidden;
 		height: 650px;
 		width: 100%;
+		@include media($mobile) {
+			height: 300px;
+		}
 		.header-background {
 			position: absolute;
 			height: 100%;
@@ -282,15 +334,26 @@ section {
 		img.collection {
 			max-width:390px;
 			max-height: 130px;
+			@include media($mobile) {
+				max-width:140px;
+				max-height: 100px;
+			}
 		}
 		h1{
 			margin-top: 2em;
 			margin-bottom: 1em;
+			@include media($mobile) {
+				margin-top: 1em;
+			}
 			&.hyphenate {
 				font-size:em(38);
 				max-width: 240px;
 				margin:0 auto .5em;
 				line-height: 1.2;
+				@include media($mobile) {
+					font-size:em(24);
+					max-width: 140px
+				}
 			}
 		}
 		.dash {
@@ -302,9 +365,17 @@ section {
 			margin:0;
 			padding:0 14em;
 			font-size:1.1em;
+			@include media($mobile) {
+				padding:0;
+				font-size: .7em
+			}
 			&.link-video {
 				font-size: 1em;
 				margin-top:2em;
+				@include media($mobile) {
+					font-size: .7em;
+					margin-top: 1em;
+				}
 				a {
 					line-height: 20px;
 					height:20px;
@@ -335,6 +406,9 @@ section {
 		width: 100%;
 		margin-top:-70px;
 		margin-bottom: 70px;
+		@include media($mobile) {
+			height: 300px;
+		}
 		.section-header-bg {
 			position: absolute;
 			height: 100%;
@@ -347,13 +421,23 @@ section {
 		}
 	}
 	h2 {
-		margin-bottom: 60px
+		margin-bottom: 60px;
+		@include media($mobile) {
+			font-size: 1em;
+			margin-bottom: 30px;
+		}
 	}
 	.colored h2 {
-		padding-top:60px
+		padding-top:60px;
+		@include media($mobile) {
+			padding-top:30px;
+		}
 	}
 	h3 {
-		margin-bottom: 40px
+		margin-bottom: 40px;
+		@include media($mobile) {
+			margin-bottom: 30px;
+		}
 	}
 	p {
 		&.desc {
@@ -388,6 +472,9 @@ section {
 			width:calc(100% / 6);
 			display:block;
 			float:left;
+			@include media($mobile) {
+				width: 50%
+			}
 			figure {
 				height:auto;
 				overflow: hidden;
@@ -444,6 +531,9 @@ section {
 			width:33.33%;
 			float:left;
 			display: block;
+			@include media($mobile) {
+				width: 50%
+			}
 			img {
 				width:100%;
 				display: block
@@ -476,10 +566,17 @@ section {
 			float:left;
 			&.half {
 				width:50%;
+				@include media($mobile) {
+					width:100%;
+				}
 			}
 			&.third {
-				width:33.33%
+				width:33.33%;
+				@include media($mobile) {
+					width:100%;
+				}
 			}
+
 			figure {
 				position: relative;
 				height: auto;
@@ -519,7 +616,10 @@ section {
 							font-size:em(36);
 							max-width:170px;
 							margin:0 auto;
-							line-height: 1.2
+							line-height: 1.2;
+							@include media($mobile) {
+								font-size:em(18);
+							}
 						}
 						p {
 							padding: 0 3em;
@@ -527,6 +627,12 @@ section {
 							font-size: 0.875em !important;
 							line-height: 1.8!important;
 							margin-top: 1.2em;
+							@include media($mobile) {
+								padding: 0;
+								margin-top: .5em;
+								font-size: 0.5em !important;
+								line-height: 1.2!important;
+							}
 							span{
 								display:block;
 								font-size:em(20);
@@ -559,6 +665,8 @@ section {
 	================================================== */
 footer {
 	background: $backgroundColor;
+	z-index: 3;
+	position: relative;
 	.container {
 		@include outer-container(100%);
 		color: white;
@@ -573,11 +681,23 @@ footer {
 			}
 			.col-4 {
 				@include span-columns(3);
+				@include media($mobile) {
+					@include span-columns(1);
+					padding-bottom:30px;
+					margin-bottom: 30px;
+					border-bottom: 1px solid white;
+					&:last-child {
+						border:none
+					}
+				}
 				h4 {
 					margin-bottom:15px;
 				}
 				nav {
-					border-left:1px solid #aaafaf
+					border-left:1px solid #aaafaf;
+					@include media($mobile) {
+						border:none
+					}
 				}
 				ul {
 					padding:0;

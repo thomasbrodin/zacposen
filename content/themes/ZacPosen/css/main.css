@@ -538,6 +538,10 @@ b, strong {
 p {
   font-size: 1.2em;
   line-height: 1.4; }
+  @media screen and (max-width: 480px) {
+    p {
+      font-size: 1em;
+      line-height: 1.2; } }
 
 h1 {
   font-family: 'proxima nova light','Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -546,6 +550,10 @@ h1 {
   letter-spacing: 1.8pt !important;
   text-align: center !important;
   font-size: 1.875em; }
+  @media screen and (max-width: 480px) {
+    h1 {
+      font-size: 1.625em;
+      letter-spacing: 1pt !important; } }
 
 h2 {
   font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -554,6 +562,10 @@ h2 {
   letter-spacing: 1pt !important;
   text-align: center !important;
   font-size: 1.75em; }
+  @media screen and (max-width: 480px) {
+    h2 {
+      font-size: 1.5em;
+      letter-spacing: 0.5pt !important; } }
 
 h3 {
   font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -561,6 +573,10 @@ h3 {
   text-transform: uppercase !important;
   letter-spacing: 0.8pt;
   font-size: 1.625em; }
+  @media screen and (max-width: 480px) {
+    h3 {
+      font-size: 1.375em;
+      letter-spacing: 0.4pt !important; } }
 
 h4 {
   font-family: 'proxima nova semibold','Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -568,6 +584,10 @@ h4 {
   text-transform: uppercase !important;
   letter-spacing: 0.18pt;
   font-size: 1.3125em; }
+  @media screen and (max-width: 480px) {
+    h4 {
+      font-size: 1.25em;
+      letter-spacing: 1pt !important; } }
 
 h5 {
   font-family: 'proxima nova light','Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -576,6 +596,10 @@ h5 {
   letter-spacing: 1pt !important;
   text-align: center !important;
   font-size: 1.125em; }
+  @media screen and (max-width: 480px) {
+    h5 {
+      font-size: 1em;
+      letter-spacing: 0.5pt !important; } }
 
 .white {
   color: white !important; }
@@ -631,6 +655,9 @@ span.semibold {
 
 .page_item, .nav-item {
   font-size: 1.125em; }
+  @media screen and (max-width: 480px) {
+    .page_item, .nav-item {
+      font-size: 0.9375em; } }
 
 .current_page_item:not(.nav-item) a {
   border-bottom: 2px solid white;
@@ -795,6 +822,9 @@ span.semibold {
 .fancybox-overlay.transparent .fancybox-close {
   background: url("../img/cross-b.png") center center no-repeat; }
 
+body.admin-bar .fancybox-close {
+  top: 52px; }
+
 .fancybox-close:hover {
   opacity: 0.7; }
 
@@ -840,9 +870,15 @@ span.semibold {
 
 .fancybox-prev span {
   left: -60px; }
+  @media screen and (max-width: 480px) {
+    .fancybox-prev span {
+      left: -40px; } }
 
 .fancybox-next span {
   right: -60px; }
+  @media screen and (max-width: 480px) {
+    .fancybox-next span {
+      right: -40px; } }
 
 .fancybox-nav:hover span {
   opacity: 0.7; }
@@ -1078,13 +1114,38 @@ html, body {
 #wrap {
   min-height: 100%;
   margin-bottom: -220px; }
+  @media screen and (max-width: 480px) {
+    #wrap {
+      margin-bottom: 0; } }
 
 #wrap:after {
   content: "";
   display: block; }
+  @media screen and (max-width: 480px) {
+    #wrap:after {
+      margin-bottom: 0; } }
 
 footer, #wrap:after {
   height: 220px; }
+  @media screen and (max-width: 480px) {
+    footer, #wrap:after {
+      height: auto; } }
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/preloader.gif") center center no-repeat;
+  background-color: #fff;
+  z-index: 2; }
+
+#content {
+  z-index: 1;
+  position: relative; }
 
 /* main */
 section .container {
@@ -1112,9 +1173,15 @@ section .container {
     width: 48.821174201%; }
     section .container .col-2:last-child {
       margin-right: 0; }
-  section .container .colored .col-2 {
-    margin-top: 60px;
-    margin-bottom: 60px; }
+    @media screen and (max-width: 480px) {
+      section .container .col-2 {
+        float: left;
+        display: block;
+        margin-right: 38.1982059067%;
+        width: 100%;
+        margin-right: 0 !important; }
+        section .container .col-2:last-child {
+          margin-right: 0; } }
   section .container .col-4 {
     float: left;
     display: block;
@@ -1122,16 +1189,37 @@ section .container {
     width: 23.2317613015%; }
     section .container .col-4:last-child {
       margin-right: 0; }
+    @media screen and (max-width: 480px) {
+      section .container .col-4 {
+        float: left;
+        display: block;
+        margin-right: 38.1982059067%;
+        width: 100%;
+        margin-right: 0 !important; }
+        section .container .col-4:last-child {
+          margin-right: 0; } }
 section section:not(.colored):not(#collection) {
   padding: 70px 0; }
+  @media screen and (max-width: 480px) {
+    section section:not(.colored):not(#collection) {
+      padding: 30px 0; } }
   @media screen and (max-width: 768px) {
     section section:not(.colored):not(#collection) {
       padding: 30px 0; } }
 section.colored .col-2 {
   margin-top: 60px;
   margin-bottom: 60px; }
+  @media screen and (max-width: 480px) {
+    section.colored .col-2 {
+      margin-top: 30px;
+      margin-bottom: 0; }
+      section.colored .col-2:last-child {
+        margin-bottom: 60px; } }
 section.colored .col-4 {
   margin-bottom: 60px; }
+  @media screen and (max-width: 480px) {
+    section.colored .col-4 {
+      margin-bottom: 30px; } }
 
 /* HEADER
 ================================================== */
@@ -1140,7 +1228,7 @@ section.colored .col-4 {
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100%; }
   .main-header::after {
     clear: both;
@@ -1212,6 +1300,9 @@ section.colored .col-4 {
       padding-top: 30px;
       padding-bottom: 15px;
       min-height: 50px; }
+      @media screen and (max-width: 480px) {
+        .main-header .row.top {
+          padding-top: 20px; } }
   .main-header .main-menu-dropdown-panel {
     display: none; }
     @media screen and (min-width: 768px) {
@@ -1286,6 +1377,11 @@ section.colored .col-4 {
         list-style: none;
         display: inline-block;
         padding: 0 40px; }
+        @media screen and (max-width: 480px) {
+          .main-header .bottom-row .row ul li {
+            display: block;
+            line-height: 2.4;
+            font-size: 0.9375em !important; } }
 
 /* PAGE
 ================================================== */
@@ -1298,6 +1394,9 @@ section.colored .col-4 {
     overflow: hidden;
     height: 650px;
     width: 100%; }
+    @media screen and (max-width: 480px) {
+      #page .header-image {
+        height: 300px; } }
     #page .header-image .header-background {
       position: absolute;
       height: 100%;
@@ -1318,14 +1417,25 @@ section.colored .col-4 {
     #page .header-caption img.collection {
       max-width: 390px;
       max-height: 130px; }
+      @media screen and (max-width: 480px) {
+        #page .header-caption img.collection {
+          max-width: 140px;
+          max-height: 100px; } }
     #page .header-caption h1 {
       margin-top: 2em;
       margin-bottom: 1em; }
+      @media screen and (max-width: 480px) {
+        #page .header-caption h1 {
+          margin-top: 1em; } }
       #page .header-caption h1.hyphenate {
         font-size: 2.375em;
         max-width: 240px;
         margin: 0 auto .5em;
         line-height: 1.2; }
+        @media screen and (max-width: 480px) {
+          #page .header-caption h1.hyphenate {
+            font-size: 1.5em;
+            max-width: 140px; } }
     #page .header-caption .dash {
       width: 35px;
       height: 2px;
@@ -1334,9 +1444,17 @@ section.colored .col-4 {
       margin: 0;
       padding: 0 14em;
       font-size: 1.1em; }
+      @media screen and (max-width: 480px) {
+        #page .header-caption p {
+          padding: 0;
+          font-size: 0.7em; } }
       #page .header-caption p.link-video {
         font-size: 1em;
         margin-top: 2em; }
+        @media screen and (max-width: 480px) {
+          #page .header-caption p.link-video {
+            font-size: .7em;
+            margin-top: 1em; } }
         #page .header-caption p.link-video a {
           line-height: 20px;
           height: 20px;
@@ -1359,6 +1477,9 @@ section.colored .col-4 {
     width: 100%;
     margin-top: -70px;
     margin-bottom: 70px; }
+    @media screen and (max-width: 480px) {
+      #page .section-header-img {
+        height: 300px; } }
     #page .section-header-img .section-header-bg {
       position: absolute;
       height: 100%;
@@ -1370,10 +1491,20 @@ section.colored .col-4 {
       background-size: cover; }
   #page h2 {
     margin-bottom: 60px; }
+    @media screen and (max-width: 480px) {
+      #page h2 {
+        font-size: 1em;
+        margin-bottom: 30px; } }
   #page .colored h2 {
     padding-top: 60px; }
+    @media screen and (max-width: 480px) {
+      #page .colored h2 {
+        padding-top: 30px; } }
   #page h3 {
     margin-bottom: 40px; }
+    @media screen and (max-width: 480px) {
+      #page h3 {
+        margin-bottom: 30px; } }
   #page p.desc {
     margin-top: -30px;
     margin-bottom: 50px; }
@@ -1408,6 +1539,9 @@ section.colored .col-4 {
       width: calc(100% / 6);
       display: block;
       float: left; }
+      @media screen and (max-width: 480px) {
+        #page .grid article {
+          width: 50%; } }
       #page .grid article figure {
         height: auto;
         overflow: hidden;
@@ -1459,6 +1593,9 @@ section.colored .col-4 {
       width: 33.33%;
       float: left;
       display: block; }
+      @media screen and (max-width: 480px) {
+        #page #instafeed article {
+          width: 50%; } }
       #page #instafeed article img {
         width: 100%;
         display: block; }
@@ -1485,8 +1622,14 @@ section.colored .col-4 {
   float: left; }
   .home .thumbs article.half {
     width: 50%; }
+    @media screen and (max-width: 480px) {
+      .home .thumbs article.half {
+        width: 100%; } }
   .home .thumbs article.third {
     width: 33.33%; }
+    @media screen and (max-width: 480px) {
+      .home .thumbs article.third {
+        width: 100%; } }
   .home .thumbs article figure {
     position: relative;
     height: auto;
@@ -1530,12 +1673,21 @@ section.colored .col-4 {
           max-width: 170px;
           margin: 0 auto;
           line-height: 1.2; }
+          @media screen and (max-width: 480px) {
+            .home .thumbs article figure div figcaption h5 {
+              font-size: 1.125em; } }
         .home .thumbs article figure div figcaption p {
           padding: 0 3em;
           text-align: center !important;
           font-size: 0.875em !important;
           line-height: 1.8 !important;
           margin-top: 1.2em; }
+          @media screen and (max-width: 480px) {
+            .home .thumbs article figure div figcaption p {
+              padding: 0;
+              margin-top: .5em;
+              font-size: 0.5em !important;
+              line-height: 1.2 !important; } }
           .home .thumbs article figure div figcaption p span {
             display: block;
             font-size: 1.25em;
@@ -1552,7 +1704,9 @@ section.colored .col-4 {
 /* FOOTER
 ================================================== */
 footer {
-  background: #555e5e; }
+  background: #555e5e;
+  z-index: 3;
+  position: relative; }
   footer .container {
     max-width: 100%;
     margin-left: auto;
@@ -1582,10 +1736,26 @@ footer {
         width: 23.2317613015%; }
         footer .container .row .col-4:last-child {
           margin-right: 0; }
+        @media screen and (max-width: 480px) {
+          footer .container .row .col-4 {
+            float: left;
+            display: block;
+            margin-right: 38.1982059067%;
+            width: 100%;
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid white; }
+            footer .container .row .col-4:last-child {
+              margin-right: 0; }
+            footer .container .row .col-4:last-child {
+              border: none; } }
         footer .container .row .col-4 h4 {
           margin-bottom: 15px; }
         footer .container .row .col-4 nav {
           border-left: 1px solid #aaafaf; }
+          @media screen and (max-width: 480px) {
+            footer .container .row .col-4 nav {
+              border: none; } }
         footer .container .row .col-4 ul {
           padding: 0; }
           footer .container .row .col-4 ul li {

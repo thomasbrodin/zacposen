@@ -101,6 +101,9 @@
 	background: url('../img/cross-b.png') center center no-repeat;
 }
 
+body.admin-bar .fancybox-close {
+	top:52px
+}
 .fancybox-close:hover {
 	opacity: 0.7
 }
@@ -151,10 +154,16 @@
 }
 .fancybox-prev span {
 	left: -60px;
+	@include media($mobile) {;
+		left: -40px;
+	}
 }
 
 .fancybox-next span {
 	right: -60px;
+	@include media($mobile) {;
+		right: -40px; 
+	}
 }
 
 .fancybox-nav:hover span {

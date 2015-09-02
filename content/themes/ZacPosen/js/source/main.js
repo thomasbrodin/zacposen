@@ -1,4 +1,7 @@
 jQuery( document ).ready( function( $ ) {
+	$(window).load(function() {
+		$("#loader").fadeOut(150);
+	});
 	var ROOT, HEADER, PAGE, instagramFeed, mainMenu, mobileMenu, startTimer, stopResetTimer;
 					ROOT = $('html, body');
 					PAGE = $('body');

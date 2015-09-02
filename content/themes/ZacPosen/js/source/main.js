@@ -121,7 +121,7 @@ jQuery( document ).ready( function( $ ) {
 				},
 				afterShow : function() {
 					// stButtons.locateElements();
-					var bgColor = $('#page section').attr('class');
+					var bgColor = $('#collection figure').attr('class');
 					$(".fancybox-overlay").addClass(bgColor);
 					$(".fancybox-title").hide();
 					$(".fancybox-wrap").hover(function() {
@@ -187,19 +187,20 @@ jQuery( document ).ready( function( $ ) {
 			customShareThis += "</div>";
 			return customShareThis;
 	}
-	var clientID = $('instafeed').data('client');
-	var accessToken = $('instafeed').data('access');
-	console.log (clientID)
-	var feed = new Instafeed({
-		target: 'instafeed',
-		get: 'user',
-		userId: 23551779,
-		accessToken: '23551779.467ede5.f656d2bb157448be93c223e661bde45e',
-		resolution: 'standard_resolution',
-		limit: 6,
-		sortBy: 'most-recent',
-		template: '<article><figure><img src="{{image}}" /></figure></article>'
-	});
-	feed.run();
-
+	if ( $("#social-feed").length > 0 ) {
+		var clientID = $('instafeed').data('client');
+		var accessToken = $('instafeed').data('access');
+		console.log (clientID)
+		var feed = new Instafeed({
+			target: 'instafeed',
+			get: 'user',
+			userId: 23551779,
+			accessToken: '23551779.467ede5.f656d2bb157448be93c223e661bde45e',
+			resolution: 'standard_resolution',
+			limit: 6,
+			sortBy: 'most-recent',
+			template: '<article><figure><img src="{{image}}" /></figure></article>'
+		});
+		feed.run();
+	}
 });

@@ -112,6 +112,28 @@ section {
 								padding:0 120px;
 							.nav li {
 								display: inline-block;
+								&.pull-left {
+									position: absolute;
+									left: 0px;
+									@media screen and (min-width: 1280px) {
+										left: -90px;
+									}
+									a {
+										padding: 0 15px;
+									}
+								}
+								&.pull-right {
+									position: absolute;
+									top: 0;
+									right:0px;
+									@media screen and (min-width: 1280px) {
+										right: -90px;
+									}
+									a {
+										padding: 8px 15px 6px;
+										border: 1px solid #808080;
+									}
+								}
 								a {
 									line-height: 30px;
 									padding: 0 81px
@@ -309,7 +331,7 @@ section {
 		position: relative;
 		background-color: white;
 		overflow: hidden;
-		height: 620px;
+		height: 650px;
 		width: 100%;
 		margin-top:-70px;
 		margin-bottom: 70px;
@@ -320,7 +342,7 @@ section {
 			top: 0;
 			left: 0;
 			background-repeat: no-repeat;
-			background-position: top center;
+			background-position: center center;
 			background-size: cover;
 		}
 	}
@@ -363,16 +385,13 @@ section {
 		@include outer-container(100%);
 		@include clearfix;
 		article {
-			width:16.66666667%;
+			width:calc(100% / 6);
 			display:block;
 			float:left;
 			figure {
-				height: 350px;
+				height:auto;
 				overflow: hidden;
 				display: block;
-				&.collection {
-					height: 320px;
-				}
 				img{
 					display: block;
 					max-width: 100%;
@@ -404,17 +423,11 @@ section {
 				}
 				.flex-prev {
 					background: url(../img/arrow-left-b.png) no-repeat;
-					left:5%;
-					@media screen and (min-width: 1280px) {
-						 left:180px
-					}
+					left:50px;
 				}
 				.flex-next {
 					background: url(../img/arrow-right-b.png)no-repeat;
-					right:4%;
-					@media screen and (min-width: 1280px) {
-						 right:180px
-					}
+					right:50px;
 				}
 			}
 			.slides {
@@ -438,8 +451,7 @@ section {
 		}
 	}
 	.follow-us {
-		padding:70px 0 140px;
-		margin-bottom:-70px;
+		padding-bottom:70px;
 		h2 {
 			color:$backgroundColor;
 		}
@@ -473,23 +485,26 @@ section {
 				height: auto;
 				overflow: hidden;
 				cursor: pointer;
+				width:100%;
+				&:hover {
+						opacity: 1;
+				}
 				a {
 					display: block;
+					opacity: 0.9;
 				}
 				img {
 					display: block;
 					max-width: 100%;
 					position: relative;
 					@include transition(opacity 0.35s);
-					&:hover {
-							opacity: 0.85;
-					}
 				}
 				div {
-					position: absolute;
 					text-align: left;
-					top: 33%;
 					width: 100%;
+					position: absolute;
+					top: 50%;
+					@include transform(translateY(-50%));
 					figcaption {
 						margin-left: 4em;
 						max-width: 45%;
@@ -508,7 +523,6 @@ section {
 						}
 						p {
 							padding: 0 3em;
-							font-family: 'proxima nova light','Helvetica Neue',Helvetica,Arial,sans-serif;
 							text-align: center !important;
 							font-size: 0.875em !important;
 							line-height: 1.8!important;

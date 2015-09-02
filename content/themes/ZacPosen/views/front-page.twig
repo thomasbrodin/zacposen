@@ -24,7 +24,11 @@
 					<article{% if row.sel_col %} class="{{row.sel_col}}"{% endif %}>
 						<figure>
 							<a href="{{row.col_link_1}}">
-								<img src="{{TimberImage(row.col_img_1).src|resize(1200)}}"/>
+								{% if row.sel_col == 'half' %}
+									<img src="{{TimberImage(row.col_img_1).src|resize(1200, 710, 'center')}}"/>
+									{% else %}
+										<img src="{{TimberImage(row.col_img_1).src|resize(710,680,'center')}}"/>
+									{% endif %}
 								<div>
 									<figcaption>
 										{% if row.col_lg_1 %}
@@ -43,7 +47,11 @@
 					<article{% if row.sel_col %} class="{{row.sel_col}}"{% endif %}>
 						<figure>
 							<a href="{{row.col_link_2}}">
-								<img src="{{TimberImage(row.col_img_2).src|resize(1200)}}"/>
+								{% if row.sel_col == 'half' %}
+									<img src="{{TimberImage(row.col_img_2).src|resize(1200, 710, 'center')}}"/>
+								{% else %}
+									<img src="{{TimberImage(row.col_img_2).src|resize(710,680,'center')}}"/>
+								{% endif %}
 								<div>
 									<figcaption>
 										{% if row.col_lg_2 %}
@@ -63,7 +71,7 @@
 					<article {% if row.sel_col %} class="{{row.sel_col}}"{% endif %}>
 						<figure>
 							<a href="{{row.col_link_3}}">
-								<img src="{{TimberImage(row.col_img_3).src|resize(1200)}}"/>
+								<img src="{{TimberImage(row.col_img_3).src|resize(710,680,'center')}}"/>
 								<div>
 									<figcaption>
 										{% if row.col_lg_3 %}

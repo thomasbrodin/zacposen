@@ -7,14 +7,16 @@
 						<nav class="nav-main" role="navigation">
 							<ul class="nav">
 							{% for mainitem in menu.get_items %}
-								<li class="nav-item{{mainitem.classes | join(' ')}}">
+								<li class="nav-item {{mainitem.classes | join(' ')}}">
 									<a class="nav-item-link" title="{{mainitem.title}}" href="{{mainitem.get_link}}">{{mainitem.title}}</a>
 									{% if mainitem.get_children %}
 										<ul class="sub-nav">
 												<li class="row">
 													{% for child in mainitem.get_children %}
 														<div class="sub-nav-item columns">
-															<span class="semibold">{{child.title}}</span>
+															<a class="nav-link" title="{{child.title}}" href="{{child.get_link}}">
+																<span class="semibold">{{child.title}}</span>
+															</a>
 															{% if child.get_children %}
 																	<ul>
 																		{% for subchild in child.get_children %}

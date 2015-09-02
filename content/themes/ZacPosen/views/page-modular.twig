@@ -100,7 +100,7 @@
 												{% for image in post.grid_img %}
 															<article>
 																	<figure>
-																			<img src="{{TimberImage(image.id).get_src|resize(480)}}" />
+																			<img src="{{TimberImage(image.id).get_src|resize(400,670, 'center')}}" />
 																	</figure>
 															</article>
 												{% endfor %}
@@ -174,7 +174,7 @@
 									<div class="grid">
 										{% for image in post.get_field('collection_img') %}
 													<article>
-															<figure class="collection">
+															<figure {% if post.get_field('overlay_col') %} class="{{ post.get_field('overlay_col') }}"{% endif %}>
 																<a class="fancybox" data-fancybox-group="gallery" rel="gallery" href="{{TimberImage(image.id).get_src}}">
 																		<img src="{{TimberImage(image.id).get_src|resize(480)}}" />
 																</a>

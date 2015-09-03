@@ -28,19 +28,22 @@ html, body {
 #wrap {
 	min-height: 100%;
 	margin-bottom: -220px;
+	@include media($smallscreen) {
+		margin-bottom:-250px
+	}
 	@include media($mobile) {
-	margin-bottom:0
+		margin-bottom:0
 	}
 }
 #wrap:after {
 	content: "";
 	display: block;
-	@include media($mobile) {
-	margin-bottom:0
-	}
 }
 footer, #wrap:after {
 	height: 220px;
+	@include media($smallscreen) {
+		height: 250px;
+	}
 	@include media($mobile) {
 		height: auto;
 	}
@@ -160,7 +163,7 @@ section {
 										left: -90px;
 									}
 									a {
-										padding: 0 15px;
+										padding: 0 16px;
 									}
 								}
 								&.pull-right {
@@ -177,7 +180,10 @@ section {
 								}
 								a {
 									line-height: 30px;
-									padding: 0 81px
+									padding: 0 81px;
+									@include media($smallscreen) {
+										padding:0 15px
+									}
 								}
 							}
 							.sub-nav {
@@ -229,11 +235,17 @@ section {
 						span.semibold {
 							padding: 0 20px;
 							color:white;
-							letter-spacing: 0.18pt
+							letter-spacing: 0.18pt;
+							@include media($smallscreen) {
+								padding:0
+							}
 						}
 						a {
 							line-height: 22px;
-							padding: 0 20px
+							padding: 0 20px;
+							@include media($smallscreen) {
+								padding:0
+							}
 						}
 						ul li {
 							display: block;
@@ -282,7 +294,8 @@ section {
 		.bottom-row {
 				background: rgba(0, 0, 0, 0);
 				position: relative;
-				border-top: 1px solid #aaafaf;
+				border-top: 1px solid;
+				border-color: rgba(255,255,255, 0.1);
 				.row {
 					padding-top:15px;
 					padding-bottom: 15px;
@@ -295,6 +308,11 @@ section {
 								display: block;
 								line-height: 2.4;
 								font-size: em(15)!important
+							}
+							@include media($smallscreen) {
+								display: block;
+								line-height: 2.4;
+								font-size: em(16)!important
 							}
 						}
 					}
@@ -336,7 +354,7 @@ section {
 			max-height: 130px;
 			@include media($mobile) {
 				max-width:140px;
-				max-height: 100px;
+				max-height: 60px;
 			}
 		}
 		h1{
@@ -351,7 +369,7 @@ section {
 				margin:0 auto .5em;
 				line-height: 1.2;
 				@include media($mobile) {
-					font-size:em(24);
+					font-size:em(18);
 					max-width: 140px
 				}
 			}
@@ -366,8 +384,11 @@ section {
 			padding:0 14em;
 			font-size:1.1em;
 			@include media($mobile) {
-				padding:0;
+				padding:0 2em;
 				font-size: .7em
+			}
+			@include media($smallscreen) {
+				padding:0
 			}
 			&.link-video {
 				font-size: 1em;
@@ -446,6 +467,15 @@ section {
 		}
 	}
 	.col-4 {
+		@include media($smallscreen) {
+			@include span-columns(1);
+			@include omega(2n);
+			margin-bottom: 30px
+		}
+		@include media($mobile) {
+			@include span-columns(1);
+			margin-right:0;
+		}
 		img {
 			margin-bottom: 30px;
 			max-width: 200px;
@@ -475,6 +505,9 @@ section {
 			@include media($mobile) {
 				width: 50%
 			}
+			@include media($smallscreen) {
+				width: calc(100% / 3);
+			}
 			figure {
 				height:auto;
 				overflow: hidden;
@@ -482,6 +515,25 @@ section {
 				img{
 					display: block;
 					max-width: 100%;
+				}
+			}
+		}
+	}
+	&.shopify {
+		.grid {
+			article {
+				width:calc(100% / 3);
+				@include media($mobile) {
+					width: 100%;
+					margin-bottom: 60px;
+				}
+				figure{
+					img{
+						max-height: 60px;
+						max-width: 120px;
+						margin: 0 auto;
+						padding-bottom: 2em
+					}
 				}
 			}
 		}
@@ -569,6 +621,9 @@ section {
 				@include media($mobile) {
 					width:100%;
 				}
+				@include media($smallscreen) {
+					width:100%;
+				}
 			}
 			&.third {
 				width:33.33%;
@@ -614,17 +669,18 @@ section {
 						}
 						h5 {
 							font-size:em(36);
-							max-width:170px;
+							max-width:218px;
 							margin:0 auto;
 							line-height: 1.2;
 							@include media($mobile) {
 								font-size:em(18);
+								max-width: 170px
 							}
 						}
 						p {
 							padding: 0 3em;
 							text-align: center !important;
-							font-size: 0.875em !important;
+							font-size: 1em !important;
 							line-height: 1.8!important;
 							margin-top: 1.2em;
 							@include media($mobile) {
@@ -685,7 +741,6 @@ footer {
 					@include span-columns(1);
 					padding-bottom:30px;
 					margin-bottom: 30px;
-					border-bottom: 1px solid white;
 					&:last-child {
 						border:none
 					}
@@ -698,13 +753,19 @@ footer {
 					@include media($mobile) {
 						border:none
 					}
+					@include media($smallscreen) {
+						line-height:24px;
+					}
 				}
 				ul {
 					padding:0;
 					li {
 						display: block;
 						list-style: none;
-						line-height:28px
+						line-height:28px;
+						@include media($smallscreen) {
+							line-height:24px;
+						}
 					}
 				}
 			}

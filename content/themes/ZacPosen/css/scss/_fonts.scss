@@ -1,5 +1,5 @@
 $screen: new-breakpoint(min-width 768px);
-$smallscreen: new-breakpoint(max-width 992px);
+$smallscreen: new-breakpoint(min-width 480px max-width 1150px 2);
 $mobile: new-breakpoint(max-width 480px 1);
 $backgroundColor:#555e5e;
 
@@ -126,10 +126,10 @@ a, a:link, a:visited {
 		text-decoration: none;
 		@include transition(all ease-in-out);
 		font-family: 'proxima nova';
-		opacity: 0.8;
+		opacity: 1;
 }
 a:hover {
-	opacity: 1!important
+	opacity: 0.5!important
 }
 
 span.semibold {
@@ -141,16 +141,20 @@ span.semibold {
 	@include media($mobile) {
 		font-size:em(15);
 	}
+	@include media($smallscreen) {
+		font-size:em(16);
+	}
 }
-.current_page_item:not(.nav-item) a {
-	border-bottom:2px solid white;
-	padding-bottom: 2px;
+.page_item:not(.nav-item) a {
+	opacity: 0.5
 }
 .page_item:not(.nav-item) a:hover {
-	border-bottom:2px solid white;
-	padding-bottom: 2px;
+	opacity: 1!important
 }
 
+.current_page_item:not(.nav-item) a {
+	opacity: 1
+}
 .glyph {
 				font-family: 'FontAwesome';
 				speak: none;

@@ -1,6 +1,6 @@
 jQuery( document ).ready( function( $ ) {
 	$(window).load(function() {
-		$("#loader").fadeOut(150);
+		$("#loader").fadeOut(500);
 	});
 	var ROOT, HEADER, PAGE, instagramFeed, mainMenu, mobileMenu, startTimer, stopResetTimer;
 					ROOT = $('html, body');

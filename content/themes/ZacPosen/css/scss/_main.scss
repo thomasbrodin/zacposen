@@ -163,7 +163,7 @@ section {
 							float: left;
 								&.pull-left {
 									position: absolute;
-									left: -90px;
+									left: 0px;
 									a {
 										padding: 0 16px;
 									}
@@ -171,7 +171,7 @@ section {
 								&.pull-right {
 									position: absolute;
 									top: 0;
-									right: -90px;
+									right: 0px;
 									a {
 										padding: 8px 15px 6px;
 										border: 1px solid #808080;
@@ -594,6 +594,9 @@ section {
 			}
 			figure {
 				padding:50px;
+				@include media($smallscreen) {
+					padding:20px;
+				}
 				img {
 					width:100%;
 					display: block

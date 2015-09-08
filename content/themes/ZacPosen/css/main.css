@@ -1279,19 +1279,13 @@ section.colored .col-3 {
             float: left; }
             .main-header .row .menu-container .main-menu .nav-main .nav li.pull-left {
               position: absolute;
-              left: 0px; }
-              @media screen and (min-width: 1280px) {
-                .main-header .row .menu-container .main-menu .nav-main .nav li.pull-left {
-                  left: -90px; } }
+              left: -90px; }
               .main-header .row .menu-container .main-menu .nav-main .nav li.pull-left a {
                 padding: 0 16px; }
             .main-header .row .menu-container .main-menu .nav-main .nav li.pull-right {
               position: absolute;
               top: 0;
-              right: 0px; }
-              @media screen and (min-width: 1280px) {
-                .main-header .row .menu-container .main-menu .nav-main .nav li.pull-right {
-                  right: -90px; } }
+              right: -90px; }
               .main-header .row .menu-container .main-menu .nav-main .nav li.pull-right a {
                 padding: 8px 15px 6px;
                 border: 1px solid #808080; }
@@ -1506,7 +1500,8 @@ section.colored .col-3 {
     margin-bottom: 70px; }
     @media screen and (max-width: 480px) {
       #page .section-header-img {
-        height: 300px; } }
+        height: 300px;
+        margin-bottom: 30px; } }
     #page .section-header-img .section-header-bg {
       position: absolute;
       height: 100%;
@@ -1520,13 +1515,14 @@ section.colored .col-3 {
     margin-bottom: 60px; }
     @media screen and (max-width: 480px) {
       #page h2 {
-        font-size: 1em;
+        font-size: 1.2em;
         margin-bottom: 30px; } }
   #page .colored h2 {
     padding-top: 60px; }
     @media screen and (max-width: 480px) {
       #page .colored h2 {
-        padding-top: 30px; } }
+        padding-top: 30px;
+        margin-bottom: 60px; } }
   #page h3 {
     margin-bottom: 40px; }
     @media screen and (max-width: 480px) {
@@ -1553,7 +1549,9 @@ section.colored .col-3 {
       width: 100%;
       margin-right: 0; }
       #page .col-3:last-child {
-        margin-right: 0; } }
+        margin-right: 0; }
+      #page .col-3:last-child {
+        margin-bottom: 60px; } }
   #page .col-3 img {
     margin-bottom: 30px;
     max-width: 200px;
@@ -1637,28 +1635,30 @@ section.colored .col-3 {
       right: 50px; }
     #page #press #press-slider .slides li.press {
       margin: 0 50px; }
-  #page #instafeed {
+  #page .feed {
     max-width: 100%;
     margin-left: auto;
     margin-right: auto; }
-    #page #instafeed::after {
+    #page .feed::after {
       clear: both;
       content: "";
       display: table; }
-    #page #instafeed::after {
+    #page .feed::after {
       clear: both;
       content: "";
       display: table; }
-    #page #instafeed article {
+    #page .feed article {
       width: 33.33%;
       float: left;
       display: block; }
       @media screen and (max-width: 480px) {
-        #page #instafeed article {
-          width: 50%; } }
-      #page #instafeed article img {
-        width: 100%;
-        display: block; }
+        #page .feed article {
+          width: 100%; } }
+      #page .feed article figure {
+        padding: 50px; }
+        #page .feed article figure img {
+          width: 100%;
+          display: block; }
   #page .follow-us {
     padding-bottom: 70px; }
     #page .follow-us h2 {

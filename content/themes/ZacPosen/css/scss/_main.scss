@@ -163,10 +163,7 @@ section {
 							float: left;
 								&.pull-left {
 									position: absolute;
-									left: 0px;
-									@media screen and (min-width: 1280px) {
-										left: -90px;
-									}
+									left: -90px;
 									a {
 										padding: 0 16px;
 									}
@@ -174,10 +171,7 @@ section {
 								&.pull-right {
 									position: absolute;
 									top: 0;
-									right:0px;
-									@media screen and (min-width: 1280px) {
-										right: -90px;
-									}
+									right: -90px;
 									a {
 										padding: 8px 15px 6px;
 										border: 1px solid #808080;
@@ -436,6 +430,7 @@ section {
 		margin-bottom: 70px;
 		@include media($mobile) {
 			height: 300px;
+			margin-bottom: 30px
 		}
 		.section-header-bg {
 			position: absolute;
@@ -451,7 +446,7 @@ section {
 	h2 {
 		margin-bottom: 60px;
 		@include media($mobile) {
-			font-size: 1em;
+			font-size: 1.2em;
 			margin-bottom: 30px;
 		}
 	}
@@ -459,6 +454,7 @@ section {
 		padding-top:60px;
 		@include media($mobile) {
 			padding-top:30px;
+			margin-bottom: 60px;
 		}
 	}
 	h3 {
@@ -482,6 +478,9 @@ section {
 		@include media($mobile) {
 			@include span-columns(1);
 			margin-right:0;
+			&:last-child {
+				margin-bottom: 60px;
+			}
 		}
 		img {
 			margin-bottom: 30px;
@@ -583,7 +582,7 @@ section {
 			}
 		}
 	}
-	#instafeed {
+	.feed {
 		@include outer-container(100%);
 		@include clearfix;
 		article {
@@ -591,11 +590,14 @@ section {
 			float:left;
 			display: block;
 			@include media($mobile) {
-				width: 50%
+				width: 100%;
 			}
-			img {
-				width:100%;
-				display: block
+			figure {
+				padding:50px;
+				img {
+					width:100%;
+					display: block
+				}
 			}
 		}
 	}

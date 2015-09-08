@@ -191,19 +191,27 @@ jQuery( document ).ready( function( $ ) {
 			return customShareThis;
 	}
 	if ( $("#social-feed").length > 0 ) {
-		var clientID = $('instafeed').data('client');
-		var accessToken = $('instafeed').data('access');
-		console.log (clientID)
-		var feed = new Instafeed({
-			target: 'instafeed',
+		var feed_one = new Instafeed({
+			target: 'instafeed-one',
 			get: 'user',
 			userId: 23551779,
 			accessToken: '23551779.467ede5.f656d2bb157448be93c223e661bde45e',
 			resolution: 'standard_resolution',
-			limit: 6,
+			limit: 9,
 			sortBy: 'most-recent',
 			template: '<article><figure><img src="{{image}}" /></figure></article>'
 		});
-		feed.run();
+		feed_one.run();
+		var feed_two = new Instafeed({
+			target: 'instafeed-two',
+			get: 'user',
+			userId: 1363122162,
+			accessToken: '1363122162.467ede5.d6981f9982c54eab8df9370a08b7bd2c',
+			resolution: 'standard_resolution',
+			limit: 9,
+			sortBy: 'most-recent',
+			template: '<article><figure><img src="{{image}}" /></figure></article>'
+		});
+		feed_two.run();
 	}
 });

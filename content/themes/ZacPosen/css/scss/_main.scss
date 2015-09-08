@@ -82,8 +82,8 @@ section {
 				margin-right: 0!important
 			}
 		}
-		.col-4 {
-			@include span-columns(3);
+		.col-3 {
+			@include span-columns(4);
 			@include media($mobile) {
 				@include span-columns(1);
 				margin-right: 0!important
@@ -111,7 +111,7 @@ section {
 				}
 			}
 		}
-		.col-4 {
+		.col-3 {
 			margin-bottom: 60px;
 			@include media($mobile) {
 				margin-bottom: 30px;
@@ -149,13 +149,18 @@ section {
 					width:100%;
 				}
 				.main-menu {
-						display: inline-block;
+						display: block;
 						position: relative;
 						.nav-main {
 								display: block;
-								padding:0 120px;
+								padding:0 40px;
+								max-width: 920px;
+								margin:0 auto;
+								height:30px;
 							.nav li {
-								display: inline-block;
+							width:33.33%;
+							display: block;
+							float: left;
 								&.pull-left {
 									position: absolute;
 									left: 0px;
@@ -180,7 +185,7 @@ section {
 								}
 								a {
 									line-height: 30px;
-									padding: 0 81px;
+									padding: 0;
 									@include media($smallscreen) {
 										padding:0 15px
 									}
@@ -230,7 +235,9 @@ section {
 					margin:0 auto;
 				}
 				.col-3 {
-						@include span-columns(4);
+						width:33.33%;
+						float:left;
+						display: block;
 						opacity: 0;
 						span.semibold {
 							padding: 0 20px;
@@ -466,10 +473,10 @@ section {
 			margin-bottom: 50px
 		}
 	}
-	.col-4 {
+	.col-3 {
 		@include media($smallscreen) {
-			@include span-columns(1);
-			@include omega(2n);
+			@include span-columns(2);
+			margin-right: 0;
 			margin-bottom: 30px
 		}
 		@include media($mobile) {
@@ -768,6 +775,54 @@ footer {
 						}
 					}
 				}
+			}
+		}
+	}
+	#mc_embed_signup {
+		p {
+			font-size: 1em;
+			opacity: 0.5;
+			margin-bottom: 15px
+			}
+		.mc-field-group {
+			display: block;
+			border:1px solid;
+			border-color:rgba(255,255,255, 0.5);
+			margin:4px 20px;
+			padding:4px 8px;
+			input {
+				padding:4px 0;
+				border: none!important;
+				background-color: transparent!important;
+				border-radius: 0;
+				-webkit-appearance:none;
+				display: block;
+				width: 100%;
+			}
+			input:-webkit-autofill,
+			input:-webkit-autofill:hover
+			input:-webkit-autofill:focus {
+				background-color: transparent!important;
+				-webkit-text-fill-color:white!important;
+				-webkit-box-shadow: 0 0 0px 1000px $backgroundColor inset;
+			}
+			#mce-responses {
+				position: absolute;
+			}
+			.mce_inline_error {
+					margin: 0!important;
+					padding: 4px!important;
+			}
+			#mc-embedded-subscribe {
+				position: relative;
+				display: block;
+				width: 23px;
+				height: 20px;
+				float: right;
+				text-indent: -999px;
+				top:-22px;
+				background-image: url('../img/arrow-input.png');
+				opacity: 0.5;
 			}
 		}
 	}

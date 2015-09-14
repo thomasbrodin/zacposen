@@ -190,7 +190,7 @@ jQuery( document ).ready( function( $ ) {
 			customShareThis += "</div>";
 			return customShareThis;
 	}
-	if ( $("#social-feed").length > 0 ) {
+	if ( $(".social-feed").length > 0 ) {
 		var feed_one = new Instafeed({
 			target: 'instafeed-one',
 			get: 'user',
@@ -199,7 +199,7 @@ jQuery( document ).ready( function( $ ) {
 			resolution: 'standard_resolution',
 			limit: 9,
 			sortBy: 'most-recent',
-			template: '<article><figure><img src="{{image}}" /></figure></article>'
+			template: '<article><figure><a href="{{link}}" target="_blank"><img src="{{image}}" /></a></figure></article>'
 		});
 		feed_one.run();
 		var feed_two = new Instafeed({
@@ -210,7 +210,7 @@ jQuery( document ).ready( function( $ ) {
 			resolution: 'standard_resolution',
 			limit: 9,
 			sortBy: 'most-recent',
-			template: '<article><figure><img src="{{image}}" /></figure></article>'
+			template: '<article><figure><a href="{{link}}" target="_blank"><img src="{{image}}" /></a></figure></article>'
 		});
 		feed_two.run();
 	}

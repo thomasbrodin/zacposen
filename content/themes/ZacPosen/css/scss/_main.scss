@@ -164,6 +164,10 @@ section {
 								&.pull-left {
 									position: absolute;
 									left: 0px;
+									width:16.667%;
+									@include media($smallscreen) {
+										left: -40px;
+									}
 									a {
 										padding: 0 16px;
 									}
@@ -172,9 +176,16 @@ section {
 									position: absolute;
 									top: 0;
 									right: 0px;
+									width:16.667%;
+									@include media($smallscreen) {
+										right: -40px;
+									}
 									a {
 										padding: 8px 15px 6px;
 										border: 1px solid #808080;
+										@include media($smallscreen) {
+											padding: 8px 10px 6px;
+										}
 									}
 								}
 								a {
@@ -582,30 +593,38 @@ section {
 			}
 		}
 	}
-	.feed {
-		@include outer-container(100%);
-		@include clearfix;
-		article {
-			width:33.33%;
-			float:left;
-			display: block;
-			@include media($mobile) {
-				width: 100%;
-			}
-			figure {
-				padding:50px;
-				@include media($smallscreen) {
-					padding:20px;
+	.social-feed {
+		h2 {
+			padding-top: 110px;
+		}
+		.feed {
+			@include outer-container(100%);
+			@include clearfix;
+			article {
+				width:33.33%;
+				float:left;
+				display: block;
+				@include media($mobile) {
+					width: 100%;
 				}
-				img {
-					width:100%;
-					display: block
+				figure {
+					padding:50px;
+					@include media($smallscreen) {
+						padding:20px;
+					}
+					a:hover>img {
+						opacity: 0.9;
+					}
+					img {
+						width:100%;
+						display: block
+					}
 				}
 			}
 		}
 	}
 	.follow-us {
-		padding-bottom:70px;
+		padding:70px 0;
 		h2 {
 			color:$backgroundColor;
 		}

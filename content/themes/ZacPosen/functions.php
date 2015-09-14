@@ -70,7 +70,7 @@ class StarterSite extends TimberSite {
 						'sort_column' => 'menu_order',
 						'sort_order' => 'ASC',
 		);
-		$context ['worldZ'] = get_pages( $argsWZ );
+		// $context ['worldZ'] = get_pages( $argsWZ );
 		$context ['houseZ'] = get_pages( $argsHZ );
 
 		$context['site'] = $this;

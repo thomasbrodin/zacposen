@@ -1279,16 +1279,27 @@ section.colored .col-3 {
             float: left; }
             .main-header .row .menu-container .main-menu .nav-main .nav li.pull-left {
               position: absolute;
-              left: 0px; }
+              left: 0px;
+              width: 16.667%; }
+              @media screen and (min-width: 480px) and (max-width: 1150px) {
+                .main-header .row .menu-container .main-menu .nav-main .nav li.pull-left {
+                  left: -40px; } }
               .main-header .row .menu-container .main-menu .nav-main .nav li.pull-left a {
                 padding: 0 16px; }
             .main-header .row .menu-container .main-menu .nav-main .nav li.pull-right {
               position: absolute;
               top: 0;
-              right: 0px; }
+              right: 0px;
+              width: 16.667%; }
+              @media screen and (min-width: 480px) and (max-width: 1150px) {
+                .main-header .row .menu-container .main-menu .nav-main .nav li.pull-right {
+                  right: -40px; } }
               .main-header .row .menu-container .main-menu .nav-main .nav li.pull-right a {
                 padding: 8px 15px 6px;
                 border: 1px solid #808080; }
+                @media screen and (min-width: 480px) and (max-width: 1150px) {
+                  .main-header .row .menu-container .main-menu .nav-main .nav li.pull-right a {
+                    padding: 8px 10px 6px; } }
             .main-header .row .menu-container .main-menu .nav-main .nav li a {
               line-height: 30px;
               padding: 0; }
@@ -1635,35 +1646,39 @@ section.colored .col-3 {
       right: 50px; }
     #page #press #press-slider .slides li.press {
       margin: 0 50px; }
-  #page .feed {
+  #page .social-feed h2 {
+    padding-top: 110px; }
+  #page .social-feed .feed {
     max-width: 100%;
     margin-left: auto;
     margin-right: auto; }
-    #page .feed::after {
+    #page .social-feed .feed::after {
       clear: both;
       content: "";
       display: table; }
-    #page .feed::after {
+    #page .social-feed .feed::after {
       clear: both;
       content: "";
       display: table; }
-    #page .feed article {
+    #page .social-feed .feed article {
       width: 33.33%;
       float: left;
       display: block; }
       @media screen and (max-width: 480px) {
-        #page .feed article {
+        #page .social-feed .feed article {
           width: 100%; } }
-      #page .feed article figure {
+      #page .social-feed .feed article figure {
         padding: 50px; }
         @media screen and (min-width: 480px) and (max-width: 1150px) {
-          #page .feed article figure {
+          #page .social-feed .feed article figure {
             padding: 20px; } }
-        #page .feed article figure img {
+        #page .social-feed .feed article figure a:hover > img {
+          opacity: 0.9; }
+        #page .social-feed .feed article figure img {
           width: 100%;
           display: block; }
   #page .follow-us {
-    padding-bottom: 70px; }
+    padding: 70px 0; }
     #page .follow-us h2 {
       color: #555e5e; }
     #page .follow-us .socials {

@@ -134,13 +134,12 @@
 												</div>
 
 									{% elseif post.acf_fc_layout == 'social' %}
-										<div id="social-feed">
-											<h2>{{post.feed_t}}</h2>
-											<div id="instafeed-one" class="feed"></div>
-											<h2>{{post.feed_t_2}}</h2>
-											<div id="instafeed-two" class="feed"></div>
+										<div class="social-feed">
+											<h2>{{posts.title}}</h2>
+											<div id="instafeed-{{post.sel_inst}}" class="feed"></div>
 										</div>
-										<div class="follow-us transparent">
+										{% if post.follow_us %}
+											<div class="follow-us transparent">
 												<h2>FOLLOW US HERE</h2>
 												<div class='socials'>
 													{% if option.facebook %}
@@ -175,6 +174,7 @@
 														{% endif %}
 													</div>
 												</div>
+											{% endif %}
 
 									{% endif %}
 							{% endfor %}

@@ -153,7 +153,6 @@ sup {
 
 sub {
   bottom: -0.25em; }
-
 /* Embedded content
    ========================================================================== */
 /**
@@ -1291,16 +1290,27 @@ section.colored .col-3 {
             float: left; }
             .main-header .row .menu-container .main-menu .nav-main .nav li.pull-left {
               position: absolute;
-              left: -90px; }
+              left: 0px;
+              width: 16.667%; }
+                @media screen and (min-width: 480px) and (max-width: 1150px) {
+                .main-header .row .menu-container .main-menu .nav-main .nav li.pull-left {
+                  left: -40px; } }
               .main-header .row .menu-container .main-menu .nav-main .nav li.pull-left a {
                 padding: 0 16px; }
             .main-header .row .menu-container .main-menu .nav-main .nav li.pull-right {
               position: absolute;
               top: 0;
-              right: -90px; }
+              right: 0px;
+              width: 16.667%; }
+                @media screen and (min-width: 480px) and (max-width: 1150px) {
+                .main-header .row .menu-container .main-menu .nav-main .nav li.pull-right {
+                  right: -40px; } }
               .main-header .row .menu-container .main-menu .nav-main .nav li.pull-right a {
                 padding: 8px 15px 6px;
                 border: 1px solid #808080; }
+                @media screen and (min-width: 480px) and (max-width: 1150px) {
+                  .main-header .row .menu-container .main-menu .nav-main .nav li.pull-right a {
+                    padding: 8px 10px 6px; } }
             .main-header .row .menu-container .main-menu .nav-main .nav li a {
               line-height: 30px;
               padding: 0; }
@@ -1647,28 +1657,33 @@ section.colored .col-3 {
       right: 50px; }
     #page #press #press-slider .slides li.press {
       margin: 0 50px; }
-  #page #instafeed {
+  #page .feed {
     max-width: 100%;
     margin-left: auto;
     margin-right: auto; }
-    #page #instafeed::after {
+    #page .feed::after {
       clear: both;
       content: "";
       display: table; }
-    #page #instafeed::after {
+    #page .feed::after {
       clear: both;
       content: "";
       display: table; }
-    #page #instafeed article {
+    #page .feed article {
       width: 33.33%;
       float: left;
       display: block; }
       @media screen and (max-width: 480px) {
-        #page #instafeed article {
-          width: 50%; } }
-      #page #instafeed article img {
-        width: 100%;
-        display: block; }
+        #page .feed article {
+          width: 100%; } }
+      #page .feed article figure {
+        padding: 50px; }
+        @media screen and (min-width: 480px) and (max-width: 1150px) {
+          #page .feed article figure {
+            padding: 20px; } }
+        #page .feed article figure img {
+          width: 100%;
+          display: block; }
   #page .follow-us {
     padding-bottom: 70px; }
     #page .follow-us h2 {
@@ -1878,7 +1893,7 @@ footer {
       float: right;
       text-indent: -999px;
       top: -22px;
-      background-image: url({{'arrow-input.png' | asset_url }});
+      background-image: url("{{'arrow-input.png' | asset_url }}");
       opacity: 0.5; }
 
 /* Social buttons */

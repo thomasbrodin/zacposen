@@ -81,25 +81,32 @@
 										<div class="container">
 												<h2>{{posts.title}}</h2>
 												<p class="desc text-center">{{post.card_desc}}</p>
-												<div class="col-3">
+												<div class="col-4">
 														<img src="{{TimberImage(post.card_1_img).get_src}}" />
 														<p class="text-center">{{post.card_1_desc}}</p>
 														{% if post.card_1_url %}
 															<a target="blank" class="button" href="{{post.card_1_url}}">Learn More</a>
 														{% endif %}
 												</div>
-												<div class="col-3">
+												<div class="col-4">
 													<img src="{{TimberImage(post.card_2_img).get_src}}" />
 														<p class="text-center">{{post.card_2_desc}}</p>
 														{% if post.card_2_url %}
 															<a target="blank" class="button" href="{{post.card_2_url}}">Learn More</a>
 														{% endif %}
 												</div>
-												<div class="col-3">
+												<div class="col-4">
 													<img src="{{TimberImage(post.card_3_img).get_src}}" />
 														<p class="text-center">{{post.card_3_desc}}</p>
 														{% if post.card_3_url %}
 															<a target="blank" class="button" href="{{post.card_3_url}}">Learn More</a>
+														{% endif %}
+												</div>
+												<div class="col-4">
+													<img src="{{TimberImage(post.card_4_img).get_src}}" />
+														<p class="text-center">{{post.card_4_desc}}</p>
+														{% if post.card_4_url %}
+															<a target="blank" class="button" href="{{post.card_4_url}}">Learn More</a>
 														{% endif %}
 												</div>
 										</div>

@@ -89,6 +89,13 @@ section {
 				margin-right: 0!important
 			}
 		}
+		.col-4 {
+			@include span-columns(3);
+			@include media($mobile) {
+				@include span-columns(1);
+				margin-right: 0!important
+			}
+		}
 	}
 	section:not(.colored):not(#collection) {
 		padding: 70px 0;
@@ -111,7 +118,7 @@ section {
 				}
 			}
 		}
-		.col-3 {
+		.col-3, .col-4 {
 			margin-bottom: 60px;
 			@include media($mobile) {
 				margin-bottom: 30px;
@@ -480,10 +487,10 @@ section {
 			margin-bottom: 50px
 		}
 	}
-	.col-3 {
+	.col-4 {
 		@include media($smallscreen) {
-			@include span-columns(2);
-			margin-right: 0;
+			@include span-columns(1);
+			@include omega(2n);
 			margin-bottom: 30px
 		}
 		@include media($mobile) {

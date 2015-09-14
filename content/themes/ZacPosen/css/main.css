@@ -1205,6 +1205,22 @@ section .container {
         margin-right: 0 !important; }
         section .container .col-3:last-child {
           margin-right: 0; } }
+  section .container .col-4 {
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 23.2317613015%; }
+    section .container .col-4:last-child {
+      margin-right: 0; }
+    @media screen and (max-width: 480px) {
+      section .container .col-4 {
+        float: left;
+        display: block;
+        margin-right: 38.1982059067%;
+        width: 100%;
+        margin-right: 0 !important; }
+        section .container .col-4:last-child {
+          margin-right: 0; } }
 section section:not(.colored):not(#collection) {
   padding: 70px 0; }
   @media screen and (max-width: 480px) {
@@ -1222,10 +1238,10 @@ section.colored .col-2 {
       margin-bottom: 0; }
       section.colored .col-2:last-child {
         margin-bottom: 60px; } }
-section.colored .col-3 {
+section.colored .col-3, section.colored .col-4 {
   margin-bottom: 60px; }
   @media screen and (max-width: 480px) {
-    section.colored .col-3 {
+    section.colored .col-3, section.colored .col-4 {
       margin-bottom: 30px; } }
 
 /* HEADER
@@ -1543,35 +1559,38 @@ section.colored .col-3 {
     margin-top: -30px;
     margin-bottom: 50px; }
   @media screen and (min-width: 480px) and (max-width: 1150px) {
-    #page .col-3 {
+    #page .col-4 {
       float: left;
       display: block;
       margin-right: 16.0363113405%;
-      width: 100%;
-      margin-right: 0;
+      width: 41.9818443298%;
       margin-bottom: 30px; }
-      #page .col-3:last-child {
-        margin-right: 0; } }
+      #page .col-4:last-child {
+        margin-right: 0; }
+      #page .col-4:nth-child(2n) {
+        margin-right: 0; }
+      #page .col-4:nth-child(2n+1) {
+        clear: left; } }
   @media screen and (max-width: 480px) {
-    #page .col-3 {
+    #page .col-4 {
       float: left;
       display: block;
       margin-right: 38.1982059067%;
       width: 100%;
       margin-right: 0; }
-      #page .col-3:last-child {
+      #page .col-4:last-child {
         margin-right: 0; }
-      #page .col-3:last-child {
+      #page .col-4:last-child {
         margin-bottom: 60px; } }
-  #page .col-3 img {
+  #page .col-4 img {
     margin-bottom: 30px;
     max-width: 200px;
     margin: 0 auto 30px;
     display: block;
     max-height: 60px; }
-  #page .col-3 p {
+  #page .col-4 p {
     padding: 0 1em; }
-  #page .col-3 a.button {
+  #page .col-4 a.button {
     text-transform: uppercase;
     letter-spacing: 0.18pt;
     text-align: center;

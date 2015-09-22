@@ -437,6 +437,15 @@ section {
 	.black .dash {
 		background-color:black!important
 	}
+	.white a {
+		color: white!important
+	}
+	.black a {
+		color:black!important;
+		&:after {
+			content:url('../img/play-b.png')!important;
+		}
+	}
 	/* Section Header */
 	.section-header-img {
 		position: relative;

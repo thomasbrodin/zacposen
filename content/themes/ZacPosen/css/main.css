@@ -1517,6 +1517,12 @@ section.colored .col-3, section.colored .col-4 {
     background-color: white !important; }
   #page .black .dash {
     background-color: black !important; }
+  #page .white a {
+    color: white !important; }
+  #page .black a {
+    color: black !important; }
+    #page .black a:after {
+      content: url("../img/play-b.png") !important; }
   #page .section-header-img {
     position: relative;
     background-color: white;

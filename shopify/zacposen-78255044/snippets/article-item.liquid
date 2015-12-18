@@ -1,0 +1,84 @@
+<article class="blog-article">
+
+  {% assign index = false %}
+  {% if template == 'blog' %}{% assign index = true %}{% endif %}
+
+  <header>
+    <h1 class="article-title">
+      {% if index %}<a href="{{ article.url }}">{% endif %}
+        {{ article.title }}
+      {% if index %}</a>{% endif %}
+    </h1>
+  </header>
+
+  <aside class="article-meta meta">
+
+    <span class="date">
+      {% if index %}<a href="{{ article.url }}">{% endif %}
+        {{ article.published_at | date: format: 'short_month' }}
+      {% if index %}</a>{% endif %}
+    </span>
+
+    {% if article.tags.size > 0 %}
+    <div class="tags">
+      {% for tag in article.tags %}
+        <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %},&nbsp;{% endunless %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if article.comments_enabled? and article.comments.size > 0 %}
+      <div class="comments-wrap">
+        <a class="comments" href="{{ article.url }}#comments">{{ 'blogs.article_item.comment_count' | t: count: article.comments_count }}</a>
+      </div>
+    {% endif %}
+
+    {% if blog.next_article or blog.previous_article %}
+    <div class="blog-pagination">
+        {% if blog.previous_article %}<a class="previous" href="{{ blog.previous_article }}">{{ 'blogs.article_item.previous_post' | t }}</a>{% endif %}
+        {% if blog.next_article and blog.previous_article %}<span class="divider">/</span>{% endif %}
+        {% if blog.next_article %}<a class="next" href="{{ blog.next_article }}">{{ 'blogs.article_item.next_post' | t }}</a>{% endif %}
+    </div>
+    {% endif %}
+  </aside>
+
+  <div class="rte article-content">
+    {% if article.image %}
+      <div class="article-image">
+        {% if template == 'article' %}
+          <img src="{{ article.image | img_url: '1024x1024' }}" alt="{{ article.title }}">
+        {% else %}
+          <a href="{{ article.url }}">
+            <img src="{{ article.image | img_url: '1024x1024' }}" alt="{{ article.title }}">
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if settings.blog-use-excerpts and article.excerpt.size > 0 and index %}
+      {{ article.excerpt }}
+    {% elsif settings.blog-use-excerpts and article.excerpt.size < 1 and index %}
+      <p>{{ article.content | strip_html | truncatewords: 50 }}</p>
+      <a href="{{ article.url }}">{{ 'blogs.article_item.continue' | t }}</a>
+    {% else %}
+      {{ article.content }}
+    {% endif %}
+
+    {% if settings.display-article-author %}
+    <p class="article-author">
+      {% capture author %}
+        {% if article.user.homepage.size > 0 %}<a href="{{ article.user.homepage }}">{% endif %}
+          {{ article.user.name }}
+        {% if article.user.homepage.size > 0 %}</a>{% endif %}
+      {% endcapture %}
+      {{ 'blogs.article_item.written_by_html' | t: author: author }}
+    </p>
+    {% endif %}
+  </div>
+
+  {% if settings.blog-display-share-buttons %}
+  <footer class="article-footer">
+    {% include 'share-buttons' %}
+  </footer>
+  {% endif %}
+
+</article>

@@ -1,0 +1,77 @@
+<div class="page-header">
+  <h1>{{ 'customer.login.header' | t }}</h1>
+</div>
+
+<div class="account-wrapper">
+
+  <div class="account-content">
+    <div class="account-login">
+      {% form 'customer_login' %}
+
+        {% if form.errors %}
+          <p><span class="error">{{ 'customer.login.sorry' | t }}</span> {{ 'customer.login.try_again' | t }}</p>
+        {% endif %}
+
+        <div class="input-wrapper email">
+          <label>{{ 'general.general.email' | t }}</label>
+          <input type="email" placeholder="{{ 'general.general.email_placeholder' | t }}" value="" name="customer[email]">
+        </div>
+
+        <div class="input-wrapper password">
+          <label>{{ 'general.general.password' | t }}</label>
+          <input type="password" name="customer[password]">
+        </div>
+
+        <div class="input-wrapper">
+          <input type="submit" value="{{ 'customer.login.submit' | t }}">
+        </div>
+
+        <span class="recover-password-toggle">{{ 'customer.login.forgotten_password' | t }}</span>
+
+      {% endform %}
+    </div>
+
+    <div class="recover-password">
+
+      <p>{{ 'customer.login.reset_prompt' | t }}</p>
+
+      {% form 'recover_customer_password' %}
+
+        {% if form.errors %}
+          <div class="error-message"><span>{{ form.errors | default_errors }}</span></div>
+        {% endif %}
+
+        <div class="input-wrapper email">
+          <label>{{ 'general.general.email' | t }}</label>
+          <input type="email" placeholder="{{ 'general.general.email_placeholder' | t }}" value="" name="email" class="field">
+        </div>
+
+        <div class="input-wrapper">
+          <input type="submit" value="{{ 'customer.login.reset_submit' | t }}">
+          <a class="inline-cancel" href="/account/login">{{ 'customer.general.cancel' | t }}</a>
+        </div>
+
+      {% endform %}
+
+    </div>
+
+    {% if shop.checkout.guest_login %}
+    <div class="guest-checkout">
+      {% form 'guest_login' %}
+        <p>{{ 'customer.guest_login.continue_as_guest' | t }}</p>
+        <div class="input-wrapper">
+          <input type="submit" class="secondary" value="{{ 'customer.guest_login.guest_checkout_submit' | t }}" />
+        </div>
+      {% endform %}
+    </div>
+    {% else %}
+    <div class="new-customer">
+      {% capture signUpLink %}
+        <a href="/account/register">{{ 'customer.login.sign_up_link' | t }}</a>
+      {% endcapture %}
+      <p>{{ 'customer.login.new_customer_html' | t: sign_up_link: signUpLink }}</p>
+    </div>
+    {% endif %}
+
+  </div>
+</div>

@@ -1,0 +1,56 @@
+$mobile: "(min-width: 320px) and (max-width: 550px)";
+$tablet: "(min-width: 550px) and (max-width: 1064px)";
+$backgroundColor:white;
+
+$font-normal:	'proxima nova';
+$font-light:	'proxima nova light';
+$font-bold:	'proxima nova semibold';
+$font-icon:'icons';
+
+
+/* #Font-Face
+================================================== */
+@font-face {
+	font-family: 'icons';
+	src: url('{{ "#{icons}.eot" | asset_url }}');
+	src: url('{{ "#{icons}.eot" | asset_url }}#iefix') format('embedded-opentype'),
+			 url(' {{ "#{icons}.woff" | asset_url }}') format('woff'),
+			url(' {{ "#{icons}.ttf" | asset_url }}') format('truetype'),
+			url(' {{ "#{icons}.svg" | asset_url }}#shop-icons') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+		font-family: 'proxima nova light';
+		src: url('{{ "#{ProximaNova-Light}.eot" | asset_url }}'); /* IE9 Compat Modes */
+		src: url('{{ "#{ProximaNova-Light}.eot" | asset_url }}#iefix') format('embedded-opentype'), /* IE6-IE8 */
+				url('{{ "#{ProximaNova-Light}.woff" | asset_url }}') format('woff'), /* Modern Browsers */
+				url('{{ "#{ProximaNova-Light}.ttf" | asset_url }}')  format('truetype'), /* Safari, Android, iOS */
+				url('{{ "#{ProximaNova-Light}.svg" | asset_url }}#df838d10753ef83b07b73ceb962b3ea2') format('svg'); /* Legacy iOS */
+
+		font-style:   normal;
+		font-weight:  200;
+}
+@font-face {
+		font-family: 'proxima nova';
+		src: url('{{ "#{ProximaNova-Regular}.eot" | asset_url }}'); /* IE9 Compat Modes */
+		src: url('{{ "#{ProximaNova-Regular}.eot" | asset_url }}#iefix') format('embedded-opentype'), /* IE6-IE8 */
+							url('{{ "#{ProximaNova-Regular}.woff" | asset_url }}') format('woff'), /* Modern Browsers */
+							url('{{ "#{ProximaNova-Regular}.ttf" | asset_url }}')  format('truetype'), /* Safari, Android, iOS */
+							url('{{ "#{ProximaNova-Regular}.svg" | asset_url }}#00408f2b5f50ac35631d9f676cb29e44') format('svg'); /* Legacy iOS */
+
+		font-style:   normal;
+		font-weight:  400;
+}
+@font-face {
+		font-family: 'proxima nova semibold';
+		src: url('{{ "#{ProximaNova-Semibold}.eot" | asset_url }}'); /* IE9 Compat Modes */
+		src: url('{{ "#{ProximaNova-Semibold}.eot" | asset_url }}#iefix') format('embedded-opentype'), /* IE6-IE8 */
+				url('{{ "#{ProximaNova-Semibold}.woff" | asset_url }}') format('woff'), /* Modern Browsers */
+				url('{{ "#{ProximaNova-Semibold}.ttf" | asset_url }}')  format('truetype'), /* Safari, Android, iOS */
+				url('{{ "#{ProximaNova-Semibold}.svg" | asset_url }}#00408f2b5f50ac35631d9f676cb29e44') format('svg'); /* Legacy iOS */
+
+		font-style:   normal;
+		font-weight:  600;
+}

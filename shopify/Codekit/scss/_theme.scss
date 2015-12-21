@@ -21,11 +21,11 @@ a:focus { outline: thin dotted; }
 a:active, a:hover { outline: 0; }
 
 /* normalize.css v1.1.0 | Typography | MIT License | git.io/normalize */
-h1 { font-size: 2em; margin: 0.67em 0; }
+h1 { 	text-transform: uppercase;font-size: 2em; margin: 0.67em 0; }
 
-h2 { font-size: 1.5em; margin: 0.83em 0; }
+h2 { 	text-transform: uppercase;font-size: 1.5em; margin: 0.83em 0; }
 
-h3 { font-size: 1.17em; margin: 1em 0; }
+h3 { 	text-transform: uppercase;font-size: 1.17em; margin: 1em 0; }
 
 h4 { font-size: 1em; margin: 1.33em 0; }
 
@@ -118,95 +118,95 @@ table { border-collapse: collapse; border-spacing: 0; }
 /* General */
 
 $bodyBackground:           #{' #ffffff '};
-$bodyColor:                #{' #828676 '};
-$linkColor:                #{' #616355 '};
-$linkHoverColor:           #{' #616355 '};
-$headingColor:             #{' #66685a '};
-$sectionTitleColor:        #{' #828676 '};
-$lightColor:               #{' #aaaaaa '};
-$inputBorderColor:         #{' #dddddd '};
-$primaryBackground:        #{' #818f35 '};
-$primaryHoverBackground:   #{' #6b7a21 '};
+$bodyColor:                #{' #555e5e '};
+$linkColor:                #{' #555e5e '};
+$linkHoverColor:           #{' rgba(85, 94, 94, 0.5) '};
+$headingColor:             #{' #555e5e '};
+$sectionTitleColor:        #{' #555e5e '};
+$lightColor:               #{' rgba(85, 94, 94, 0.5) '};
+$inputBorderColor:         #{' rgba(85, 94, 94, 0.5) '};
+$primaryBackground:        #{' #555e5e '};
+$primaryHoverBackground:   #{' rgba(85, 94, 94, 0.5) '};
 $primaryColor:             #{' #ffffff '};
 $primaryHoverColor:        #{' #ffffff '};
-$secondaryBackground:      #{' #c8ccbe '};
-$secondaryHoverBackground: #{' #b3b8a5 '};
+$secondaryBackground:      #{' #555e5e '};
+$secondaryHoverBackground: #{' rgba(85, 94, 94, 0.5) '};
 $secondaryColor:           #{' #ffffff '};
 $secondaryHoverColor:      #{' #ffffff '};
-$selectBackground:         #{' #f9f9f9 '};
-$primaryBorder:            #{' #eeeeee '};
-$tableBorder:              #{' #dddddd '};
-$tableHeaderBackground:    #{' #f9f9f9 '};
-$tableHeaderColor:         #{' #999999 '};
+$selectBackground:         #{' #ffffff '};
+$primaryBorder:            #{' #555e5e '};
+$tableBorder:              #{' #ffffff '};
+$tableHeaderBackground:    #{' #ffffff '};
+$tableHeaderColor:         #{' #555e5e '};
 $tableBodyBackground:      #{' #ffffff '};
-$tableBodyColor:           #{' #b3b8a5 '};
+$tableBodyColor:           #{' #555e5e '};
 $errorColor:               #{' #cc2929 '};
-$successColor:             #{' #66b544 '};
+$successColor:             #{' #555e5e '};
 
 
 /* Fonts */
 
-$bodyFont:      #{' 'Source Sans Pro', sans-serif '};
+$bodyFont:      #{$font-normal};
 
-$logoFont:      #{' 'Helvetica Neue', Helvetica, Arial, sans-serif '};
+$logoFont:      #{$font-bold};
 $logoWeight:    #{' 400 '};
 
-$titleFont:     #{' Lora, serif '};
-$titleWeight:   #{' 700 '};
+$titleFont:     #{$font-bold};
+$titleWeight:   #{' 600 '};
 
-$headingFont:   #{' Lora, serif '};
-$headingWeight: #{' 400 '};
+$headingFont:   #{$font-bold};
+$headingWeight: #{' 600 '};
 
-$metaFont:      #{' Lato, sans-serif '};
-$metaWeight:    #{' 400 '};
-$metaColor:     #{' #cccccc '};
+$metaFont:      #{$font-light};
+$metaWeight:    #{' 200 '};
+$metaColor:     #{' rgba(85, 94, 94, 0.5) '};
 
 
 /* Header */
 
 $headerBackground:       #{' #ffffff '};
-$titleColor:             #{' #818f35 '};
-$navigationColor:        #{' #616355 '};
-$navigationHoverColor:   #{' #616355 '};
-$dropdownColor:          #{' #616355 '};
-$dropdownHoverColor:     #{' #616355 '};
-$navigationBorderColor:  #{' #eeeeee '};
-$actionLinksBackground:  #{' #f1f1ed '};
-$actionLinksColor:       #{' #959889 '};
-$actionLinksHoverColor:  #{' #8c8f80 '};
+$titleColor:             #{' #555e5e '};
+$navigationColor:        #{' #555e5e '};
+$navigationHoverColor:   #{' rgba(85, 94, 94, 0.5) '};
+$dropdownColor:          #{' #555e5e '};
+$dropdownHoverColor:     #{' rgba(255, 255, 255, 0.5) '};
+$navigationBorderColor:  #{' #555e5e '};
+$actionLinksBackground:  #{' #ffffff '};
+$actionLinksColor:       #{' #555e5e '};
+$actionLinksHoverColor:  #{' rgba(85, 94, 94, 0.5) '};
 
 
 /* Footer */
 
-$footerBackground:      #{' #ffffff '};
-$footerColor:           #{' #828676 '};
-$footerLinkColor:       #{' #828676 '};
-$footerLinkHoverColor:  #{' #66685a '};
-$socialIconsColor:      #{' #caccc1 '};
-$socialIconsHoverColor: #{' #66685a '};
-$mailingListBorder:     #{' #caccc1 '};
-$copyrightBackground:   #{' #f1f1ed '};
-$copyrightColor:        #{' #bec0b6 '};
+$footerBackground:      #{' #555e5e '};
+$footerColor:           #{' #ffffff '};
+$footerLinkColor:       #{' rgba(255, 255, 255, 0.5) '};
+$footerLinkHoverColor:  #{' #ffffff '};
+$socialIconsColor:      #{' rgba(255, 255, 255, 0.5) '};
+$socialIconsHoverColor: #{' #ffffff '};
+$mailingListBorder:     #{' rgba(255, 255, 255, 0.5) '};
+$copyrightBackground:   #{' #555e5e '};
+$copyrightColor:        #{' #ffffff '};
 
 
 /* Home page */
 
 $collectionNameBackground: #{' #ffffff '};
-$collectionNameColor:      #{' #66685a '};
+$collectionNameColor:      #{' #555e5e '};
 
 
 /* Cart page */
 
-$cartBorderColor:      #{'  '};
-$cartHeaderBackground: #{'  '};
-$cartHeaderColor:      #{'  '};
-$cartBodyBackground:   #{'  '};
-$cartBodyColor:        #{'  '};
+$cartBorderColor:      #{' #ffffff '};
+$cartHeaderBackground: #{' #555e5e '};
+$cartHeaderColor:      #{' #555e5e '};
+$cartBodyBackground:   #{' #ffffff '};
+$cartBodyColor:        #{' #555e5e '};
 //************************************************************************//
 // Prefixer
 //************************************************************************//
 
-// Variable settings for /addons/prefixer.scss
+// Variable settings for /addons/prefixer: .s;css
 $prefix-for-webkit:    true !default;
 $prefix-for-mozilla:   true !default;
 $prefix-for-microsoft: true !default;
@@ -369,7 +369,7 @@ $prefix-for-spec:      true !default; // required for keyframe mixin
 /* Variables */
 
 $minWidth: 310px;
-$maxWidth: 1158px;
+$maxWidth: 1440px;
 
 $gutter: 17px;
 
@@ -554,7 +554,7 @@ body {
 		font-weight: $titleWeight;
 
 		/* Check if small caps is enabled */
-		font-size:      #{'  '}36px #{'  '};
+		font-size:      #{'  '}24px #{'  '};
 		letter-spacing: #{'  '}0.1em #{'  '};
 		text-transform: #{'  '}uppercase #{'  '};
 	}
@@ -649,20 +649,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	font-size: 40px;
+	font-size: 34px;
 	line-height: 1.4;
 }
 
 h2 {
-	font-size: 32px;
+	font-size: 28px;
 }
 
 h3 {
-	font-size: 24px;
+	font-size: 22px;
 }
 
 h4 {
-	font-size: 21px;
+	font-size: 19px;
 }
 
 h5 {
@@ -748,7 +748,7 @@ hr {
 
 table {
 	border: 1px solid $tableBorder;
-	border-radius: 2px;
+	border-radius: 0;
 	color: $lightColor;
 	font-size: 14px;
 	margin: 23px 0;
@@ -840,7 +840,7 @@ button, input[type="button"], input, textarea, fieldset {
 
 .button, .submit, button, input[type="submit"], input[type="button"] {
 	background-color: $primaryBackground;
-	border-radius: 7px;
+	border-radius: 0;
 	color: $primaryColor;
 	font-weight: 700;
 	margin: 10px 0 8px 0;
@@ -884,7 +884,7 @@ form {
 
 input, textarea {
 	border: 1px solid $inputBorderColor;
-	border-radius: 2px;
+	border-radius: 0;
 	font-size: 16px;
 	line-height: 20px;
 	padding: 15px 11px;
@@ -975,7 +975,7 @@ input[type=checkbox], input[type=radio] {
 .select-wrapper {
 	background-color: $selectBackground;
 	cursor: pointer;
-	border-radius: 5px;
+	border-radius: 0;
 	border: 1px solid $inputBorderColor;
 	color: $lightColor;
 	display: inline-block;
@@ -1025,7 +1025,7 @@ input[type=checkbox], input[type=radio] {
 	color: $errorColor;
 	background: #F3C6C6;
 	border: 1px solid $errorColor;
-	border-radius: 2px;
+	border-radius: 0;
 	padding: 17px 21px 15px 21px;
 	display: inline-block;
 	vertical-align: middle;
@@ -1190,7 +1190,7 @@ iframe {
 .breadcrumbs {
 	margin-bottom: 23px;
 	text-align: center;
-	padding-top: 45px;
+	padding-top: $gutter
 
 	a, span {
 		line-height: 21px;
@@ -1333,7 +1333,7 @@ iframe {
 
 .footer-wrapper {
 	background: $footerBackground;
-	padding: 0 $gutter*2;
+	padding: 0 $gutter;
 
 	@include breakpoint(tablet) {
 		padding: 0 $gutter;
@@ -1366,11 +1366,14 @@ iframe {
 	h1, h2, h3, h4, h5 {
 		color: inherit;
 		font-size: 16px;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
 	}
 
 	a {
 		color: $footerLinkColor;
-
+		letter-spacing: 0.08em;
+		font-family: $font-light;
 		&:hover {
 			color: $footerLinkHoverColor;
 		}
@@ -1382,6 +1385,7 @@ iframe {
 
 	&.links {
 		width: 33.33%;
+		text-transform: uppercase;
 	}
 
 	&.connect {
@@ -1508,7 +1512,7 @@ iframe {
 }
 
 .mailing-list-signup {
-	margin-top: $gutter*2;
+	margin-top: $gutter;
 	width: 85%;
 
 	@include breakpoint(tablet) {
@@ -1534,7 +1538,7 @@ iframe {
 		letter-spacing: 0.1em;
 		padding: 0 14px;
 		border-left: none;
-		border-radius: 0 5px 5px 0;
+		border-radius: 0;
 		width: auto;
 		float: right;
 		margin-top: 0;
@@ -1553,7 +1557,6 @@ iframe {
 
 	.email {
 		padding: 0 11px;
-		border-radius: 5px 0 0 5px;
 		font-size: 14px;
 		width: 100%;
 		border-right: none;
@@ -1575,8 +1578,12 @@ iframe {
 	min-width: $minWidth;
 	max-width: $maxWidth;
 	margin: 0 auto;
-	padding: $gutter*4 $gutter*2;
+	padding: 1em 0;
 	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.7em!important;
+	color: rgba(250, 250, 250, 0.5)!important;
 }
 
 .payment-options {
@@ -1597,10 +1604,6 @@ iframe {
 .header-wrapper {
 	background: $headerBackground;
 
-	&.no-border .main-header {
-		border-bottom: none;
-	}
-
 	&.limit-width {
 		padding: 0 $gutter*2;
 
@@ -1620,7 +1623,6 @@ iframe {
 	position: relative;
 	padding: 20px 0 20px 0;
 	margin: 0 $gutter*2;
-	border-bottom: 1px solid $primaryBorder;
 
 	&.accounts-disabled {
 		padding-right: 220px;
@@ -1643,8 +1645,8 @@ iframe {
 .branding {
 	display: inline-block;
 	vertical-align: middle;
-	margin-right: 45px;
-
+	margin-right: 4%;
+	width:30%;
 	@include breakpoint(tablet) {
 		margin-right: 0;
 		display: block;
@@ -1680,6 +1682,7 @@ iframe {
 		.regular-logo {
 			display: inline-block;
 			vertical-align: middle;
+			max-height: 30px
 		}
 	}
 
@@ -1697,6 +1700,7 @@ iframe {
 		.retina-logo {
 			display: inline-block;
 			vertical-align: middle;
+			max-height: 30px
 		}
 	}
 }
@@ -1752,7 +1756,7 @@ iframe {
 .navigation {
 	display: inline-block;
 	vertical-align: middle;
-
+	width:65%;
 	&.overlapping {
 		@include breakpoint(desktop) {
 			display: block;
@@ -1792,6 +1796,7 @@ iframe {
 		@include breakpoint(desktop) {
 			display: inline-block;
 			vertical-align: middle;
+			width: 100%;
 		}
 	}
 
@@ -1819,18 +1824,18 @@ iframe {
 	/* First Level */
 	> ul {
 		list-style: none;
-
 		> li {
 			display: inline-block;
 			vertical-align: middle;
-
+			width: 33%;
+			text-align: center;
 			@include breakpoint(tablet) {
 				display: block;
 			}
 
 			a {
 				display: block;
-				padding: 13px $gutter*2 13px 0;
+				padding: 13px 0 13px 0;
 				line-height: 23px;
 
 				@include breakpoint(tablet) {
@@ -1917,7 +1922,6 @@ iframe {
 		background: $bodyBackground;
 		padding: 7px $gutter;
 		border: 1px solid $navigationBorderColor;
-		border-radius: 4px;
 		z-index: 1000;
 
 		@include breakpoint(tablet) {
@@ -2029,8 +2033,8 @@ iframe {
 	> a,
 	> span,
 	.currency-switcher-wrapper {
-		padding: 0 $gutter 0 $gutter;
-		font-size: 11px;
+		padding: 0 $gutter/2 0 $gutter/2;
+		font-size: 14px;
 		line-height: 35px;
 		font-weight: $metaWeight;
 		letter-spacing: 0.1em;
@@ -2048,12 +2052,7 @@ iframe {
 			cursor: pointer; /* for our <span> */
 		}
 
-		&.mini-cart-toggle {
-			border-radius: 6px 0 0 6px;
-		}
-
 		&:last-child {
-			border-radius: 0 6px 6px 0;
 			margin-right: 0;
 		}
 	}
@@ -2064,7 +2063,6 @@ iframe {
 .mini-cart-wrapper, .mini-account-wrapper {
 	position: absolute;
 	top: 100%;
-	padding-top: 10px;
 	display: none;
 }
 
@@ -2073,7 +2071,6 @@ iframe {
 	color: $bodyColor;
 	border: 1px solid $navigationBorderColor;
 	padding: 23px $gutter $gutter $gutter;
-	border-radius: 4px;
 	font-size: 14px;
 	z-index: 2500;
 	position: relative;
@@ -2098,15 +2095,15 @@ iframe {
 	.mini-cart-wrapper {
 		left: auto;
 		width: 260px;
-		right: 0;
+		right: $gutter;
 	}
 
 	.mini-cart {
 		&:before {
-			left: 124px;
+			left: 176px;
 		}
 		&:after {
-			left: 125px;
+			left: 177px;
 		}
 	}
 }
@@ -2195,6 +2192,9 @@ iframe {
 			display: block;
 			margin-top: 0;
 		}
+		a {
+			text-transform: uppercase;
+		}
 	}
 }
 
@@ -2256,7 +2256,6 @@ iframe {
 	input {
 		font-size: 14px;
 		height: 100%;
-		border-radius: 6px;
 		background: $headerBackground;
 		padding: 10px 11px 7px 11px;
 
@@ -2280,14 +2279,6 @@ iframe {
 		&.no-icon {
 			font-family: $bodyFont;
 		}
-	}
-
-	.previous {
-		border-radius: 5px 0 0 5px;
-	}
-
-	.next {
-		border-radius: 0 5px 5px 0;
 	}
 
 	span, a {
@@ -2327,6 +2318,7 @@ iframe {
 
 	.thumbnail {
 		margin-bottom: 19px;
+		position: relative;
 	}
 
 	h1 {
@@ -2354,10 +2346,14 @@ iframe {
 		line-height: 19px;
 		color: $lightColor;
 	}
+	.product-price {
+		font-size: 24px;
+	}
 
 	.title {
 		color: $headingColor;
 		font-weight: 700;
+		text-transform: uppercase;
 	}
 
 	.original {
@@ -2382,9 +2378,6 @@ iframe {
 	}
 }
 .share-buttons {
-	@extend .clearfix;
-	font-family: Lato, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-
 	a {
 		margin-right: 10px;
 		margin: 0 10px 10px 0;
@@ -2397,113 +2390,36 @@ iframe {
 	}
 
 	span:first-child {
-		border-radius: 6px;
-		color: white;
-		font-size: 12px;
-		font-weight: 700;
-		padding: 6px 11px 6px;
+		padding: 6px;
 		line-height: 1;
 		margin-right: 5px;
-		height: 24px;
+		height: 30px;
+		width:30px;
 		display: inline-block;
 		vertical-align: middle;
-
+		text-indent: -9999px;
 		&:before {
 			margin-right: 6px;
 			font-weight: 400;
 			display: block;
 			float: left;
-			@include iconFont(16px);
-			line-height: 9px;
+			@include iconFont(24px);
+			line-height: 24px;
+			color: #ac9773;
+			text-indent: 0;
 		}
 	}
 
 	.share-facebook span:first-child  {
-		background: #3A5B96;
-
-		&:hover  { background: #314F86; }
-		&:before { content: '\E303'; }
+		&:before { content: "\66"; }
 	}
 
 	.share-twitter span:first-child   {
-		background: #0AAEEB;
-
-		&:hover  { background: #07A1DB; }
-		&:before { content: '\E301'; }
+		&:before { content: "\54"; }
 	}
 
 	.share-pinterest span:first-child {
-		background: #CB1F2A;
-
-		&:hover  { background: #B91923; }
-		&:before { content: '\E304'; }
-	}
-
-	.share-fancy span:first-child     {
-		background: #3E73B7;
-
-		&:hover  { background: #3364A4; }
-		&:before { content: '\E306'; }
-	}
-
-	.share-google span:first-child    {
-		background: #DD4C39;
-
-		&:hover  { background: #CD412F; }
-		&:before { content: '\E305'; margin-right: 0; font-size: 17px; }
-	}
-
-	.share-count {
-		border: 1px solid $metaColor;
-		border-radius: 3px;
-		font-size: 14px;
-		padding: 0 8px;
-		color: $lightColor;
-		position: relative;
-		opacity: 0;
-		display: inline-block;
-		vertical-align: middle;
-		@include transition(opacity 0.3s linear);
-
-		/* tooltip notch */
-
-		&:after, &:before {
-			bottom: 100%;
-			border: solid transparent;
-			content: " ";
-			height: 0;
-			width: 0;
-			position: absolute;
-			pointer-events: none;
-			top: 50%;
-			margin-top: -5px;
-		}
-
-		&:after {
-			border-color: rgba(255, 255, 255, 0);
-			border-right-color: $bodyBackground;
-			border-width: 4px;
-			left: -8px;
-			margin-top: -4px;
-		}
-
-		&:before {
-			border-color: rgba(222, 222, 222, 0);
-			border-right-color: $metaColor;
-			border-width: 5px;
-			left: -10px;
-		}
-	}
-
-	&.no-count {
-
-		span:first-child {
-			margin-right: 0;
-		}
-
-		.share-count {
-			display: none;
-		}
+		&:before { content: "\70"; }
 	}
 
 }
@@ -3983,7 +3899,7 @@ iframe {
 		font-family: $metaFont;
 		background: transparent;
 		border: 1px solid $socialIconsColor;
-		border-radius: 5px 0 0 5px;
+		border-radius: 0;
 	}
 
 	.submit {
@@ -3996,7 +3912,7 @@ iframe {
 		letter-spacing: 0.1em;
 		text-align: center;
 		background: $socialIconsColor;
-		border-radius: 0 5px 5px 0;
+		border-radius: 0;
 	}
 }
 
@@ -4010,7 +3926,7 @@ iframe {
 	.page-header {
 		border-bottom: 0;
 		padding-bottom: 0;
-		margin-bottom: 61px;
+		margin-bottom: 34px;
 
 		@include breakpoint(tablet) {
 			margin-bottom: $gutter*2;
@@ -4133,12 +4049,13 @@ iframe {
 	margin-bottom: 11px;
 	display: inline-block;
 	vertical-align: middle;
+	text-transform: uppercase;
 }
 
 .product-price {
 	display: block;
 	margin-bottom: 23px;
-
+	font-size: 36px;
 	.original {
 		color: $lightColor;
 		text-decoration: line-through;

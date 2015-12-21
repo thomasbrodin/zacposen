@@ -1,49 +1,59 @@
 {% paginate collection.products by settings.products-per-page %}
 
-  <div class="page-header">
-    {% if collection.handle == 'all' %}
-      <h1>{{ 'collections.collection.all_products' | t }}</h1>
-    {% else %}
-      <h1>{{ collection.title }}</h1>
-    {% endif %}
+	<div class="page-header">
+		{% if collection.handle == 'all' %}
+			<h1>{{ 'collections.collection.all_products' | t }}</h1>
+		{% else %}
+			<h1>{{ collection.title }}</h1>
+		{% endif %}
 
-    {% if settings.display-collection-description and collection.description.size > 0 %}
-      <div class="description rte">
-      {{ collection.description }}
-      </div>
-    {% endif %}
-  </div>
+		{% if settings.display-collection-description and collection.description.size > 0 %}
+			<div class="description rte">
+			{{ collection.description }}
+			</div>
+		{% endif %}
+	</div>
 
-  <div class="content" role="main">
+	<div class="content" role="main">
 
-    {% if collection.all_tags.size > 0 and settings.display-tags-dropdown and collection.handle %}
-      <div class="collection-tags filter rows-of-{{ settings.products-per-row }}">
-        <label>{{ 'collections.collection.all_tags' | t }}</label>
-        <select class="dropdown">
-          <option value="/collections/{{ collection.handle }}/">{{ 'collections.collection.all_tags' | t }}</option>
-          {% for tag in collection.all_tags %}
-            {% if current_tags contains tag %}
-              <option value="/collections/{{ collection.handle }}/{{ tag | handle }}" selected>{{ tag }}</option>
-            {% else %}
-              <option value="/collections/{{ collection.handle }}/{{ tag | handle }}">{{ tag }}</option>
-            {% endif %}
-          {% endfor %}
-        </select>
-      </div>
-    {% endif %}
+		{% if collection.all_tags.size > 0 and settings.display-tags-dropdown and collection.handle %}
+			<div class="collection-tags filter rows-of-{{ settings.products-per-row }}">
+				<label>{{ 'collections.collection.all_tags' | t }}</label>
+				<select class="dropdown">
+					<option value="/collections/{{ collection.handle }}/">{{ 'collections.collection.all_tags' | t }}</option>
+					{% for tag in collection.all_tags %}
+						{% if current_tags contains tag %}
+							<option value="/collections/{{ collection.handle }}/{{ tag | handle }}" selected>{{ tag }}</option>
+						{% else %}
+							<option value="/collections/{{ collection.handle }}/{{ tag | handle }}">{{ tag }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+			</div>
+		{% endif %}
 
-    <div class="product-listing rows-of-{{ settings.products-per-row }}">
-      {% for product in collection.products %}
-        {% include 'product-list-item' %}
-      {% else %}
-        <span class="empty">{{ 'collections.collection.empty' | t }}</span>
-      {% endfor %}
-    </div>
+		<div class="product-listing rows-of-{{ settings.products-per-row }}">
+			{% for product in collection.products %}
+				{% include 'product-list-item' %}
+			{% else %}
+				<span class="empty">{{ 'collections.collection.empty' | t }}</span>
+			{% endfor %}
+			<script type="text/javascript">
+				(function($){$.fn.extend({leanModal:function(_1){var _2={top:100,overlay:0.6};_1=$.extend(_2,_1);return this.each(function(){var o=_1;$(this).click(function(e){var _3=$("<div id='lean_overlay'></div><span id='close_overlay'>X</span>");var _4=$(this).data("rel");$("body").append(_3);$("#lean_overlay, #close_overlay").click(function(){_5(_4);});var _6=$(_4).outerHeight();var _7=$(_4).outerWidth();$("#lean_overlay").css({"display":"block",opacity:0});$("#lean_overlay, #close_overlay").fadeTo(200,o.overlay, function() { $("#close_overlay").css({opacity:1})});if($(_4).hasClass('modal_product')){$(_4).css({"position":"fixed"});}else{$(_4).css({"position":"fixed"});};$(_4).css({"display":"block",opacity:0,"z-index":11000,"left":50+"%","margin-left":-(_7/2)+"px","top":o.top+"px"});$(_4).fadeTo(200,1);e.preventDefault();});});function _5(_8){$("#lean_overlay, #close_overlay").fadeOut(200).remove();$(_8).css({"display":"none"});};}});})(jQuery);
 
-    {% if paginate.previous or paginate.next %}
-      {% include 'pagination' %}
-    {% endif %}
+				$('.thumbnail').hover(function(){
+					$(this).children('.quick_shop').show();
+				}, function(){
+					$(this).children('.quick_shop').hide();
+				})
+				$(".quick_shop").leanModal();
+			</script>
+		</div>
 
-  </div>
+		{% if paginate.previous or paginate.next %}
+			{% include 'pagination' %}
+		{% endif %}
+
+	</div>
 
 {% endpaginate %}

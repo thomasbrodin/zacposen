@@ -1,37 +1,117 @@
 {% assign item = product %}
 
 {% if template contains 'search' %}
-  {% assign item = item %}
+	{% assign item = item %}
 {% elsif template contains 'product' %}
-  {% assign item = prod %}
+	{% assign item = prod %}
 {% endif %}
 
 <article class="product-list-item" id="product-list-item-{{ item.id }}">
 
-  <figure class="thumbnail">
-    <a href="{{ item.url | within: collection }}">
-    {% if item.featured_image.src.size > 0 %}
-    <img src="{{ item.featured_image.src | product_img_url: 'grande' }}" alt="{{ item.featured_image.alt | escape }}" />
-    {% else %}
-    <img class="product-no-images" src="{{ 'no-image.svg' | asset_url }}" alt="{{ 'products.product.no_image' | t }}" />
-    {% endif %}
-    </a>
-  </figure>
+	<figure class="thumbnail">
+		<a href="{{ item.url | within: collection }}">
+		{% if item.featured_image.src.size > 0 %}
+		<img src="{{ item.featured_image.src | product_img_url: 'grande' }}" alt="{{ item.featured_image.alt | escape }}" />
+		{% else %}
+		<img class="product-no-images" src="{{ 'no-image.svg' | asset_url }}" alt="{{ 'products.product.no_image' | t }}" />
+		{% endif %}
+		</a>
 
-  <div class="product-list-details">
-    <p class="vendor"><a href="{{ item.vendor | url_for_vendor }}">{{ item.vendor }}</a></p>
-    <p class="title"><a href="{{ item.url | within: collection }}">{{ item.title }}</a></p>
-    <p class="product-price">
-    {% if item.available %}
-      {% if item.compare_at_price_min > item.price_min %}
-        <span class="price on-sale"><span class="original money">{{ item.compare_at_price_min | money }}</span> <span class="money">{{ item.price_min | money }}</span></span>
-      {% else %}
-        <span class="price money">{{ item.price_min | money }}</span>
-      {% endif %}
-    {% else %}
-      <span class="price">{{ 'products.product.sold_out' | t }}</span>
-    {% endif %}
-    </p>
-  </div>
+		<!-- Modal -->
+		<div data-rel="#product-{{ product.id }}" class="quick_shop action_button">
+			Quick Shop
+		</div>
+		{% include 'modal' %}
+
+	</figure>
+
+	<div class="product-list-details">
+		<p class="vendor"><a href="{{ item.vendor | url_for_vendor }}">{{ item.vendor }}</a></p>
+		<p class="title"><a href="{{ item.url | within: collection }}">{{ item.title }}</a></p>
+		<p class="product-price">
+		{% if item.available %}
+			{% if item.compare_at_price_min > item.price_min %}
+				<span class="price on-sale"><span class="original money">{{ item.compare_at_price_min | money }}</span> <span class="money">{{ item.price_min | money }}</span></span>
+			{% else %}
+				<span class="price money">{{ item.price_min | money }}</span>
+			{% endif %}
+		{% else %}
+			<span class="price">{{ 'products.product.sold_out' | t }}</span>
+		{% endif %}
+		</p>
+	</div>
 
 </article>
+
+	{% if product.variants.size > 1 %}
+		<script>
+
+			$(function() {
+
+				// This is the callback which is fired every time
+				// variant selectors are changed. It determines
+				// whether or not the selected combinations of options
+				// exists as a variant, wheter that variant is available,
+				// and then updates prices accordingly.
+
+				var addToCart = $('.add-product')
+				var priceArea = $('.product-details .product-price')
+
+				var selectCallback = function(variant, selector) {
+
+					// Does the combination of options exist as a variant?
+					if (variant) {
+
+						// Is variant available?
+						if (variant.available) {
+							addToCart.val("{{ 'products.product.add_to_cart' | t }}").removeClass('disabled').fadeTo(200,1);
+						} else {
+							addToCart.val("{{ 'products.product.sold_out' | t }}").addClass('disabled').fadeTo(200,0.5);
+						}
+
+						// Whether the variant is in stock or not, we can update the price and compare at price.
+						if ( variant.compare_at_price > variant.price ) {
+							priceArea.html('<span class="price on-sale"><span class="original money">'+ Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}") +'</span> <span class="money">'+Shopify.formatMoney(variant.price, "{{ shop.money_format }}")+ '</span></span>');
+						} else {
+							priceArea.html('<span class="price money">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") + '</span>' );
+						}
+
+					} else {
+						// variant doesn't exist.
+						addToCart.val("{{ 'products.product.unavailable' | t }}").addClass('disabled').fadeTo(200,0.5);
+					}
+
+					if (variant && variant.featured_image) {
+						var newImage = variant.featured_image;
+						var compactImage = Shopify.Image.getSizedImageUrl(newImage.src, 'compact');
+						$('.product-thumbnails img[src*="'+compactImage+'"]').click();
+					}
+
+					$(".currency-switcher").trigger("reset-currency")
+				};
+
+				// This object grabs the $('#product-select') element, and breaks its into
+				// multiple options select elements.
+				{% if product.available %}
+					new Shopify.OptionSelectors('product-select', { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true });
+				{% endif %}
+
+				function setUpProductData() {
+					window.product = {{ product | json }};
+				}
+				setUpProductData();
+
+				$('.selector-wrapper').each( function () {
+					$(this).find('select').wrap('<div class="select-wrapper" />');
+					$(this).find('.select-wrapper').prepend('<div class="select-text" />');
+				});
+
+				// Add label if only one product option and it isn't 'Title'.
+				{% if product.options.size == 1 and product.options.first != 'Title' %}
+					$('.selector-wrapper').prepend('<label>{{ product.options[0] }}</label>');
+				{% endif %}
+
+			});
+
+		</script>
+	{% endif %}

@@ -1,57 +1,50 @@
 
 <script>
-  Theme = {}
-  Theme.version = "5.5.2";
+	Theme = {}
+	Theme.version = "0.9.1";
 
-  // Cart page
-  Theme.currency = "{{ shop.currency }}";
-  Theme.moneyFormat = {{ shop.money_format | strip_html | json }};
-  Theme.moneyFormatCurrency = {{ shop.money_with_currency_format | strip_html | json }};
+	// Cart page
+	Theme.currency = "{{ shop.currency }}";
+	Theme.moneyFormat = {{ shop.money_format | strip_html | json }};
+	Theme.moneyFormatCurrency = {{ shop.money_with_currency_format | strip_html | json }};
 
-  {% if settings.currency-switcher %}
-    Theme.currencySwitcher = true;
-    Theme.currencySwitcherFormat = "{{ settings.currency-switcher-format | escape }}";
-    /*
-      Override the default Theme.moneyFormat for recalculating
-      prices on the product and cart templates.
-    */
-    Theme.moneyFormat = {{ shop.[settings.currency-switcher-format] | json }};
-  {% endif %}
+	{% if settings.currency-switcher %}
+		Theme.currencySwitcher = true;
+		Theme.currencySwitcherFormat = "{{ settings.currency-switcher-format | escape }}";
+		/*
+			Override the default Theme.moneyFormat for recalculating
+			prices on the product and cart templates.
+		*/
+		Theme.moneyFormat = {{ shop.[settings.currency-switcher-format] | json }};
+	{% endif %}
 
-  // Home page
-  Theme.showSlideshow = {{ settings.show-slideshow }};
-  Theme.slideshowNavigation = {{ settings.show-slideshow-navigation }};
-  Theme.slideshowAutoPlay = {{ settings.slideshow-auto-play }};
-  Theme.slideDuration = "{{ settings.slideshow-duration }}";
-  Theme.featuredCollections = {{ settings.display-featured-collections }};
-  Theme.collectionAlignment = "{{ settings.collections-list-position }}";
-  Theme.showInstagramWidget = {{ settings.display-instagram-widget | json }};
-  Theme.instagramAccessToken = "{{ settings.instagram-widget-access-token }}";
-  Theme.showInstagramTag = {{ settings.display-instagram-tag | json }};
-  Theme.instagramTag = "{{ settings.instagram-widget-tag | escape }}";
-  Theme.showTwitterWidget = {{ settings.display-twitter-widget | json }};
-  Theme.twitterWidgetId = "{{ settings.twitter-id | escape }}";
-  Theme.twitterRetweets = {{ settings.twitter-retweets | json }};
+	// Home page
+	Theme.showSlideshow = {{ settings.show-slideshow }};
+	Theme.slideshowNavigation = {{ settings.show-slideshow-navigation }};
+	Theme.slideshowAutoPlay = {{ settings.slideshow-auto-play }};
+	Theme.slideDuration = "{{ settings.slideshow-duration }}";
+	Theme.featuredCollections = {{ settings.display-featured-collections }};
+	Theme.collectionAlignment = "{{ settings.collections-list-position }}";
+	
+	Theme.productQuantityError = "{{ 'products.product.quantity_error' | t | escape }}";
 
-  Theme.productQuantityError = "{{ 'products.product.quantity_error' | t | escape }}";
+	{% if shop.customer_accounts_enabled and customer %}
+		Theme.customerLoggedIn = true;
+	{% endif %}
 
-  {% if shop.customer_accounts_enabled and customer %}
-    Theme.customerLoggedIn = true;
-  {% endif %}
+	{% if settings.show-shipping-calculator and cart.requires_shipping %}
+		Theme.shippingCalculator = true;
 
-  {% if settings.show-shipping-calculator and cart.requires_shipping %}
-    Theme.shippingCalculator = true;
+		{% if shop.customer_accounts_enabled and customer and customer.addresses.size > 0 %}
+			Theme.customerAddress = {{ customer.default_address | json }};
+		{% endif %}
 
-    {% if shop.customer_accounts_enabled and customer and customer.addresses.size > 0 %}
-      Theme.customerAddress = {{ customer.default_address | json }};
-    {% endif %}
-
-    Theme.shippingSubmit = "{{ 'cart.shipping_calculator.submit' | t | replace: '"','\\"' }}";
-    Theme.shippingWorking = "{{ 'cart.shipping_calculator.working' | t | replace: '"','\\"' }}";
-    Theme.shippingCalcErrorMessage = "{{ 'cart.shipping_calculator.error' | t | replace: '"','\\"' }}";
-    Theme.shippingCalcMultiRates = "{{ 'cart.shipping_calculator.rates_html' | t | replace: '"','\\"' }}";
-    Theme.shippingCalcOneRate = "{{ 'cart.shipping_calculator.rate' | t | replace: '"','\\"' }}";
-    Theme.shippingCalcNoRates = "{{ 'cart.shipping_calculator.no_rates' | t | replace: '"','\\"' }}";
-    Theme.shippingCalcRateValues = "{{ 'cart.shipping_calculator.rate_values_html' | t | replace: '"','\\"' }}";
-  {% endif %}
+		Theme.shippingSubmit = "{{ 'cart.shipping_calculator.submit' | t | replace: '"','\\"' }}";
+		Theme.shippingWorking = "{{ 'cart.shipping_calculator.working' | t | replace: '"','\\"' }}";
+		Theme.shippingCalcErrorMessage = "{{ 'cart.shipping_calculator.error' | t | replace: '"','\\"' }}";
+		Theme.shippingCalcMultiRates = "{{ 'cart.shipping_calculator.rates_html' | t | replace: '"','\\"' }}";
+		Theme.shippingCalcOneRate = "{{ 'cart.shipping_calculator.rate' | t | replace: '"','\\"' }}";
+		Theme.shippingCalcNoRates = "{{ 'cart.shipping_calculator.no_rates' | t | replace: '"','\\"' }}";
+		Theme.shippingCalcRateValues = "{{ 'cart.shipping_calculator.rate_values_html' | t | replace: '"','\\"' }}";
+	{% endif %}
 </script>

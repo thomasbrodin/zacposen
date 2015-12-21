@@ -1,185 +1,141 @@
 {% assign moduleCount = 0 %}
 
 {% if settings.display-contact-module %}
-  {% assign moduleCount =  moduleCount | plus: 1 %}
+	{% assign moduleCount =  moduleCount | plus: 1 %}
 {% endif %}
 {% if linklists.footer.links.size > 0 %}
-  {% assign moduleCount =  moduleCount | plus: 1 %}
+	{% assign moduleCount =  moduleCount | plus: 1 %}
 {% endif %}
 {% if settings.display-social-module %}
-  {% assign moduleCount =  moduleCount | plus: 1 %}
+	{% assign moduleCount =  moduleCount | plus: 1 %}
 {% endif %}
 
 <div class="footer-wrapper {% if settings.footer-no-border %}no-border{% endif %} module-count-{{ moduleCount }}">
 
-  <footer class="main-footer">
+	<footer class="main-footer">
 
-    {% if settings.display-contact-module %}
-    <div class="contact footer-module">
-      <h4>{{ shop.name | link_to: '/' }}</h4>
+		{% if settings.display-contact-module %}
+		<div class="contact footer-module">
+			<h4>{{ shop.name | link_to: '/' }}</h4>
 
-      {% if settings.address-line-1.size > 0 or settings.address-line-2.size > 0 or settings.address-city.size > 0 or settings.address-province-state.size > 0 or settings.address-postal-zip.size > 0 settings.address-country.size > 0 %}
-      <p>
-        {% if settings.address-line-1.size > 0 %}
-        {{ settings.address-line-1 }}<br>
-        {% endif %}
+			{% if settings.address-line-1.size > 0 or settings.address-line-2.size > 0 or settings.address-city.size > 0 or settings.address-province-state.size > 0 or settings.address-postal-zip.size > 0 settings.address-country.size > 0 %}
+			<p>
+				{% if settings.address-line-1.size > 0 %}
+				{{ settings.address-line-1 }}<br>
+				{% endif %}
 
-        {% if settings.address-line-2.size > 0 %}
-        {{ settings.address-line-2 }}<br>
-        {% endif %}
+				{% if settings.address-line-2.size > 0 %}
+				{{ settings.address-line-2 }}<br>
+				{% endif %}
 
-        {% if settings.address-city.size > 0 or settings.address-province-state.size > 0 %}
-        {{ settings.address-city }} {{ settings.address-province-state }}<br>
-        {% endif %}
+				{% if settings.address-city.size > 0 or settings.address-province-state.size > 0 %}
+				{{ settings.address-city }} {{ settings.address-province-state }}<br>
+				{% endif %}
 
-        {{ settings.address-postal-zip }} {{ settings.address-country }}
-      </p>
-      {% endif %}
+				{{ settings.address-postal-zip }} {{ settings.address-country }}
+			</p>
+			{% endif %}
 
-      {% if settings.shop-phone-number.size > 0 %}
-      <p>{{ settings.shop-phone-number }}</p>
-      {% endif %}
+			{% if settings.shop-phone-number.size > 0 %}
+			<p>{{ settings.shop-phone-number }}</p>
+			{% endif %}
 
-      {% if settings.contact-email.size > 0 %}
-      <p><a href="mailto:{{ settings.contact-email }}">{{ settings.contact-email }}</a></p>
-      {% endif %}
-    </div>
-    {% endif %}
+			{% if settings.contact-email.size > 0 %}
+			<p><a href="mailto:{{ settings.contact-email }}">{{ settings.contact-email }}</a></p>
+			{% endif %}
+		</div>
+		{% endif %}
 
-    {% if linklists.footer.links.size > 0 %}
-    <div class="links footer-module">
-      <ul>
-        {% for link in linklists.footer.links %}
+		{% if linklists.footer.links.size > 0 %}
+		<div class="links footer-module">
+			<ul>
+				{% for link in linklists.footer.links %}
 
-          {% assign middleFound = false %}
-          {% assign oddIndex    = forloop.rindex0 | plus: 1 %}
+					{% assign middleFound = false %}
+					{% assign oddIndex    = forloop.rindex0 | plus: 1 %}
 
-          <li>{{ link.title | link_to: link.url }}</li>
+					<li>{{ link.title | link_to: link.url }}</li>
 
-          {% if middleFound == false and forloop.index == forloop.rindex0 or forloop.index == oddIndex %}
-            </ul><ul>
+					{% if middleFound == false and forloop.index == forloop.rindex0 or forloop.index == oddIndex %}
+						</ul><ul>
 
-            {% assign middleFound = true %}
-          {% endif %}
+						{% assign middleFound = true %}
+					{% endif %}
 
-        {% endfor %}
-      </ul>
+				{% endfor %}
+			</ul>
 
-    </div>
-    {% endif %}
+		</div>
+		{% endif %}
 
-    {% if settings.display-social-module %}
-    <div class="connect footer-module">
+		{% if settings.display-social-module %}
+		<div class="connect footer-module">
 
-      <h4>{{ 'layout.footer.connect_with_us' | t }}</h4>
+			<h4>{{ 'layout.footer.connect_with_us' | t }}</h4>
 
-      {% unless settings.twitter-url.size == 0 and settings.facebook-url.size == 0 and settings.pinterest-url.size == 0 and settings.instagram-url.size == 0 and settings.gplus-url.size == 0 and settings.fancy-url.size == 0 and settings.rss-blog-name.size == 0 %}
+			{% unless settings.twitter-url.size == 0 and settings.facebook-url.size == 0 and settings.pinterest-url.size == 0 and settings.instagram-url.size == 0 and settings.gplus-url.size == 0 and settings.fancy-url.size == 0 and settings.rss-blog-name.size == 0 %}
 
-      <ul class="social-options clearfix">
-        {% if settings.twitter-url.size > 0 %}
-          <li class="twitter"><a href="{{ settings.twitter-url }}" target="_blank">&#xE036;</a></li>
-        {% endif %}
-        {% if settings.facebook-url.size > 0 %}
-          <li class="facebook"><a href="{{ settings.facebook-url }}" target="_blank">&#xE003;</a></li>
-        {% endif %}
-        {% if settings.pinterest-url.size > 0 %}
-          <li class="pinterest"><a href="{{ settings.pinterest-url }}" target="_blank">&#xE296;</a></li>
-        {% endif %}
-        {% if settings.instagram-url.size > 0 %}
-          <li class="instagram"><a href="{{ settings.instagram-url }}" target="_blank">&#xE226;</a></li>
-        {% endif %}
-        {% if settings.tumblr-url.size > 0 %}
-          <li class="tumblr"><a href="{{ settings.tumblr-url }}" target="_blank">&#xE35F;</a></li>
-        {% endif %}
-        {% if settings.vimeo-url.size > 0 %}
-          <li class="vimeo"><a href="{{ settings.vimeo-url }}" target="_blank">&#xE366;</a></li>
-        {% endif %}
-        {% if settings.youtube-url.size > 0 %}
-          <li class="youtube"><a href="{{ settings.youtube-url }}" target="_blank">&#xE426;</a></li>
-        {% endif %}
-        {% if settings.gplus-url.size > 0 %}
-          <li class="gplus"><a href="{{ settings.gplus-url }}" target="_blank">&#xE03F;</a></li>
-        {% endif %}
-        {% if settings.fancy-url.size > 0 %}
-          <li class="fancy"><a href="{{ settings.fancy-url }}" target="_blank">&#xE430;</a></li>
-        {% endif %}
-        {% if settings.rss-blog-name.size > 0 %}
-          <li class="rss"><a href="/blogs/{{ settings.rss-blog-name }}.atom" target="_blank">&#xE046;</a></li>
-        {% endif %}
-      </ul>
+			<ul class="social-options clearfix">
+				{% if settings.twitter-url.size > 0 %}
+					<li class="twitter"><a href="{{ settings.twitter-url }}" target="_blank">&#xE036;</a></li>
+				{% endif %}
+				{% if settings.facebook-url.size > 0 %}
+					<li class="facebook"><a href="{{ settings.facebook-url }}" target="_blank">&#xE003;</a></li>
+				{% endif %}
+				{% if settings.pinterest-url.size > 0 %}
+					<li class="pinterest"><a href="{{ settings.pinterest-url }}" target="_blank">&#xE296;</a></li>
+				{% endif %}
+				{% if settings.instagram-url.size > 0 %}
+					<li class="instagram"><a href="{{ settings.instagram-url }}" target="_blank">&#xE226;</a></li>
+				{% endif %}
+				{% if settings.tumblr-url.size > 0 %}
+					<li class="tumblr"><a href="{{ settings.tumblr-url }}" target="_blank">&#xE35F;</a></li>
+				{% endif %}
+				{% if settings.vimeo-url.size > 0 %}
+					<li class="vimeo"><a href="{{ settings.vimeo-url }}" target="_blank">&#xE366;</a></li>
+				{% endif %}
+				{% if settings.youtube-url.size > 0 %}
+					<li class="youtube"><a href="{{ settings.youtube-url }}" target="_blank">&#xE426;</a></li>
+				{% endif %}
+				{% if settings.gplus-url.size > 0 %}
+					<li class="gplus"><a href="{{ settings.gplus-url }}" target="_blank">&#xE03F;</a></li>
+				{% endif %}
+				{% if settings.fancy-url.size > 0 %}
+					<li class="fancy"><a href="{{ settings.fancy-url }}" target="_blank">&#xE430;</a></li>
+				{% endif %}
+				{% if settings.rss-blog-name.size > 0 %}
+					<li class="rss"><a href="/blogs/{{ settings.rss-blog-name }}.atom" target="_blank">&#xE046;</a></li>
+				{% endif %}
+			</ul>
 
-      {% endunless %}
+			{% endunless %}
 
-      {% if settings.display-mailing-list %}
-        <form action="{{ settings.mailing-list-action-url }}" method="post" name="{% if settings.mailing-list-platform == 'mailchimp' %}mc-embedded-subscribe-form{% endif %}" class="validate mailing-list-signup" target="_blank">
+			{% if settings.display-mailing-list %}
+				<form action="{{ settings.mailing-list-action-url }}" method="post" name="{% if settings.mailing-list-platform == 'mailchimp' %}mc-embedded-subscribe-form{% endif %}" class="validate mailing-list-signup" target="_blank">
 
-          <input class="submit" name="subscribe" type="submit" value="{{ 'layout.footer.newsletter_submit' | t }}">
+					<input class="submit" name="subscribe" type="submit" value="{{ 'layout.footer.newsletter_submit' | t }}">
 
-          <div class="email-container">
-            {% if settings.mailing-list-platform == 'mailchimp' %}
-              <input class="email" name="EMAIL" type="email" placeholder="{{ 'layout.footer.newsletter_placeholder' | t }}" value="" required>
-            {% endif %}
+					<div class="email-container">
+						{% if settings.mailing-list-platform == 'mailchimp' %}
+							<input class="email" name="EMAIL" type="email" placeholder="{{ 'layout.footer.newsletter_placeholder' | t }}" value="" required>
+						{% endif %}
 
-            {% if settings.mailing-list-platform == 'campaign-monitor' %}
-              <input id="fieldEmail" class="email" name="{{ settings.campaign-monitor-name }}" type="email" placeholder="{{ 'layout.footer.newsletter_placeholder' | t }}" required />
-            {% endif %}
-          </div>
+						{% if settings.mailing-list-platform == 'campaign-monitor' %}
+							<input id="fieldEmail" class="email" name="{{ settings.campaign-monitor-name }}" type="email" placeholder="{{ 'layout.footer.newsletter_placeholder' | t }}" required />
+						{% endif %}
+					</div>
 
-        </form>
-      {% endif %}
+				</form>
+			{% endif %}
 
-    </div>
-    {% endif %}
+		</div>
+		{% endif %}
 
-  </footer>
+	</footer>
 </div>
 
 <div class="copyright-wrap">
-  <div class="copyright">
-    <p>{{ 'layout.footer.copyright' | t }} &copy; {{ "now" | date: format: 'year' }} {{ shop.name | link_to: '/' }}. {{ powered_by_link }}.</p>
-    <ul class="payment-options">
-      {% if settings.show-diners-club %}
-        <li class="diners-club">&#57874;</li>
-      {% endif %}
-      {% if settings.show-maestro %}
-        <li class="maestro">&#57873;</li>
-      {% endif %}
-      {% if settings.show-interac %}
-        <li class="interac">&#57862;</li>
-      {% endif %}
-      {% if settings.show-visa %}
-        <li class="visa">&#57856;</li>
-      {% endif %}
-      {% if settings.show-mastercard %}
-        <li class="mastercard">&#57857;</li>
-      {% endif %}
-      {% if settings.show-discover %}
-        <li class="discover">&#57860;</li>
-      {% endif %}
-      {% if settings.show-dk %}
-        <li class="dk">&#57865;</li>
-      {% endif %}
-      {% if settings.show-american-express %}
-        <li class="american-express">&#57858;</li>
-      {% endif %}
-      {% if settings.show-google-wallet %}
-        <li class="google-wallet">&#57864;</li>
-      {% endif %}
-      {% if settings.show-paypal %}
-        <li class="paypal">&#57859;</li>
-      {% endif %}
-      {% if settings.show-jcb %}
-        <li class="jcb">&#57872;</li>
-      {% endif %}
-      {% if settings.show-cirrus %}
-        <li class="cirrus">&#57863;</li>
-      {% endif %}
-      {% if settings.show-stripe %}
-        <li class="stripe">&#57861;</li>
-      {% endif %}
-      {% if settings.show-bitcoin %}
-        <li class="bitcoin">&#57875;</li>
-      {% endif %}
-    </ul>
-  </div>
+	<div class="copyright">
+		<p>{{ 'layout.footer.copyright' | t }} &copy; {{ "now" | date: format: 'year' }} {{ shop.name | link_to: '/' }}.</p>
+	</div>
 </div>

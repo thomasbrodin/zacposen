@@ -183,6 +183,20 @@
 												</div>
 											{% endif %}
 
+
+									{% elseif post.acf_fc_layout == 'video' %}
+											<div class="video">
+												<div class="embed-container">
+													{{ post.fc_video }}
+												</div>
+											</div>
+
+									{% elseif post.acf_fc_layout == 'space' %}
+
+										{% for space in post.spacer %}
+											 <div class="spacer"></div>
+										{% endfor %}
+
 									{% endif %}
 							{% endfor %}
 						</section>

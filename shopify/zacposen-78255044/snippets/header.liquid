@@ -1,8 +1,8 @@
 {% assign borderClass = '' %}
 
 
-<div class="header-wrapper {% if settings.header-limit-width %}limit-width{% endif %}">
-	<header class="main-header clearfix {% unless shop.customer_accounts_enabled %}accounts-disabled{% endunless %}">
+<div class="header-wrapper">
+	<header class="main-header clearfix{% if shop.customer_accounts_enabled %} accounts{% endif %}{% if settings.currency-switcher %} switcher{% endif %}">
 
 		<div class="branding">
 			{% if settings.use-logo %}
@@ -19,10 +19,10 @@
 		</div>
 
 		<div class="mobile-nav">
-			<span class="mobile-nav-item icon-hamburger">&#57349;</span>
-			<a href="/cart" class="mobile-nav-item icon-cart">&#57347;</a>
-			<a href="/account" class="mobile-nav-item mobile-nav-account">&#57346;</a>
-			<span class="mobile-nav-item icon-search search-toggle">&#57345;</span>
+			<span class="mobile-nav-item mobile-nav-navigate icon icon-hamburger"></span>
+			<a href="/cart" class="mobile-nav-item icon icon-cart"></a>
+			<a href="/account" class="mobile-nav-item mobile-nav-account icon icon-account"></a>
+			<span class="mobile-nav-item icon icon-search search-toggle"></span>
 			<form class="search-form mobile-search-form" action="/search" method="get">
 				<input class="search-input" name="q" type="text" placeholder="{{ 'layout.other.search' | t }}" value="">
 			</form>
@@ -32,7 +32,9 @@
 		=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
 		<nav class="navigation">
 			<ul>
-				{% for link in linklists.main-menu.links %}{% capture link_handle %}{{ link.title | handle }}{% endcapture %}<li class="{% include 'for-looper' %} {% if linklists[link_handle] and linklists[link_handle].links.size > 0 %}has-dropdown{% endif %}">
+				{% for link in linklists.main-menu.links %}
+				{% capture link_handle %}{{ link.title | handle }}{% endcapture %}
+				<li class="{% include 'for-looper' %} {% if linklists[link_handle] and linklists[link_handle].links.size > 0 %}has-dropdown{% endif %}">
 
 					{% assign has-dropdown = false %}
 					{% if linklists[link_handle] and linklists[link_handle].links.size > 0 %} {% assign has-dropdown = true %} {% endif %}
@@ -178,22 +180,11 @@
 			{% endif %}
 
 			{% include "currency-switcher" %}
+
+			<span class="main-website"><a href="http://www.zacposen.com/">House of Z</a></span>
+
 		</div>
 
 	</header>
 
-	{% if settings.show-mailing-list-banner and template == 'index' %}
-	<div class="mailing-list-banner">
-		<label class="mailing-list-message">{{ settings.mailing-list-message }}</label>
-		<form action="{{ settings.mailing-list-action-url }}" method="post" name="{% if settings.mailing-list-platform == 'mailchimp' %}mc-embedded-subscribe-form{% endif %}" class="validate" target="_blank">
-			{% if settings.mailing-list-platform == 'mailchimp' %}
-			<input class="email" name="EMAIL" type="email" placeholder="{{ 'layout.footer.newsletter_placeholder' | t }}" value="">
-			{% endif %}
-
-			{% if settings.mailing-list-platform == 'campaign-monitor' %}
-			<input id="fieldEmail" class="email" name="{{ settings.campaign-monitor-name }}" type="email" placeholder="{{ 'layout.footer.newsletter_placeholder' | t }}" />
-			{% endif %}
-		</form>
-	</div>
-	{% endif %}
 </div>

@@ -1,17 +1,13 @@
 <div class="product">
 
-	<div class="page-header">
-		<div class="product-details mobile">
+	<div class="product-details mobile">
+		<div class="page-header">
 			<a class="product-brands" href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a>
 			<h1>{{ product.title }}</h1>
 			{% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
 				<span class="product-price on-sale"><span class="original money">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span> <span class="money">{{ product.selected_or_first_available_variant.price | money }}</span></span>
 			{% else %}
 				<span class="product-price money">{{ product.selected_or_first_available_variant.price | money }}</span>
-			{% endif %}
-
-			{% if settings.product-display-share-buttons %}
-				{% include 'share-buttons' %}
 			{% endif %}
 		</div>
 	</div>
@@ -46,29 +42,11 @@
 			{% else %}
 				<span class="product-price money">{{ product.selected_or_first_available_variant.price | money }}</span>
 			{% endif %}
-			{% if product.description.size > 0 %}
-				<div class="product-description">
-					<h4>{{ 'products.product.description' | t }}</h4>
-					<div class="rte">
-						{{ product.description }}
-					</div>
-				</div>
-			{% endif %}
 
-			{% if settings.display-fitting-guide-link or settings.display-ask-us-link %}
-				<ul class="product-more-actions">
+		</div>
 
-					{% if settings.display-fitting-guide-link %}
-					<li><a class="fitting-guide" href="{{ pages[settings.fitting-guide-link].url }}">{{ pages[settings.fitting-guide-link].title }}</a></li>
-					{% endif %}
-
-					{% if settings.display-ask-us-link %}
-					<li><a class="ask-us" href="{{ pages[settings.ask-us-link].url }}">{{ pages[settings.ask-us-link].title }}</a></li>
-					{% endif %}
-
-				</ul>
-			{% endif %}
-
+		<div class="product-tabs">
+			{% include 'product-tabs' %}
 		</div>
 
 		<div class="product-variants">
@@ -89,11 +67,6 @@
 					{% endif %}
 				{% endif %}
 
-				<div class="product-quantity-wrapper">
-					<label for="quantity">{{ 'products.product.quantity' | t }}</label>
-					<input class="product-quantity" type="number" name="quantity" value="1" min="1">
-				</div>
-
 				<p class="product-add-error-message error">{{ 'products.product.quantity_error' | t }}</p>
 
 				<div class="add-to-cart">
@@ -107,9 +80,7 @@
 			</form>
 		</div>
 
-		{% if settings.product-display-share-buttons %}
-			{% include 'share-buttons' %}
-		{% endif %}
+		{% include 'share-buttons' %}
 
 	</div><!-- close PRODUCT INFO -->
 

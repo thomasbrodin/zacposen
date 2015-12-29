@@ -1,19 +1,6 @@
 <div class="modal" id="product-{{ product.id }}">
 	<div class="product">
 
-		<div class="page-header">
-			<div class="product-details mobile">
-				<a class="product-brands" href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a>
-				<h1>{{ product.title }}</h1>
-				{% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
-					<span class="product-price on-sale"><span class="original money">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span> <span class="money">{{ product.selected_or_first_available_variant.price | money }}</span></span>
-				{% else %}
-					<span class="product-price money">{{ product.selected_or_first_available_variant.price | money }}</span>
-				{% endif %}
-
-			</div>
-		</div>
-
 		{% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
 		<div class="product-slideshow clearfix">
 			<div class="product-big-image">
@@ -27,7 +14,7 @@
 
 		<div class="product-info">
 
-			<div class="product-details desktop">
+			<div class="product-details">
 				<a class="product-brands" href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a>
 				<h1>{{ product.title }}</h1>
 				{% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
@@ -39,7 +26,7 @@
 					<div class="product-description">
 						<h4>{{ 'products.product.description' | t }}</h4>
 						<div class="rte">
-							{{ product.description | strip_html | truncatewords: 25 }}</br>
+							{{ product.description | strip_html | truncatewords: 20 }}</br>
 							<a href="{{ product.url | within: collection }}" class="view_product_info" title="View {{ product.title | escape }} Details">View Full Product Details &rarr;</a>
 						</div>
 					</div>
@@ -54,7 +41,7 @@
 					{% if product.available %}
 						{% if product.variants.size > 1 %}
 							<div class="options">
-								<select name="id" id="product-select" class="product-select">
+								<select name="id" id="product-select" class="select-wrapper">
 									{% for variant in product.variants %}
 										<option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
 									{% endfor %}
@@ -64,11 +51,6 @@
 							<input type="hidden" name="id" class="product-select product-select-hidden" value="{{ product.variants[0].id }}" data-variant-title="{{ product.variants[0].title }}" />
 						{% endif %}
 					{% endif %}
-
-					<div class="product-quantity-wrapper">
-						<label for="quantity">{{ 'products.product.quantity' | t }}</label>
-						<input class="product-quantity" type="number" name="quantity" value="1" min="1">
-					</div>
 
 					<p class="product-add-error-message error">{{ 'products.product.quantity_error' | t }}</p>
 

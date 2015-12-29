@@ -1,35 +1,48 @@
-{% assign shareCountClass = '' %}
-{% assign image = false %}
+{% if settings.product-display-share-buttons %}
 
-{% if template contains 'article' or template contains 'blog' %}
+		<a class="share-link">{{ 'products.product.share' | t }}</a>
 
-	{% capture permalinkURL %}{{ shop.url }}{{ article.url }}{% endcapture %}
+		{% assign shareCountClass = '' %}
+		{% assign image = false %}
 
-	{% if article.image %}
-		{% assign image = article.image | img_url: '1024x1024' %}
-	{% endif %}
-	{% assign description = article.title | escape %}
+		{% if template contains 'article' or template contains 'blog' %}
 
-{% elsif template contains 'product' %}
+			{% capture permalinkURL %}{{ shop.url }}{{ article.url }}{% endcapture %}
 
-	{% capture permalinkURL %}{{ shop.url }}{{ product.url }}{% endcapture %}
-	{% assign image = product.featured_image | product_img_url: '1024x1024' %}
-	{% assign description = product.title | escape %}
+			{% if article.image %}
+				{% assign image = article.image | img_url: '1024x1024' %}
+			{% endif %}
+			{% assign description = article.title | escape %}
 
+		{% elsif template contains 'product' %}
+
+			{% capture permalinkURL %}{{ shop.url }}{{ product.url }}{% endcapture %}
+			{% assign image = product.featured_image | product_img_url: '1024x1024' %}
+			{% assign description = product.title | escape %}
+
+		{% endif %}
+
+		<div id="sharing" class="share-buttons" data-permalink="{{ permalinkURL }}">
+
+			<a target="_blank" href="//www.facebook.com/sharer.php?u={{ permalinkURL }}" class="share-facebook">
+				<span>{{ 'general.social.like' | t }}</span></a>
+
+			<a target="_blank" href="//twitter.com/share?url={{ permalinkURL }}" class="share-twitter">
+				<span>{{ 'general.social.tweet' | t }}</span></a>
+
+			{% if image %}
+				<a target="_blank" href="//pinterest.com/pin/create/button/?url={{ permalinkURL }}&amp;media={{ image }}&amp;description={{ description }}" class="share-pinterest">
+					<span>{{ 'general.social.pin_it' | t }}</span></a>
+
+			{% endif %}
+
+		</div>
+
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.share-link').click(function(){
+				$( "#sharing" ).toggle();
+			});
+		})
+		</script>
 {% endif %}
-
-<div class="share-buttons" data-permalink="{{ permalinkURL }}">
-
-	<a target="_blank" href="//www.facebook.com/sharer.php?u={{ permalinkURL }}" class="share-facebook">
-		<span>{{ 'general.social.like' | t }}</span></a>
-
-	<a target="_blank" href="//twitter.com/share?url={{ permalinkURL }}" class="share-twitter">
-		<span>{{ 'general.social.tweet' | t }}</span></a>
-
-	{% if image %}
-		<a target="_blank" href="//pinterest.com/pin/create/button/?url={{ permalinkURL }}&amp;media={{ image }}&amp;description={{ description }}" class="share-pinterest">
-			<span>{{ 'general.social.pin_it' | t }}</span></a>
-
-	{% endif %}
-
-</div>

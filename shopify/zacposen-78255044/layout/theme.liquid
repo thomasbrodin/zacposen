@@ -53,24 +53,28 @@
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
 
-	{% include 'header' %}
+	<div class="wrap">
 
-	{% if settings.show-slideshow and template == 'index' %}
-		{% include 'slideshow' %}
-	{% endif %}
+		{% include 'header' %}
 
-	<div class="main-content container">
-
-		{% if template != 'index' %}
-			{% include 'breadcrumbs' %}
+		{% if settings.show-slideshow and template == 'index' %}
+			{% include 'slideshow' %}
 		{% endif %}
 
-		{% if template == 'list-collections' %}
-			{% include 'collection-listing' %}
-		{% else %}
-			{{ content_for_layout }}
-		{% endif %}
-	</div>
+		<div class="main-content{% if template != 'collection' %} container{% endif %}">
+
+			{% if template != 'index' %}
+				{% include 'breadcrumbs' %}
+			{% endif %}
+
+			{% if template == 'list-collections' %}
+				{% include 'collection-listing' %}
+			{% else %}
+				{{ content_for_layout }}
+			{% endif %}
+		</div>
+
+	</div><!-- .wrap -->
 
 	{% include 'footer' %}
 

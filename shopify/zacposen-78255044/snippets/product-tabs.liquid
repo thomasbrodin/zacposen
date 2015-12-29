@@ -1,0 +1,49 @@
+		<ul class="tabs">
+		{% if product.description.size > 0 %}
+			<li class="tab-link" data-tab="tab-1">{{ 'products.product.description' | t }}</li>
+		{% endif %}
+		{% if settings.display-fitting-guide %}
+			<li class="tab-link" data-tab="tab-2">{{ 'products.product.size-guide' | t }}</li>
+		{% endif %}
+		{% if settings.display-return %}
+			<li class="tab-link" data-tab="tab-3">{{ 'products.product.return' | t }}</li>
+		{% endif %}
+	</ul>
+
+	{% if product.description.size > 0 %}
+		<div id="tab-1" class="tab-content">
+			<div class="rte">
+				{{ product.description }}
+			</div>
+		</div>
+	{% endif %}
+
+	{% if settings.display-fitting-guide %}
+		<div id="tab-2" class="tab-content">
+			<div class="rte">
+			{{ pages[settings.fitting-guide].content }}
+			</div>
+		</div>
+	{% endif %}
+
+	{% if settings.display-return %}
+		<div id="tab-3" class="tab-content">
+			<div class="rte">
+			{{ pages[settings.return].content }}
+			</div>
+		</div>
+	{% endif %}
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('ul.tabs li').click(function(){
+			var tab_id = $(this).attr('data-tab');
+
+			$('ul.tabs li').removeClass('current');
+			$('.tab-content').removeClass('current');
+
+			$(this).addClass('current');
+			$("#"+tab_id).addClass('current');
+		})
+	})
+	</script>

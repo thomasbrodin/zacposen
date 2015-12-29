@@ -1,20 +1,18 @@
 {% paginate collection.products by settings.products-per-page %}
 
-	<div class="page-header">
-		{% if collection.handle == 'all' %}
-			<h1>{{ 'collections.collection.all_products' | t }}</h1>
-		{% else %}
-			<h1>{{ collection.title }}</h1>
-		{% endif %}
+<div class="header-image">
+	{% if collection.image %}
+		<div class="header-background" style="background-image:url('{{ collection.image.src | img_url: 'master' }} ')"></div>
+	{% endif %}
 
-		{% if settings.display-collection-description and collection.description.size > 0 %}
-			<div class="description rte">
-			{{ collection.description }}
+	<div class="container header-caption">
+		<div class="inner">
+				{{ collection.description }}
 			</div>
-		{% endif %}
-	</div>
+		</div>
+</div>
 
-	<div class="content" role="main">
+	<div class="container content" role="main">
 
 		{% if collection.all_tags.size > 0 and settings.display-tags-dropdown and collection.handle %}
 			<div class="collection-tags filter rows-of-{{ settings.products-per-row }}">

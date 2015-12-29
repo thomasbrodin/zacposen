@@ -114,9 +114,23 @@
 				"label": "Collection #1"
 			},
 			{
+				"type": "image",
+				"id": "featured-collection-1.jpg",
+				"max-width": 500,
+				"label": "Image",
+				"info": "500 x 500px recommended"
+			},
+			{
 				"type": "collection",
 				"id": "featured-collection-2",
 				"label": "Collection #2"
+			},
+			{
+				"type": "image",
+				"id": "featured-collection-2.jpg",
+				"max-width": 500,
+				"label": "Image",
+				"info": "500 x 500px recommended"
 			},
 			{
 				"type": "collection",
@@ -124,8 +138,11 @@
 				"label": "Collection #3"
 			},
 			{
-				"type": "paragraph",
-				"content": "Note: to change colors and styles see the 'Collections listing page' settings below."
+				"type": "image",
+				"id": "featured-collection-3.jpg",
+				"max-width": 500,
+				"label": "Image",
+				"info": "500 x 500px recommended"
 			}
 		]
 	},
@@ -523,44 +540,6 @@
 		]
 	},
 	{
-		"name": "Collections listing page",
-		"settings": [
-			{
-				"type": "select",
-				"id": "collections-list-position",
-				"label": "Title position",
-				"options": [
-					{
-						"value": "centered",
-						"label": "Centered"
-					},
-					{
-						"value": "offset-bottom",
-						"label": "Offset Bottom"
-					},
-					{
-						"value": "below",
-						"label": "Below"
-					}
-				]
-			},
-			{
-				"type": "checkbox",
-				"id": "display-collection-descriptions",
-				"label": "Display collection descriptions"
-			},
-			{
-				"type": "link_list",
-				"id": "collection-listing-linklist",
-				"label": "Use a specific link list"
-			},
-			{
-				"type": "paragraph",
-				"content": "By enabling this option, you may define specific collections to display on this page instead of listing all of them. By creating a link list and populating it with collection handles you can provide the user a curated experience when they navigate to the Collections page."
-			}
-		]
-	},
-	{
 		"name": "Collection page",
 		"settings": [
 			{
@@ -652,23 +631,23 @@
 			},
 			{
 				"type": "checkbox",
-				"id": "display-fitting-guide-link",
-				"label": "Display fitting guide link"
+				"id": "display-fitting-guide",
+				"label": "Display fitting guide"
 			},
 			{
 				"type": "page",
-				"id": "fitting-guide-link",
-				"label": "Fitting guide link"
+				"id": "fitting-guide",
+				"label": "Fitting guide"
 			},
 			{
 				"type": "checkbox",
-				"id": "display-ask-us-link",
-				"label": "Display 'Ask us' link"
+				"id": "display-return",
+				"label": "Display 'Return'"
 			},
 			{
 				"type": "page",
-				"id": "ask-us-link",
-				"label": "'Ask us' link"
+				"id": "return",
+				"label": "'Return'"
 			},
 			{
 				"type": "checkbox",
@@ -841,158 +820,6 @@
 		]
 	},
 	{
-		"name": "Footer",
-		"settings": [
-			{
-				"type": "paragraph",
-				"content": "A footer link list is standard to the Shopify platform. To add\/remove\/modify the links, simply go to the Navigation tab and edit the 'Footer' link list."
-			},
-			{
-				"type": "header",
-				"content": "Contact information"
-			},
-			{
-				"type": "checkbox",
-				"id": "display-contact-module",
-				"label": "Display contact module"
-			},
-			{
-				"type": "text",
-				"id": "address-line-1",
-				"label": "Address line 1"
-			},
-			{
-				"type": "text",
-				"id": "address-line-2",
-				"label": "Address line 2"
-			},
-			{
-				"type": "text",
-				"id": "address-city",
-				"label": "City"
-			},
-			{
-				"type": "text",
-				"id": "address-province-state",
-				"label": "Province \/ State"
-			},
-			{
-				"type": "text",
-				"id": "address-postal-zip",
-				"label": "Postal \/ Zip code"
-			},
-			{
-				"type": "text",
-				"id": "address-country",
-				"label": "Country"
-			},
-			{
-				"type": "text",
-				"id": "shop-phone-number",
-				"label": "Phone number"
-			},
-			{
-				"type": "text",
-				"id": "contact-email",
-				"label": "Email address"
-			},
-			{
-				"type": "header",
-				"content": "Social links & mailing list"
-			},
-			{
-				"type": "checkbox",
-				"id": "display-social-module",
-				"label": "Display social module"
-			},
-			{
-				"type": "text",
-				"id": "social-title",
-				"label": "Section title"
-			},
-			{
-				"type": "text",
-				"id": "twitter-url",
-				"label": "Twitter URL"
-			},
-			{
-				"type": "text",
-				"id": "facebook-url",
-				"label": "Facebook URL"
-			},
-			{
-				"type": "text",
-				"id": "pinterest-url",
-				"label": "Pinterest URL"
-			},
-			{
-				"type": "text",
-				"id": "instagram-url",
-				"label": "Instagram URL"
-			},
-			{
-				"type": "text",
-				"id": "gplus-url",
-				"label": "Google+ URL"
-			},
-			{
-				"type": "text",
-				"id": "fancy-url",
-				"label": "Fancy URL"
-			},
-			{
-				"type": "text",
-				"id": "rss-blog-name",
-				"label": "Shopify blog handle (RSS)"
-			},
-			{
-				"type": "checkbox",
-				"id": "display-mailing-list",
-				"label": "Display mailing list signup"
-			},
-			{
-				"type": "select",
-				"id": "mailing-list-platform",
-				"label": "Select a platform",
-				"options": [
-					{
-						"value": "mailchimp",
-						"label": "MailChimp"
-					},
-					{
-						"value": "campaign-monitor",
-						"label": "Campaign Monitor"
-					}
-				]
-			},
-			{
-				"type": "text",
-				"id": "mailing-list-action-url",
-				"label": "Form 'action' URL"
-			},
-			{
-				"type": "text",
-				"id": "campaign-monitor-name",
-				"label": "Campaign Monitor input 'name'"
-			},
-			{
-				"type": "checkbox",
-				"id": "show-mailing-list-banner",
-				"label": "Display mailing list banner (home page only)"
-			},
-			{
-				"type": "text",
-				"id": "mailing-list-message",
-				"label": "Mailing list banner message"
-			},
-			{
-				"type": "text",
-				"id": "mailing-list-placeholder",
-				"label": "Mailing list banner email placeholder text"
-			}
-		]
-	},
-	{
 		"name": "Advanced",
 		"settings": [
 			{
@@ -1007,7 +834,7 @@
 				"type": "text",
 				"id": "twitter-handle",
 				"label": "Site's Twitter Handle",
-				"info": "E.g. @PixelUnion. Required for Twitter Cards."
+				"info": "E.g. @Zac_Posen. Required for Twitter Cards."
 			}
 		]
 	}

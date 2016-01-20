@@ -490,7 +490,8 @@ span.youtube_small:before {
 			margin-bottom: 0;
 			font-size: em(14);
 			&:last-child {
-				border:none
+				border:none;
+				padding-right: 0
 			}
 			&:first-child {
 				padding-left:0;

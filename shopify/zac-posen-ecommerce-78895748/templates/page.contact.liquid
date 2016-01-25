@@ -1,0 +1,80 @@
+<article class="page-content">
+
+  <header class="page-header">
+    <h1>{{ page.title }}</h1>
+  </header>
+
+  <div class="rte">
+    {{ page.content }}
+  </div>
+
+  <div class="contact-form-wrap">
+    {% form 'contact' %}
+
+      <header>
+        <h5>{{ 'contact.general.header' | t }}</h5>
+      </header>
+
+      {% if form.errors %}
+        <div class="alert-message error"><span>{{ 'contact.general.error' | t }}</span></div>
+      {% endif %}
+
+      {% if form.posted_successfully? %}
+        <div class="alert-message success"><span>{{ 'contact.general.success' | t }}</span></div>
+      {% else %}
+
+        <div class="input-wrapper name">
+          <label>{{ 'general.general.name' | t }}</label>
+          <input type="text" placeholder="{{ 'general.general.name' | t }}" value="" name="contact[name]" class="{% if form.errors contains "author" %}error{% endif %}">
+        </div>
+
+        <div class="input-wrapper email">
+          <label>{{ 'general.general.email' | t }}</label>
+          <input type="email" placeholder="{{ 'general.general.email_placeholder' | t }}" value="" name="contact[email]" class="{% if form.errors contains "email" %}error{% endif %}">
+        </div>
+
+        <div class="input-wrapper message">
+          <label>{{ 'general.general.message' | t }}</label>
+          <textarea name="contact[body]" class="{% if form.errors contains "body" %}error{% endif %}"></textarea>
+        </div>
+
+        {% if settings.display-contact-select %}
+        <div class="input-wrapper">
+          <label for="contact[select]">{{ settings.contact-label-select }}</label>
+
+          <div class="select-wrapper">
+            <div class="selected-option">{{ settings.contact-default-select }}</div>
+
+            <select name="contact[select]">
+              <option disabled="disabled" selected="selected">{{ settings.contact-default-select }}</option>
+
+              {% if settings.contact-select-option-1.size > 0 %}
+                <option name="contact[select]" value="{{ settings.contact-select-option-1 }}">{{ settings.contact-select-option-1 }}</option>
+              {% endif %}
+              {% if settings.contact-select-option-2.size > 0 %}
+                <option name="contact[select]" value="{{ settings.contact-select-option-2 }}">{{ settings.contact-select-option-2 }}</option>
+              {% endif %}
+              {% if settings.contact-select-option-3.size > 0 %}
+                <option name="contact[select]" value="{{ settings.contact-select-option-3 }}">{{ settings.contact-select-option-3 }}</option>
+              {% endif %}
+              {% if settings.contact-select-option-4.size > 0 %}
+                <option name="contact[select]" value="{{ settings.contact-select-option-4 }}">{{ settings.contact-select-option-4 }}</option>
+              {% endif %}
+              {% if settings.contact-select-option-5.size > 0 %}
+                <option name="contact[select]" value="{{ settings.contact-select-option-5 }}">{{ settings.contact-select-option-5 }}</option>
+              {% endif %}
+            </select>
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="input-wrapper">
+          <input type="submit" class="submit" value="{{ 'contact.general.submit' | t }}">
+        </div>
+
+      {% endif %}
+
+    {% endform %}
+  </div>
+
+</article>

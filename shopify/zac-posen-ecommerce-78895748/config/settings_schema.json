@@ -1,0 +1,850 @@
+[
+  {
+    "name": "theme_info",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Zac Posen Shop Theme"
+      },
+      {
+        "type": "paragraph",
+        "content": "[HEX](https:\/\/www.hexcreativenetwork.com) | v0.9.1"
+      }
+    ]
+  },
+  {
+    "name": "Logos",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Logo Options"
+      },
+      {
+        "type": "checkbox",
+        "id": "use-logo",
+        "label": "Use custom logo?"
+      },
+      {
+        "type": "image",
+        "id": "logo.png",
+        "label": "Custom logo",
+        "max-width": 300,
+        "max-height": 200
+      },
+      {
+        "type": "checkbox",
+        "id": "use-retina-logo",
+        "label": "Use retina logo?"
+      },
+      {
+        "type": "image",
+        "id": "logo-retina.png",
+        "label": "Custom logo (retina)",
+        "max-width": 600,
+        "max-height": 400
+      },
+      {
+        "type": "text",
+        "id": "logo-height",
+        "label": "Logo height (in pixels)"
+      },
+      {
+        "type": "paragraph",
+        "content": "Maximum logo dimensions are 300px wide by 200px high. Your uploaded file will be resized to fit within those constraints. Retina logos are displayed on devices that have a higher than normal pixel density. Using this option will ensure that your logo looks great on all devices (e.g., iPad with retina display). Retina logos should be uploaded at exactly double the dimensions of your regular logo. So if your regular logo is 140x80 then your retina logo would be 280x160. Important: If using a retina logo, the 'logo height' field is required. Enter the height of your regular logo."
+      }
+    ]
+  },
+  {
+    "name": "Currency Options",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "currency-switcher",
+        "label": "Enable Currency Switcher"
+      },
+      {
+        "type": "select",
+        "id": "currency-switcher-format",
+        "label": "Money Format",
+        "options": [
+          {
+            "value": "money_format",
+            "label": "Without Currency ($10.00)"
+          },
+          {
+            "value": "money_with_currency_format",
+            "label": "With Currency ($10.00 CAD)"
+          }
+        ],
+        "default": "money_with_currency_format"
+      },
+      {
+        "type": "text",
+        "id": "currency-switcher-supported-currencies",
+        "label": "Currencies You Wish to Support",
+        "default": "CAD USD",
+        "info": "Separate currency codes with a space. Example: CAD USD"
+      },
+      {
+        "type": "paragraph",
+        "content": "Use the ISO 4217 3-letter currency code ( [list of currency codes](http:\/\/www.xe.com\/iso4217.php) ). While prices can be displayed on the store front in different currencies, Shopify will process orders in the shop’s main currency."
+      }
+    ]
+  },
+  {
+    "name": "Home page: featurettes",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Featured collections"
+      },
+      {
+        "type": "checkbox",
+        "id": "display-featured-collections",
+        "label": "Display featured collections"
+      },
+      {
+        "type": "text",
+        "id": "featured-collections-title",
+        "label": "Featured collections title"
+      },
+      {
+        "type": "collection",
+        "id": "featured-collection-1",
+        "label": "Collection #1"
+      },
+      {
+        "type": "image",
+        "id": "featured-collection-1.jpg",
+        "max-width": 500,
+        "label": "Image",
+        "info": "500 x 500px recommended"
+      },
+      {
+        "type": "collection",
+        "id": "featured-collection-2",
+        "label": "Collection #2"
+      },
+      {
+        "type": "image",
+        "id": "featured-collection-2.jpg",
+        "max-width": 500,
+        "label": "Image",
+        "info": "500 x 500px recommended"
+      },
+      {
+        "type": "collection",
+        "id": "featured-collection-3",
+        "label": "Collection #3"
+      },
+      {
+        "type": "image",
+        "id": "featured-collection-3.jpg",
+        "max-width": 500,
+        "label": "Image",
+        "info": "500 x 500px recommended"
+      }
+    ]
+  },
+  {
+    "name": "Home page: slideshow",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show-slideshow",
+        "label": "Display slideshow"
+      },
+      {
+        "type": "checkbox",
+        "id": "slideshow-alternate-style",
+        "label": "Use alternate style"
+      },
+      {
+        "type": "checkbox",
+        "id": "slideshow-content-width",
+        "label": "Match width to content"
+      },
+      {
+        "type": "checkbox",
+        "id": "show-slideshow-navigation",
+        "label": "Display slideshow navigation"
+      },
+      {
+        "type": "checkbox",
+        "id": "slideshow-auto-play",
+        "label": "Auto play slides"
+      },
+      {
+        "type": "text",
+        "id": "slideshow-duration",
+        "label": "Slide duration (in seconds)"
+      },
+      {
+        "type": "paragraph",
+        "content": "Notes: If you select the 'Alternate layout' only the 'Title' and 'Call to action' fields will be used."
+      },
+      {
+        "type": "paragraph",
+        "content": "Note: The recommended dimensions for slideshow images is 1280px wide by 640px tall."
+      },
+      {
+        "type": "header",
+        "content": "Slide 1"
+      },
+      {
+        "type": "checkbox",
+        "id": "show-slide-1",
+        "label": "Display slide"
+      },
+      {
+        "type": "checkbox",
+        "id": "invert-controls-slide-1",
+        "label": "Invert controls"
+      },
+      {
+        "type": "image",
+        "id": "slide-image-1.jpg",
+        "label": "Slide image",
+        "max-width": 9999,
+        "max-height": 9999
+      },
+      {
+        "type": "text",
+        "id": "slide-url-1",
+        "label": "URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "show-slide-text-1",
+        "label": "Display slide text"
+      },
+      {
+        "type": "select",
+        "id": "slide-position-1",
+        "label": "Position slide text",
+        "options": [
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "slide-title-1",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "slide-tagline-1",
+        "label": "Tagline"
+      },
+      {
+        "type": "text",
+        "id": "slide-cta-1",
+        "label": "Call to action"
+      },
+      {
+        "type": "color",
+        "id": "slide-cta-background-1",
+        "label": "Call to action background color"
+      },
+      {
+        "type": "header",
+        "content": "Slide 2"
+      },
+      {
+        "type": "checkbox",
+        "id": "show-slide-2",
+        "label": "Display slide"
+      },
+      {
+        "type": "checkbox",
+        "id": "invert-controls-slide-2",
+        "label": "Invert controls"
+      },
+      {
+        "type": "image",
+        "id": "slide-image-2.jpg",
+        "label": "Slide image",
+        "max-width": 9999,
+        "max-height": 9999
+      },
+      {
+        "type": "text",
+        "id": "slide-url-2",
+        "label": "URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "show-slide-text-2",
+        "label": "Display slide text"
+      },
+      {
+        "type": "select",
+        "id": "slide-position-2",
+        "label": "Position slide text",
+        "options": [
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "slide-title-2",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "slide-tagline-2",
+        "label": "Tagline"
+      },
+      {
+        "type": "text",
+        "id": "slide-cta-2",
+        "label": "Call to action"
+      },
+      {
+        "type": "color",
+        "id": "slide-cta-background-2",
+        "label": "Call to action background color"
+      },
+      {
+        "type": "header",
+        "content": "Slide 3"
+      },
+      {
+        "type": "checkbox",
+        "id": "show-slide-3",
+        "label": "Display slide"
+      },
+      {
+        "type": "checkbox",
+        "id": "invert-controls-slide-3",
+        "label": "Invert controls"
+      },
+      {
+        "type": "image",
+        "id": "slide-image-3.jpg",
+        "label": "Slide image",
+        "max-width": 9999,
+        "max-height": 9999
+      },
+      {
+        "type": "text",
+        "id": "slide-url-3",
+        "label": "URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "show-slide-text-3",
+        "label": "Display slide text"
+      },
+      {
+        "type": "select",
+        "id": "slide-position-3",
+        "label": "Position slide text",
+        "options": [
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "slide-title-3",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "slide-tagline-3",
+        "label": "Tagline"
+      },
+      {
+        "type": "text",
+        "id": "slide-cta-3",
+        "label": "Call to action"
+      },
+      {
+        "type": "color",
+        "id": "slide-cta-background-3",
+        "label": "Call to action background color"
+      },
+      {
+        "type": "header",
+        "content": "Slide 4"
+      },
+      {
+        "type": "checkbox",
+        "id": "show-slide-4",
+        "label": "Display slide"
+      },
+      {
+        "type": "checkbox",
+        "id": "invert-controls-slide-4",
+        "label": "Invert controls"
+      },
+      {
+        "type": "image",
+        "id": "slide-image-4.jpg",
+        "label": "Slide image",
+        "max-width": 9999,
+        "max-height": 9999
+      },
+      {
+        "type": "text",
+        "id": "slide-url-4",
+        "label": "URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "show-slide-text-4",
+        "label": "Display slide text"
+      },
+      {
+        "type": "select",
+        "id": "slide-position-4",
+        "label": "Position slide text",
+        "options": [
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "slide-title-4",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "slide-tagline-4",
+        "label": "Tagline"
+      },
+      {
+        "type": "text",
+        "id": "slide-cta-4",
+        "label": "Call to action"
+      },
+      {
+        "type": "color",
+        "id": "slide-cta-background-4",
+        "label": "Call to action background color"
+      },
+      {
+        "type": "header",
+        "content": "Slide 5"
+      },
+      {
+        "type": "checkbox",
+        "id": "show-slide-5",
+        "label": "Display slide"
+      },
+      {
+        "type": "checkbox",
+        "id": "invert-controls-slide-5",
+        "label": "Invert controls"
+      },
+      {
+        "type": "image",
+        "id": "slide-image-5.jpg",
+        "label": "Slide image",
+        "max-width": 9999,
+        "max-height": 9999
+      },
+      {
+        "type": "text",
+        "id": "slide-url-5",
+        "label": "URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "show-slide-text-5",
+        "label": "Display slide text"
+      },
+      {
+        "type": "select",
+        "id": "slide-position-5",
+        "label": "Position slide text",
+        "options": [
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "slide-title-5",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "slide-tagline-5",
+        "label": "Tagline"
+      },
+      {
+        "type": "text",
+        "id": "slide-cta-5",
+        "label": "Call to action"
+      },
+      {
+        "type": "color",
+        "id": "slide-cta-background-5",
+        "label": "Call to action background color"
+      }
+    ]
+  },
+  {
+    "name": "Collection page",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "collection-listing-linklist",
+        "label": "Use a specific link list"
+      },
+      {
+        "type": "paragraph",
+        "content": "By enabling this option, you may define specific collections to display on this page instead of listing all of them. By creating a link list and populating it with collection handles you can provide the user a curated experience when they navigate to the Collections page."
+      },
+      {
+        "type": "checkbox",
+        "id": "display-collection-description",
+        "label": "Display description"
+      },
+      {
+        "type": "checkbox",
+        "id": "display-tags-dropdown",
+        "label": "Display tags dropdown filter"
+      },
+      {
+        "type": "select",
+        "id": "products-per-row",
+        "label": "Number of products per row",
+        "options": [
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "products-per-page",
+        "label": "Products per page",
+        "options": [
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          },
+          {
+            "value": "8",
+            "label": "8"
+          },
+          {
+            "value": "9",
+            "label": "9"
+          },
+          {
+            "value": "12",
+            "label": "12"
+          },
+          {
+            "value": "15",
+            "label": "15"
+          },
+          {
+            "value": "16",
+            "label": "16"
+          },
+          {
+            "value": "18",
+            "label": "18"
+          },
+          {
+            "value": "20",
+            "label": "20"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Product page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "product-enable-zoom",
+        "label": "Enable product zooming"
+      },
+      {
+        "type": "checkbox",
+        "id": "product-display-share-buttons",
+        "label": "Display share buttons"
+      },
+      {
+        "type": "checkbox",
+        "id": "display-fitting-guide",
+        "label": "Display fitting guide"
+      },
+      {
+        "type": "page",
+        "id": "fitting-guide",
+        "label": "Fitting guide"
+      },
+      {
+        "type": "checkbox",
+        "id": "display-return",
+        "label": "Display 'Return'"
+      },
+      {
+        "type": "page",
+        "id": "return",
+        "label": "'Return'"
+      },
+      {
+        "type": "checkbox",
+        "id": "display-related-products",
+        "label": "Display related products"
+      }
+    ]
+  },
+  {
+    "name": "Cart page",
+    "settings": [
+      {
+        "type": "text",
+        "id": "cart-page-title",
+        "label": "Cart page title"
+      },
+      {
+        "type": "text",
+        "id": "cart-special-instructions",
+        "label": "Special instructions placeholder"
+      },
+      {
+        "type": "header",
+        "content": "Shipping Rates Calculator"
+      },
+      {
+        "type": "checkbox",
+        "id": "show-shipping-calculator",
+        "label": "Display shipping calculator"
+      },
+      {
+        "type": "text",
+        "id": "shipping-calculator-heading",
+        "label": "Heading text"
+      },
+      {
+        "type": "text",
+        "id": "shipping_calculator_default_country",
+        "label": "Default country selection",
+        "default": "United States"
+      },
+      {
+        "type": "paragraph",
+        "content": "If your customer is logged-in, the country in their default shipping address will be selected."
+      },
+      {
+        "type": "text",
+        "id": "shipping_calculator_submit_button_label",
+        "label": "Submit button label",
+        "default": "Calculate shipping"
+      },
+      {
+        "type": "text",
+        "id": "shipping_calculator_submit_button_label_disabled",
+        "label": "Submit button label when calculating",
+        "default": "Calculating..."
+      }
+    ]
+  },
+  {
+    "name": "Page with contact form",
+    "settings": [
+      {
+        "type": "text",
+        "id": "contact-label-name",
+        "label": "Name label"
+      },
+      {
+        "type": "text",
+        "id": "contact-label-message",
+        "label": "Message label"
+      },
+      {
+        "type": "checkbox",
+        "id": "display-contact-select",
+        "label": "Display select dropdown"
+      },
+      {
+        "type": "paragraph",
+        "content": "To receive additional information from your customers, you may enable a simple dropdown that users can select from to provide you with more information. Simply fill out the label, default text and at least two options to select from."
+      },
+      {
+        "type": "text",
+        "id": "contact-label-select",
+        "label": "Select dropdown label"
+      },
+      {
+        "type": "text",
+        "id": "contact-default-select",
+        "label": "Select dropdown default text"
+      },
+      {
+        "type": "text",
+        "id": "contact-select-option-1",
+        "label": "Option 1 label"
+      },
+      {
+        "type": "text",
+        "id": "contact-select-option-2",
+        "label": "Option 2 label"
+      },
+      {
+        "type": "text",
+        "id": "contact-select-option-3",
+        "label": "Option 3 label"
+      },
+      {
+        "type": "text",
+        "id": "contact-select-option-4",
+        "label": "Option 4 label"
+      },
+      {
+        "type": "text",
+        "id": "contact-select-option-5",
+        "label": "Option 5 label"
+      },
+      {
+        "type": "text",
+        "id": "contact-success-message",
+        "label": "Success message"
+      },
+      {
+        "type": "text",
+        "id": "contact-error-message",
+        "label": "Error message"
+      }
+    ]
+  },
+  {
+    "name": "404 Page",
+    "settings": [
+      {
+        "type": "text",
+        "id": "404-title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "404-display-message",
+        "label": "'Page not found' message"
+      },
+      {
+        "type": "checkbox",
+        "id": "404-display-collections",
+        "label": "Display featured collections"
+      },
+      {
+        "type": "paragraph",
+        "content": "Featured products and collections will not display on the 404 page until the options have been selected in the 'Home page' settings above."
+      }
+    ]
+  },
+  {
+    "name": "Password Protected Storefront",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "password-mailing-list",
+        "label": "Use mailing list module on the protected page?"
+      },
+      {
+        "type": "text",
+        "id": "password-mailchimp-action-url",
+        "label": "Mailchimp action URL"
+      },
+      {
+        "type": "paragraph",
+        "content": "What is the [Mailchimp action URL](http:\/\/support.shopify.com\/customer\/portal\/articles\/640278) ?"
+      }
+    ]
+  },
+  {
+    "name": "Advanced",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Meta Tags"
+      },
+      {
+        "type": "paragraph",
+        "content": "Meta tags include [Facebook](https:\/\/developers.facebook.com\/docs\/opengraph\/using-objects\/) and [Pinterest](https:\/\/developers.pinterest.com\/rich_pins\/) Open Graph Tags and [Twitter Cards](https:\/\/dev.twitter.com\/docs\/cards\/types\/product-card) . These are enabled by default to make the store more accessible on different platforms, and more readable for search engines."
+      },
+      {
+        "type": "text",
+        "id": "twitter-handle",
+        "label": "Site's Twitter Handle",
+        "info": "E.g. @Zac_Posen. Required for Twitter Cards."
+      }
+    ]
+  }
+]

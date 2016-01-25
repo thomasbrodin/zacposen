@@ -1,0 +1,108 @@
+<div class="page-header">
+  <h1><a href="{{ blog.url }}">{{ blog.title }}</a></h1>
+</div>
+
+{% include 'article-item' %}
+
+{% if article.comments_enabled? %}
+
+  <div id="comments" class="comments-wrap">
+
+    <div class="comments-read">
+
+      <!-- Section title -->
+      <h4 class="title">
+        {% capture dynamic_comment_count %}
+          {% if comment and comment.created_at %}
+            <span class="count">&nbsp;({{ article.comments_count | plus: 1 }})</span>
+          {% else %}
+            <span class="count">&nbsp;({{ article.comments_count }})</span>
+          {% endif %}
+        {% endcapture %}
+
+        {{ 'blogs.article_item.comments_on_post_html' | t: comment_count: dynamic_comment_count }}
+      </h4>
+
+      {% if article.comments_count > 0 or comment and comment.created_at %}
+        <div class="comments-list">
+
+          <!-- Temporary comment on initial submit -->
+          {% if comment and comment.created_at %}
+          <div class="comment" id="comment-{{ comment.id }}">
+            <h5>{{ 'blogs.article_item.comment_author' | t: comment_author: comment.author }}</h5>
+            <div class="comment-body rte">{{ comment.content }}</div>
+            <div class="meta">
+              <a href="{{ comment.url }}" class="date">{{ comment.created_at | date: format: 'short_month' }}</a>
+            </div>
+          </div>
+          {% endif %}
+
+          <!-- List of comments -->
+          {% for comment in article.comments %}
+          <div class="comment {% include 'for-looper' %}" id="comment-{{ comment.id }}">
+            <h5>{{ 'blogs.article_item.comment_author' | t: comment_author: comment.author }}</h5>
+            <div class="comment-body rte">{{ comment.content }}</div>
+            <div class="meta">
+              <a href="{{ comment.url }}" class="date">{{ comment.created_at | date: format: 'short_month' }}</a>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+      {% endif %}
+
+    </div>
+
+    <div class="comments-submit">
+
+      <!-- Section title -->
+      <h5 class="title">{{ 'blogs.article_item.leave_comment' | t }}</h5>
+
+      {% form article %}
+
+        {% if form.errors %}
+        <div>
+          <p><span class="error">{{ 'blogs.article_item.sorry' | t }}</span> {{ form.errors | default_errors | strip_html | replace: '.', '. ' }}</p>
+        </div>
+        {% endif %}
+
+        <div class="input-wrapper author">
+          <label>{{ 'general.general.name' | t }}</label>
+          <input type="text" placeholder="{{ 'general.general.name' | t }}" value="{{ form.author }}" name="comment[author]" class="field {% if form.errors contains "author" %}error{% endif %}">
+        </div>
+
+        <div class="input-wrapper email">
+          <label>{{ 'general.general.email' | t }}</label>
+          <input type="email" placeholder="{{ 'general.general.email_placeholder' | t }}" value="{{ form.email }}" name="comment[email]" class="field {% if form.errors contains "email" %}error{% endif %}">
+        </div>
+
+        <div class="input-wrapper body">
+          <label>{{ 'general.general.message' | t }}</label>
+          <textarea name="comment[body]" class="field {% if form.errors contains "body" %}error{% endif %}">{{ form.body }}</textarea>
+        </div>
+
+        <div class="input-wrapper">
+          <input type="submit" value="{{ 'blogs.article_item.comment_submit' | t }}">
+        </div>
+
+      {% endform %}
+    </div>
+
+  </div>
+
+{% endif %}
+
+
+{% if blog.previous_article or blog.next_article %}
+<div class="post-pagination">
+
+  {% if blog.previous_article %}
+    <a href="{{ blog.previous_article }}" class="newer-post button secondary"><span>&#57361;</span> {{ 'blogs.article_item.previous_post' | t }}</a>
+  {% endif %}
+
+  {% if blog.next_article %}
+    <a href="{{ blog.next_article }}" class="older-post button secondary">{{ 'blogs.article_item.next_post' | t }} <span>&#57360;</span></a>
+  {% endif %}
+
+</div>
+{% endif %}

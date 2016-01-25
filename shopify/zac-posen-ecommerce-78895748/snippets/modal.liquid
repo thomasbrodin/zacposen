@@ -1,0 +1,71 @@
+<div class="modal" id="product-{{ product.id }}">
+	<div class="product">
+
+		{% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+		<div class="product-slideshow clearfix">
+			<div class="product-big-image">
+				{% if product.images.size > 0 %}
+					{{ featured_image | img_url: 'master' | img_tag: featured_image.alt }}
+				{% else %}
+					<img class="product-no-images" src="{{ 'no-image.svg' | asset_url }}" alt="{{ 'products.product.no_image' | t }}" />
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="product-info">
+
+			<div class="product-details">
+				<a class="product-brands" href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a>
+				<h1>{{ product.title }}</h1>
+				{% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
+					<span class="product-price on-sale"><span class="original money">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span> <span class="money">{{ product.selected_or_first_available_variant.price | money }}</span></span>
+				{% else %}
+					<span class="product-price money">{{ product.selected_or_first_available_variant.price | money }}</span>
+				{% endif %}
+				{% if product.description.size > 0 %}
+					<div class="product-description">
+						<h4>{{ 'products.product.description' | t }}</h4>
+						<div class="rte">
+							{{ product.description | strip_html | truncatewords: 20 }}</br>
+							<a href="{{ product.url | within: collection }}" class="view_product_info" title="View {{ product.title | escape }} Details">View Full Product Details &rarr;</a>
+						</div>
+					</div>
+				{% endif %}
+
+			</div>
+
+			<div class="product-variants">
+
+				<form class="product-form" id="product-form" action="/cart/add" method="post" data-product-handle="{{ product.handle }}">
+
+					{% if product.available %}
+						{% if product.variants.size > 1 %}
+							<div class="options">
+								<select name="id" id="product-select" class="select-wrapper">
+									{% for variant in product.variants %}
+										<option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						{% else %}
+							<input type="hidden" name="id" class="product-select product-select-hidden" value="{{ product.variants[0].id }}" data-variant-title="{{ product.variants[0].title }}" />
+						{% endif %}
+					{% endif %}
+
+					<p class="product-add-error-message error">{{ 'products.product.quantity_error' | t }}</p>
+
+					<div class="add-to-cart">
+						{% if product.available %}
+							<input type="submit" class="submit add-product" value="{{ 'products.product.add_to_cart' | t }}">
+						{% else %}
+							<input type="submit" class="submit disabled" disabled value="{{ 'products.product.sold_out' | t }}">
+						{% endif %}
+					</div>
+
+				</form>
+			</div>
+
+		</div>
+
+	</div>
+</div><!-- close Modal -->

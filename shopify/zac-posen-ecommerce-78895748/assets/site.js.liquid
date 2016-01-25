@@ -1,0 +1,1655 @@
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.NavigationView = (function(superClass) {
+    extend(NavigationView, superClass);
+
+    function NavigationView() {
+      return NavigationView.__super__.constructor.apply(this, arguments);
+    }
+
+    NavigationView.prototype.events = {
+      'mouseenter .has-dropdown': 'toggleActive',
+      'mouseleave .has-dropdown': 'toggleActive',
+      'click .mobile-nav-navigate': 'toggleNav',
+      'click .has-dropdown > a': 'toggleSubNav'
+    };
+
+    NavigationView.prototype.initialize = function() {
+      return $(window).resize((function(_this) {
+        return function() {
+          return _this.stripClasses();
+        };
+      })(this));
+    };
+
+    NavigationView.prototype.toggleActive = function(e) {
+      if (!Modernizr.mq('(max-width: 720px)')) {
+        return $(e.currentTarget).toggleClass('active').siblings().toggleClass('faded');
+      }
+    };
+
+    NavigationView.prototype.toggleNav = function() {
+      if (Modernizr.mq('(max-width: 720px)')) {
+        this.$('nav.navigation').toggle();
+        return this.$('.mobile-nav-navigate').toggleClass('active');
+      }
+    };
+
+    NavigationView.prototype.toggleSubNav = function(e) {
+      var childList, listItem;
+      if (Modernizr.mq('(max-width: 720px)')) {
+        listItem = ($(e.currentTarget)).parent();
+        childList = listItem.find('> ul');
+        listItem.toggleClass('expanded');
+        childList.toggle();
+        return false;
+      }
+    };
+
+    NavigationView.prototype.stripClasses = function() {
+      if (!Modernizr.mq('(max-width: 720px)')) {
+        this.$('nav.navigation').attr('style', '');
+        this.$('.dropdown-list').attr('style', '');
+        return this.$('.expanded').removeClass('expanded');
+      }
+    };
+
+    return NavigationView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.HeaderView = (function(superClass) {
+    extend(HeaderView, superClass);
+
+    function HeaderView() {
+      return HeaderView.__super__.constructor.apply(this, arguments);
+    }
+
+    HeaderView.prototype.events = {
+      'click .search-toggle': 'openSearch',
+      'keydown': 'closeSearch',
+      'click .mini-cart-toggle': 'goToCart',
+      'click .mini-account-toggle': 'goToAccount',
+      'click .mailing-list-message': 'openEmailField'
+    };
+
+    HeaderView.prototype.initialize = function() {
+      new NavigationView({
+        el: $('.main-header')
+      });
+      this.searchForm = this.$('.search-form');
+      this.verticallyAlignActionLinks();
+      this.calculateWidths();
+      return $(window).resize((function(_this) {
+        return function() {
+          return _this.checkForOverlaps();
+        };
+      })(this));
+    };
+
+    HeaderView.prototype.openSearch = function(e) {
+      this.searchForm.addClass('active').find('input').focus();
+      $(window).on('click.search', (function(_this) {
+        return function(e) {
+          return _this.closeSearch(e);
+        };
+      })(this));
+      return false;
+    };
+
+    HeaderView.prototype.calculateWidths = function() {
+      return this.$el.imagesLoaded((function(_this) {
+        return function() {
+          var actionLinksWidth, brandingWidth, navigationWidth;
+          brandingWidth = _this.$el.find('.branding').outerWidth(true);
+          navigationWidth = _this.$el.find('.navigation > ul').outerWidth();
+          actionLinksWidth = _this.$el.find('.action-links').outerWidth();
+          _this.combinedWidths = brandingWidth + navigationWidth + actionLinksWidth;
+          return _this.checkForOverlaps();
+        };
+      })(this));
+    };
+
+    HeaderView.prototype.checkForOverlaps = function() {
+      var actionLinks, headerWidth, navigation, navigationBox, overlap;
+      navigation = this.$el.find('.navigation');
+      navigationBox = navigation[0].getBoundingClientRect();
+      actionLinks = this.$el.find('.action-links')[0].getBoundingClientRect();
+      overlap = !(navigationBox.right < actionLinks.left || navigationBox.left > actionLinks.right || navigationBox.bottom < actionLinks.top || navigationBox.top > actionLinks.bottom);
+      headerWidth = this.$el.find('.main-header').width();
+      if (headerWidth > this.combinedWidths) {
+        return navigation.removeClass('overlapping');
+      } else if (overlap) {
+        return navigation.addClass('overlapping');
+      }
+    };
+
+    HeaderView.prototype.closeSearch = function(e) {
+      if (!$(e.target).hasClass('search-toggle')) {
+        if (this.searchForm.hasClass('active') && !$(e.target).hasClass('search-input')) {
+          this.searchForm.removeClass('active');
+          $(window).off('click.search');
+          return;
+        }
+      }
+      if (e.type === 'keydown') {
+        if (e.keyCode === 27) {
+          this.searchForm.removeClass('active');
+        }
+      }
+    };
+
+    HeaderView.prototype.goToCart = function() {
+      return document.location = "/cart";
+    };
+
+    HeaderView.prototype.goToAccount = function() {
+      return document.location = "/account";
+    };
+
+    HeaderView.prototype.openEmailField = function(e) {
+      if (Modernizr.mq('(max-width: 720px)')) {
+        $(e.target).addClass('hidden');
+        this.$('.mailing-list-banner form').addClass('active');
+        return this.$('.mailing-list-banner input').focus();
+      }
+    };
+
+    HeaderView.prototype.verticallyAlignActionLinks = function() {
+      var logo;
+      logo = this.$('.branding .regular-logo');
+      if (logo.length) {
+        logo.one('load', (function(_this) {
+          return function() {
+            var actionLinks, actionLinksHeight, logoHeight, newTop;
+            logoHeight = _this.$('.regular-logo').height();
+            actionLinks = _this.$('.action-links');
+            actionLinksHeight = actionLinks.height();
+            newTop = logoHeight > actionLinksHeight ? ((logoHeight + 100) - actionLinksHeight) / 2 : '';
+            return actionLinks.css({
+              top: newTop,
+              visibility: 'visible'
+            });
+          };
+        })(this));
+        if (logo[0].complete) {
+          return logo.load();
+        }
+      } else {
+        return this.$('.action-links').css({
+          visibility: 'visible'
+        });
+      }
+    };
+
+    HeaderView.prototype.render = function() {};
+
+    return HeaderView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.SlideshowView = (function(superClass) {
+    extend(SlideshowView, superClass);
+
+    function SlideshowView() {
+      return SlideshowView.__super__.constructor.apply(this, arguments);
+    }
+
+    SlideshowView.prototype.events = {
+      'click .previous': 'previousSlide',
+      'click .next': 'nextSlide',
+      'mouseenter': 'stopTimer',
+      'mouseleave': 'autoPlay'
+    };
+
+    SlideshowView.prototype.initialize = function() {
+      this.slidesReady = $.Deferred();
+      return this.extraSpace = this.$el.hasClass('has-offset-slide') ? 34 : 0;
+    };
+
+    SlideshowView.prototype.setupSlides = function() {
+      var slideCount, slides;
+      slides = this.$('.slideshow-slide');
+      slideCount = slides.length;
+      if (slideCount === 1) {
+        this.$('.slide-navigation').remove();
+      }
+      return this.$el.imagesLoaded((function(_this) {
+        return function() {
+          var count, i, len, results, slide, slideHeight;
+          count = 0;
+          results = [];
+          for (i = 0, len = slides.length; i < len; i++) {
+            slide = slides[i];
+            count++;
+            slide = $(slide);
+            slideHeight = slide.height();
+            slide.data('height', slideHeight);
+            if ($('html').hasClass('lt-ie9')) {
+              _this.alignSlideCTA(slide);
+            }
+            if (count = slideCount) {
+              results.push(_this.slidesReady.resolve());
+            } else {
+              results.push(void 0);
+            }
+          }
+          return results;
+        };
+      })(this));
+    };
+
+    SlideshowView.prototype.alignSlideCTA = function(slide) {
+      var action, ctaHeight, ctaWidth;
+      action = slide.find('.action');
+      ctaWidth = action.outerWidth();
+      ctaHeight = action.height();
+      return action.css({
+        marginLeft: action.hasClass('center') ? -(ctaWidth / 2) : '',
+        marginTop: -(ctaHeight / 2)
+      });
+    };
+
+    SlideshowView.prototype.previousSlide = function() {
+      var currentSlide, previousSlide, previousSlideHeight;
+      currentSlide = this.$('.active');
+      previousSlide = currentSlide.prev();
+      if (!previousSlide.length) {
+        previousSlide = this.$('.slideshow-slide:last');
+      }
+      previousSlideHeight = previousSlide.data('height');
+      return this.switchSlides(currentSlide, previousSlide, previousSlideHeight);
+    };
+
+    SlideshowView.prototype.nextSlide = function() {
+      var currentSlide, nextSlide, nextSlideHeight;
+      currentSlide = this.$('.active');
+      nextSlide = currentSlide.next();
+      if (!nextSlide.length) {
+        nextSlide = this.$('.slideshow-slide:first');
+      }
+      nextSlideHeight = nextSlide.data('height');
+      return this.switchSlides(currentSlide, nextSlide, nextSlideHeight);
+    };
+
+    SlideshowView.prototype.switchSlides = function(current, next, height) {
+      this.$el.height(height + this.extraSpace);
+      current.toggleClass('active');
+      return next.toggleClass('active');
+    };
+
+    SlideshowView.prototype.autoPlay = function() {
+      var durationInMilliseconds;
+      if (Theme.slideshowAutoPlay) {
+        if (!Theme.slideDuration) {
+          durationInMilliseconds = 5000;
+        } else {
+          durationInMilliseconds = Theme.slideDuration * 1000;
+        }
+        return this.slideTimer = setInterval(((function(_this) {
+          return function() {
+            return _this.nextSlide();
+          };
+        })(this)), durationInMilliseconds);
+      }
+    };
+
+    SlideshowView.prototype.stopTimer = function() {
+      return clearInterval(this.slideTimer);
+    };
+
+    SlideshowView.prototype.centerNavigation = function() {
+      var i, imageHeight, len, navigation, results, slide, slides;
+      slides = this.$('.slideshow-slide');
+      results = [];
+      for (i = 0, len = slides.length; i < len; i++) {
+        slide = slides[i];
+        slide = $(slide);
+        navigation = slide.find('.slide-navigation');
+        if (navigation.length) {
+          imageHeight = slide.find('img').height();
+          results.push(navigation.find('span').css({
+            top: imageHeight / 2
+          }));
+        } else {
+          results.push(void 0);
+        }
+      }
+      return results;
+    };
+
+    SlideshowView.prototype.render = function() {
+      this.setupSlides();
+      this.slidesReady.done((function(_this) {
+        return function() {
+          _this.$el.height(_this.$('.slideshow-slide:first').data('height') + _this.extraSpace);
+          _this.$('.slideshow-slide:first').addClass('active');
+          if (Theme.slideshowAutoPlay) {
+            _this.autoPlay();
+          }
+          if (Modernizr.mq('(max-width: 720px)')) {
+            return _this.centerNavigation();
+          }
+        };
+      })(this));
+      return $(window).resize((function(_this) {
+        return function() {
+          _this.$el.css({
+            height: _this.$('.slideshow-slide.active').height() + _this.extraSpace
+          });
+          _this.setupSlides();
+          if (Modernizr.mq('(max-width: 720px)')) {
+            return _this.centerNavigation();
+          } else {
+            return _this.$('.slide-navigation span').attr('style', '');
+          }
+        };
+      })(this));
+    };
+
+    return SlideshowView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.HomeView = (function(superClass) {
+    extend(HomeView, superClass);
+
+    function HomeView() {
+      return HomeView.__super__.constructor.apply(this, arguments);
+    }
+
+    HomeView.prototype.events = {};
+
+    HomeView.prototype.initialize = function() {
+      if (Theme.showSlideshow) {
+        this.slideshowView = new SlideshowView({
+          el: $('.slideshow')
+        });
+        this.slideshowView.render();
+      }
+      if (Theme.showInstagramWidget) {
+        this.getImages();
+      }
+      if (Theme.showTwitterWidget) {
+        return this.fetchTweets();
+      }
+    };
+
+    HomeView.prototype.getImages = function() {
+      var instagramWidget, photoContainer, url;
+      instagramWidget = this.$('.instagram-widget');
+      photoContainer = this.$('.instagram-photos');
+      if (Theme.showInstagramTag) {
+        url = "https://api.instagram.com/v1/tags/" + Theme.instagramTag + "/media/recent?access_token=" + Theme.instagramAccessToken + "&count=6&callback=";
+      } else {
+        url = "https://api.instagram.com/v1/users/self/media/recent?access_token=" + Theme.instagramAccessToken + "&count=6&callback=";
+      }
+      return $.ajax({
+        type: "GET",
+        dataType: "jsonp",
+        url: url,
+        success: (function(_this) {
+          return function(response) {
+            var i, len, photo, ref, results;
+            if (response.meta.code === 200) {
+              ref = response.data;
+              results = [];
+              for (i = 0, len = ref.length; i < len; i++) {
+                photo = ref[i];
+                results.push(photoContainer.append("<a class='instagram-photo' target='_blank' href='" + photo.link + "'><img src='" + photo.images.low_resolution.url + "'/></a>"));
+              }
+              return results;
+            } else {
+              instagramWidget.remove();
+              return console.log("Instagram error: " + response.meta.error_message);
+            }
+          };
+        })(this),
+        error: (function(_this) {
+          return function(response) {
+            instagramWidget.remove();
+            return console.log("Instagram error: " + response.meta.error_message);
+          };
+        })(this)
+      });
+    };
+
+    HomeView.prototype.fetchTweets = function() {
+      var config;
+      config = {
+        'id': Theme.twitterWidgetId,
+        'maxTweets': 1,
+        'enableLinks': true,
+        'showUser': true,
+        'showTime': true,
+        'showRetweet': Theme.twitterRetweets,
+        'customCallback': this.renderTweets,
+        'showInteraction': false
+      };
+      return twitterFetcher.fetch(config);
+    };
+
+    HomeView.prototype.renderTweets = function(tweets) {
+      var i, len, results, tweet;
+      if (tweets.length) {
+        results = [];
+        for (i = 0, len = tweets.length; i < len; i++) {
+          tweet = tweets[i];
+          tweet = $(tweet);
+          results.push(this.$('.twitter-tweet').append(tweet[1].innerHTML, "<span class='timestamp'>" + tweet[2].innerHTML + " <span class='divider'>/</span> " + tweet[0].innerHTML + "</span>"));
+        }
+        return results;
+      } else {
+        $('.twitter-widget').remove();
+        return console.log("No tweets to display. Most probable cause is an incorrectly entered Widget ID.");
+      }
+    };
+
+    HomeView.prototype.render = function() {
+      if (Theme.featuredCollections) {
+        this.listCollectionsView = new ListCollectionsView({
+          el: this.$el
+        });
+        return this.listCollectionsView.render();
+      }
+    };
+
+    return HomeView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.CollectionView = (function(superClass) {
+    extend(CollectionView, superClass);
+
+    function CollectionView() {
+      return CollectionView.__super__.constructor.apply(this, arguments);
+    }
+
+    CollectionView.prototype.events = {
+      'change .filter select': 'filterCollection'
+    };
+
+    CollectionView.prototype.initialize = function() {};
+
+    CollectionView.prototype.updateFancySelect = function() {
+      var currentSelection, label, select;
+      select = this.$('.filter select');
+      label = this.$('.filter label');
+      currentSelection = select.find('option:selected').text();
+      return label.text(currentSelection);
+    };
+
+    CollectionView.prototype.filterCollection = function(e) {
+      var filter;
+      filter = this.$(e.target).val();
+      if (filter) {
+        return window.location.href = filter;
+      }
+    };
+
+    CollectionView.prototype.render = function() {
+      return this.updateFancySelect();
+    };
+
+    return CollectionView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.ListCollectionsView = (function(superClass) {
+    extend(ListCollectionsView, superClass);
+
+    function ListCollectionsView() {
+      return ListCollectionsView.__super__.constructor.apply(this, arguments);
+    }
+
+    ListCollectionsView.prototype.events = {};
+
+    ListCollectionsView.prototype.initialize = function() {};
+
+    ListCollectionsView.prototype.centerCollectionTitles = function() {
+      var collection, collections, i, len, results, title, titleHeight, titleWidth;
+      collections = this.$('.collection-list-item');
+      results = [];
+      for (i = 0, len = collections.length; i < len; i++) {
+        collection = collections[i];
+        collection = $(collection);
+        title = collection.find('h2');
+        titleWidth = title.outerWidth();
+        titleHeight = title.outerHeight();
+        if (collection.hasClass('centered')) {
+          title.css({
+            marginTop: -(titleHeight / 2)
+          });
+        }
+        results.push(title.css({
+          marginLeft: -(titleWidth / 2),
+          left: '50%'
+        }));
+      }
+      return results;
+    };
+
+    ListCollectionsView.prototype.render = function() {
+      if (Theme.collectionAlignment !== 'below') {
+        this.centerCollectionTitles();
+        return $(window).resize((function(_this) {
+          return function() {
+            return _this.centerCollectionTitles();
+          };
+        })(this));
+      }
+    };
+
+    return ListCollectionsView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.ShareView = (function(superClass) {
+    extend(ShareView, superClass);
+
+    function ShareView() {
+      return ShareView.__super__.constructor.apply(this, arguments);
+    }
+
+    ShareView.prototype.initialize = function() {
+      var permalink;
+      permalink = this.$el.data('permalink');
+      $.getJSON('http://urls.api.twitter.com/1/urls/count.json?url=' + permalink + '&callback=?', (function(_this) {
+        return function(data) {
+          var twitterShares;
+          twitterShares = data.count;
+          return _this.$('.share-twitter .share-count').text(twitterShares).css({
+            opacity: 1
+          });
+        };
+      })(this));
+      $.getJSON('http://graph.facebook.com/?ids=' + permalink + '&callback=?', (function(_this) {
+        return function(data) {
+          var facebookShares;
+          facebookShares = data[permalink].shares;
+          if (!facebookShares) {
+            facebookShares = 0;
+          }
+          return _this.$('.share-facebook .share-count').text(facebookShares).css({
+            opacity: 1
+          });
+        };
+      })(this));
+      if (this.$('.share-pinterest').length) {
+        $.getJSON('http://api.pinterest.com/v1/urls/count.json?url=' + permalink + '&callback=?', (function(_this) {
+          return function(data) {
+            var pinterestShares;
+            pinterestShares = data.count;
+            return _this.$('.share-pinterest .share-count').text(pinterestShares).css({
+              opacity: 1
+            });
+          };
+        })(this));
+      }
+      return this.$('.share-google .share-count').css({
+        opacity: 1
+      });
+    };
+
+    return ShareView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.ArticleView = (function(superClass) {
+    extend(ArticleView, superClass);
+
+    function ArticleView() {
+      return ArticleView.__super__.constructor.apply(this, arguments);
+    }
+
+    ArticleView.prototype.initialize = function() {
+      this.checkForFloats();
+      return this.shareView = new ShareView({
+        el: this.$('.share-buttons')
+      });
+    };
+
+    ArticleView.prototype.checkForFloats = function() {
+      var i, image, images, len, results;
+      images = this.$el.find('.article-content img');
+      results = [];
+      for (i = 0, len = images.length; i < len; i++) {
+        image = images[i];
+        if ($(image).css('float') === 'right') {
+          $(image).css({
+            margin: '0 0 14px 14px'
+          });
+        }
+        if ($(image).css('float') === 'left') {
+          results.push($(image).css({
+            margin: '0 14px 14px 0'
+          }));
+        } else {
+          results.push(void 0);
+        }
+      }
+      return results;
+    };
+
+    return ArticleView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.BlogView = (function(superClass) {
+    extend(BlogView, superClass);
+
+    function BlogView() {
+      return BlogView.__super__.constructor.apply(this, arguments);
+    }
+
+    BlogView.prototype.initialize = function() {
+      var article, i, len, ref, results;
+      ref = $('.blog-article');
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        article = ref[i];
+        results.push(this.articleView = new ArticleView({
+          el: article
+        }));
+      }
+      return results;
+    };
+
+    BlogView.prototype.render = function() {};
+
+    return BlogView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.ProductView = (function(superClass) {
+    extend(ProductView, superClass);
+
+    function ProductView() {
+      return ProductView.__super__.constructor.apply(this, arguments);
+    }
+
+    ProductView.prototype.events = {
+      "click .product-thumbnails img": "swapProductImage",
+      "mousemove .zoom-enabled": "zoomImage",
+      "click .zoom-enabled": "toggleZoom",
+      "mouseout .zoom": "toggleZoom",
+      "click .submit.disabled": "noVariant",
+      "submit .product-form": "addToCart",
+      "focus .product-quantity": "removeError"
+    };
+
+    ProductView.prototype.initialize = function() {
+      this.productData = window.product;
+      this.shareView = new ShareView({
+        el: this.$('.share-buttons')
+      });
+      this.processing = false;
+      return Shopify.onError = (function(_this) {
+        return function(XMLHttpRequest) {
+          return _this.handleErrors(XMLHttpRequest);
+        };
+      })(this);
+    };
+
+    ProductView.prototype.addToCart = function(e) {
+      var quantity, selectedVariant;
+      e.preventDefault();
+      if (this.processing) {
+        return;
+      }
+      this.processing = true;
+      selectedVariant = this.$("#product-select").length ? this.$("#product-select").val() : this.$(".product-select-hidden").val();
+      quantity = this.$(".product-quantity").val();
+      if (quantity === "") {
+        this.$(".product-quantity").addClass("error");
+        this.$(".product-add-error-message").addClass("visible").html(Theme.productQuantityError);
+        return this.processing = false;
+      } else {
+        return Shopify.addItemFromForm("product-form", (function(_this) {
+          return function() {
+            return window.location.href = "/cart";
+          };
+        })(this));
+      }
+    };
+
+    ProductView.prototype.handleErrors = function(errors) {
+      var errorMessage;
+      errorMessage = $.parseJSON(errors.responseText);
+      if (errorMessage.message === "Cart Error") {
+        this.$(".product-add-error-message").addClass("visible").html(errorMessage.description);
+        return this.processing = false;
+      }
+    };
+
+    ProductView.prototype.removeError = function(e) {
+      return $(e.target).removeClass("error");
+    };
+
+    ProductView.prototype.noVariant = function() {
+      return false;
+    };
+
+    ProductView.prototype.updateVariantLabel = function(select) {
+      var selectedVariant;
+      if (select) {
+        select = $(select);
+        selectedVariant = select.find('option:selected').val();
+        return select.prev('.select-text').text(selectedVariant);
+      }
+    };
+
+    ProductView.prototype.swapProductImage = function(e) {
+      var nextImage;
+      this.$('.product-thumbnails img').removeClass('active');
+      $(e.target).addClass('active');
+      nextImage = $(e.target).data('high-res');
+      this.$('.product-big-image img').attr('src', nextImage);
+      if (this.$('.product-big-image').hasClass('can-zoom')) {
+        return this.setUpZoom();
+      }
+    };
+
+    ProductView.prototype.cacheImages = function(images) {
+      var bigImage, i, image, len, results;
+      this.cacheImages.cache = [];
+      results = [];
+      for (i = 0, len = images.length; i < len; i++) {
+        image = images[i];
+        bigImage = new Image();
+        bigImage.src = image;
+        results.push(this.cacheImages.cache.push(bigImage));
+      }
+      return results;
+    };
+
+    ProductView.prototype.setUpZoom = function() {
+      var bigImage, bigImageWrap;
+      bigImageWrap = this.$('.product-big-image');
+      bigImage = bigImageWrap.find('img');
+      return bigImage.load((function(_this) {
+        return function() {
+          var bigImageOffset, photoArea, photoSize, temporaryImage, zoom, zoomImage;
+          temporaryImage = new Image();
+          temporaryImage.src = bigImage.attr('src');
+          photoArea = bigImageWrap.width();
+          photoSize = temporaryImage.width;
+          if (photoSize / photoArea < 1.4) {
+            bigImageWrap.removeClass('zoom-enabled');
+          } else {
+            bigImageWrap.addClass('zoom-enabled');
+            zoom = _this.$('.zoom');
+            zoomImage = new Image();
+            zoomImage.src = bigImage.attr('src');
+            $(zoomImage).load(function() {
+              _this.zoomImageWidth = zoomImage.width;
+              return _this.zoomImageHeight = zoomImage.height;
+            });
+            zoom.css({
+              backgroundImage: "url(" + zoomImage.src + ")"
+            });
+            bigImageOffset = bigImageWrap.offset();
+            _this.bigImageX = bigImageOffset.left;
+            return _this.bigImageY = bigImageOffset.top;
+          }
+        };
+      })(this));
+    };
+
+    ProductView.prototype.zoomImage = function(e) {
+      var mousePositionX, mousePositionY, newBackgroundPosition, ratioX, ratioY, zoom, zoomHeight, zoomWidth;
+      zoom = this.$('.zoom');
+      zoomWidth = zoom.width();
+      zoomHeight = zoom.height();
+      mousePositionX = e.pageX - this.bigImageX;
+      mousePositionY = e.pageY - this.bigImageY;
+      if (mousePositionX < zoomWidth && mousePositionY < zoomHeight && mousePositionX > 0 && mousePositionY > 0) {
+        if (zoom.hasClass('active')) {
+          ratioX = Math.round(mousePositionX / zoomWidth * this.zoomImageWidth - zoomWidth / 2) * -1;
+          ratioY = Math.round(mousePositionY / zoomHeight * this.zoomImageHeight - zoomHeight / 2) * -1;
+          if (ratioX > 0) {
+            ratioX = 0;
+          }
+          if (ratioY > 0) {
+            ratioY = 0;
+          }
+          if (ratioX < -(this.zoomImageWidth - zoomWidth)) {
+            ratioX = -(this.zoomImageWidth - zoomWidth);
+          }
+          if (ratioY < -(this.zoomImageHeight - zoomHeight)) {
+            ratioY = -(this.zoomImageHeight - zoomHeight);
+          }
+          newBackgroundPosition = ratioX + "px " + ratioY + "px";
+          return zoom.css({
+            backgroundPosition: newBackgroundPosition
+          });
+        }
+      }
+    };
+
+    ProductView.prototype.toggleZoom = function(e) {
+      if ($('html').hasClass('lt-ie9')) {
+        return false;
+      }
+      if (e.type === 'mouseout') {
+        this.$('.zoom').removeClass('active');
+        return;
+      }
+      if (this.$('.zoom').hasClass('active')) {
+        return this.$('.zoom').removeClass('active');
+      } else {
+        this.$('.zoom').addClass('active');
+        return this.zoomImage(e);
+      }
+    };
+
+    ProductView.prototype.render = function() {
+      var i, len, select, selectableOptions;
+      selectableOptions = this.$('.selector-wrapper select');
+      for (i = 0, len = selectableOptions.length; i < len; i++) {
+        select = selectableOptions[i];
+        this.updateVariantLabel(select);
+      }
+      this.$('.options select').change((function(_this) {
+        return function(e) {
+          return _this.updateVariantLabel(e.target);
+        };
+      })(this));
+      if (this.$('.product-big-image').hasClass('can-zoom')) {
+        this.setUpZoom();
+      }
+      return $(window).bind("load", (function(_this) {
+        return function() {
+          var bigImage, images, j, len1, thumbnail, thumbnails;
+          thumbnails = _this.$('.product-thumbnails img');
+          images = [];
+          for (j = 0, len1 = thumbnails.length; j < len1; j++) {
+            thumbnail = thumbnails[j];
+            bigImage = $(thumbnail).data('high-res');
+            if (bigImage !== _this.productData.featured_image) {
+              images.push(bigImage);
+            }
+          }
+          return _this.cacheImages(images);
+        };
+      })(this));
+    };
+
+    return ProductView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.CartView = (function(superClass) {
+    extend(CartView, superClass);
+
+    function CartView() {
+      return CartView.__super__.constructor.apply(this, arguments);
+    }
+
+    CartView.prototype.events = {
+      "change .instructions textarea": "saveNote",
+      "click .get-rates": "onGetRates"
+    };
+
+    CartView.prototype.initialize = function() {
+      if (Theme.shippingCalculator && this.$(".cart-products").length) {
+        this.shippingCalculator();
+        if (Theme.customerLoggedIn && Theme.customerAddress.country.length) {
+          this.calculateShipping(true);
+        }
+      }
+      return Shopify.onError = (function(_this) {
+        return function(XMLHttpRequest) {
+          return _this.handleErrors(XMLHttpRequest);
+        };
+      })(this);
+    };
+
+    CartView.prototype.saveNote = function() {
+      var newNote;
+      newNote = $('.instructions textarea').val();
+      return Shopify.updateCartNote(newNote, function(cart) {});
+    };
+
+    CartView.prototype.updateShippingLabel = function(select) {
+      var selectedVariant;
+      if (select) {
+        select = $(select);
+        selectedVariant = select.find('option:selected').val();
+        return select.prev('.selected-option').text(selectedVariant);
+      }
+    };
+
+    CartView.prototype.shippingCalculator = function() {
+      var selectableOptions;
+      Shopify.Cart.ShippingCalculator.show({
+        submitButton: Theme.shippingSubmit,
+        submitButtonDisabled: Theme.shippingWorking,
+        customerIsLoggedIn: Theme.customerLoggedIn,
+        moneyFormat: Theme.moneyFormat
+      });
+      selectableOptions = this.$('.cart-shipping-calculator select');
+      setTimeout((function(_this) {
+        return function() {
+          var i, len, results, select;
+          results = [];
+          for (i = 0, len = selectableOptions.length; i < len; i++) {
+            select = selectableOptions[i];
+            results.push(_this.updateShippingLabel(select));
+          }
+          return results;
+        };
+      })(this), 500);
+      return this.$('.cart-shipping-calculator select').change((function(_this) {
+        return function(e) {
+          var i, len, results, select;
+          results = [];
+          for (i = 0, len = selectableOptions.length; i < len; i++) {
+            select = selectableOptions[i];
+            results.push(_this.updateShippingLabel(select));
+          }
+          return results;
+        };
+      })(this));
+    };
+
+    CartView.prototype.onGetRates = function() {
+      return this.calculateShipping();
+    };
+
+    CartView.prototype.calculateShipping = function(auto) {
+      var shippingAddress;
+      $('.get-rates').val(Theme.shippingWorking);
+      if (auto) {
+        shippingAddress = Theme.customerAddress;
+      } else {
+        shippingAddress = {};
+        shippingAddress.zip = $('.address-zip').val() || '';
+        shippingAddress.country = $('.address-country').val() || '';
+        shippingAddress.province = $('.address-province').val() || '';
+      }
+      return Shopify.getCartShippingRatesForDestination(shippingAddress, function(rates) {
+        var address, firstRate, i, len, price, rate, rateValues, ratesFeedback, response, shippingCalculatorResponse;
+        address = shippingAddress.zip + ", " + shippingAddress.province + ", " + shippingAddress.country;
+        if (!shippingAddress.province.length) {
+          address = shippingAddress.zip + ", " + shippingAddress.country;
+        }
+        if (!shippingAddress.zip.length) {
+          address = shippingAddress.province + ", " + shippingAddress.country;
+        }
+        if (!(shippingAddress.province.length && shippingAddress.zip.length)) {
+          address = shippingAddress.country;
+        }
+        shippingCalculatorResponse = $('.cart-shipping-calculator-response');
+        shippingCalculatorResponse.empty().append("<p class='shipping-calculator-response message'/><ul class='shipping-rates'/>");
+        ratesFeedback = $('.shipping-calculator-response');
+        if (rates.length > 1) {
+          firstRate = Shopify.Cart.ShippingCalculator.formatRate(rates[0].price);
+          Theme.shippingCalcMultiRates = Theme.shippingCalcMultiRates.replace('{% raw %}{{ address }}{% endraw %}', address).replace('{% raw %}{{ number_of_rates }}{% endraw %}', rates.length).replace('{% raw %}{{ rate }}{% endraw %}', "<span class='money'>" + firstRate + "</span>");
+          ratesFeedback.html(Theme.shippingCalcMultiRates);
+        } else if (rates.length === 1) {
+          response = Theme.shippingCalcOneRate.replace('{% raw %}{{ address }}{% endraw %}', address);
+          ratesFeedback.html(response);
+        } else {
+          ratesFeedback.html(Theme.shippingCalcNoRates);
+        }
+        for (i = 0, len = rates.length; i < len; i++) {
+          rate = rates[i];
+          price = Shopify.Cart.ShippingCalculator.formatRate(rate.price);
+          rateValues = Theme.shippingCalcRateValues.replace('{% raw %}{{ rate_title }}{% endraw %}', rate.name).replace('{% raw %}{{ rate }}{% endraw %}', "<span class='money'>" + price + "</span>");
+          $('.shipping-rates').append("<li>" + rateValues + "</li>");
+        }
+        $('.get-rates').val(Theme.shippingSubmit);
+        return $(".currency-switcher").trigger("reset-currency");
+      });
+    };
+
+    CartView.prototype.handleErrors = function(errors) {
+      var errorMessage;
+      errorMessage = $.parseJSON(errors.responseText);
+      errorMessage = Theme.shippingCalcErrorMessage.replace('{% raw %}{{ error_message }}{% endraw %}', errorMessage.zip);
+      $('.cart-shipping-calculator-response').html("<p>" + errorMessage + "</p>");
+      return $('.get-rates').val(Theme.shippingSubmit);
+    };
+
+    CartView.prototype.render = function() {
+      var i, len, select, selectableOptions;
+      selectableOptions = this.$('.select-wrapper select');
+      for (i = 0, len = selectableOptions.length; i < len; i++) {
+        select = selectableOptions[i];
+        this.updateShippingLabel(select);
+      }
+      this.$('.select-wrapper select').change((function(_this) {
+        return function(e) {
+          var j, len1, results;
+          results = [];
+          for (j = 0, len1 = selectableOptions.length; j < len1; j++) {
+            select = selectableOptions[j];
+            results.push(_this.updateShippingLabel(select));
+          }
+          return results;
+        };
+      })(this));
+      this.$('.cart-products').mobileTable();
+      return $(window).resize(function() {
+        return this.$('.cart-products').mobileTable();
+      });
+    };
+
+    return CartView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.PageView = (function(superClass) {
+    extend(PageView, superClass);
+
+    function PageView() {
+      return PageView.__super__.constructor.apply(this, arguments);
+    }
+
+    PageView.prototype.events = {
+      'change .select-wrapper select': 'updateOptionLabel'
+    };
+
+    PageView.prototype.initialize = function() {};
+
+    PageView.prototype.updateOptionLabel = function() {
+      var select, selectedVariant;
+      select = $('.select-wrapper select');
+      selectedVariant = select.find('option:selected').val();
+      return select.prev('.selected-option').text(selectedVariant);
+    };
+
+    return PageView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.AccountView = (function(superClass) {
+    extend(AccountView, superClass);
+
+    function AccountView() {
+      return AccountView.__super__.constructor.apply(this, arguments);
+    }
+
+    AccountView.prototype.events = {
+      'click .new-address-toggle': 'toggleNewAddress',
+      'click .recover-password-toggle': 'toggleRecoverPassword'
+    };
+
+    AccountView.prototype.initialize = function() {};
+
+    AccountView.prototype.toggleNewAddress = function() {
+      return this.$('.add-new-address').toggleClass('active');
+    };
+
+    AccountView.prototype.toggleRecoverPassword = function() {
+      this.$('.recover-password').toggleClass('active');
+      return this.$('.account-login').toggleClass('hidden');
+    };
+
+    AccountView.prototype.updateSelectedOption = function(select) {
+      var addressID, selectedVariant;
+      select = $(select);
+      selectedVariant = select.find('option:selected').text();
+      if (selectedVariant !== '') {
+        select.prev('.selected-option').text(selectedVariant);
+      }
+      if (select.attr('name') === 'address[country]') {
+        addressID = $(select).attr('id').split('address-country-')[1];
+        return this.updateSelectedOption($('#address-province-' + addressID));
+      }
+    };
+
+    AccountView.prototype.render = function() {
+      var i, len, select, selectableOptions;
+      selectableOptions = this.$('.select-wrapper select');
+      for (i = 0, len = selectableOptions.length; i < len; i++) {
+        select = selectableOptions[i];
+        this.updateSelectedOption(select);
+      }
+      this.$('.select-wrapper select').change((function(_this) {
+        return function(e) {
+          return _this.updateSelectedOption(e.target);
+        };
+      })(this));
+      this.$('.order-history table').mobileTable();
+      return $(window).resize(function() {
+        return this.$('.order-history table').mobileTable();
+      });
+    };
+
+    return AccountView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.RTEView = (function(superClass) {
+    extend(RTEView, superClass);
+
+    function RTEView() {
+      return RTEView.__super__.constructor.apply(this, arguments);
+    }
+
+    RTEView.prototype.events = {
+      "click .tabs li": "switchTabs"
+    };
+
+    RTEView.prototype.initialize = function() {
+      this.setupTabs();
+      this.$el.fitVids();
+      return $(window).resize((function(_this) {
+        return function() {
+          return _this.mobilifyTables();
+        };
+      })(this)).trigger("resize");
+    };
+
+    RTEView.prototype.switchTabs = function(e) {
+      var content, position, tab, tabContainer, tabContentContainer;
+      tab = $(e.currentTarget);
+      tabContainer = tab.parent();
+      tabContentContainer = tabContainer.next();
+      position = tab.index();
+      content = tabContentContainer.children("li").eq(position);
+      tabContainer.children("li").removeClass("active");
+      tabContentContainer.children("li").removeClass("active");
+      tab.addClass("active");
+      return content.addClass("active");
+    };
+
+    RTEView.prototype.setupTabs = function() {
+      var tabs;
+      tabs = this.$el.find(".tabs");
+      tabs.children("li:first").addClass("active");
+      return tabs.next().children("li:first").addClass("active");
+    };
+
+    RTEView.prototype.mobilifyTables = function() {
+      return this.$el.find("table").mobileTable();
+    };
+
+    return RTEView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.FooterView = (function(superClass) {
+    extend(FooterView, superClass);
+
+    function FooterView() {
+      return FooterView.__super__.constructor.apply(this, arguments);
+    }
+
+    FooterView.prototype.initialize = function() {};
+
+    return FooterView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.NotFoundView = (function(superClass) {
+    extend(NotFoundView, superClass);
+
+    function NotFoundView() {
+      return NotFoundView.__super__.constructor.apply(this, arguments);
+    }
+
+    NotFoundView.prototype.events = {};
+
+    NotFoundView.prototype.render = function() {
+      if (Theme.featuredCollections) {
+        this.listCollectionsView = new ListCollectionsView({
+          el: this.$el
+        });
+        return this.listCollectionsView.render();
+      }
+    };
+
+    return NotFoundView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.CurrencyView = (function(superClass) {
+    extend(CurrencyView, superClass);
+
+    function CurrencyView() {
+      return CurrencyView.__super__.constructor.apply(this, arguments);
+    }
+
+    CurrencyView.prototype.events = {
+      "change [name=currencies]": "convertAll",
+      "switch-currency": "switchCurrency",
+      "reset-currency": "resetCurrency"
+    };
+
+    CurrencyView.prototype.initialize = function() {
+      var cents, doubleMoney, i, j, len, len1, money, ref, ref1;
+      Currency.format = Theme.currencySwitcherFormat;
+      Currency.money_with_currency_format = {};
+      Currency.money_with_currency_format[Theme.currency] = Theme.moneyFormatCurrency;
+      Currency.money_format = {};
+      Currency.money_format[Theme.currency] = Theme.moneyFormat;
+      this.defaultCurrency = Theme.currency;
+      this.cookieCurrency = Currency.cookie.read();
+      if (this.cookieCurrency) {
+        this.$("[name=currencies]").val(this.cookieCurrency);
+      }
+      ref = $("span.money span.money");
+      for (i = 0, len = ref.length; i < len; i++) {
+        doubleMoney = ref[i];
+        $(doubleMoney).parents("span.money").removeClass("money");
+      }
+      ref1 = $("span.money");
+      for (j = 0, len1 = ref1.length; j < len1; j++) {
+        money = ref1[j];
+        $(money).data("currency-" + Theme.currency, $(money).html());
+        if (Currency.format === "money_with_currency_format") {
+          cents = parseInt($(money).html().replace(/[^0-9]/g, ''), 10);
+          $(money).html(Shopify.formatMoney(cents, Theme.moneyFormat));
+        }
+      }
+      this.switchCurrency();
+      this.$(".selected-currency").text(Currency.currentCurrency);
+      return $(window).on("resize", (function(_this) {
+        return function() {
+          if (document.documentElement.offsetWidth >= 720 && _this.$el.hasClass("in-footer")) {
+            return _this.positionCurrencySwitcher("header");
+          } else if (document.documentElement.offsetWidth < 720 && _this.$el.hasClass("in-header")) {
+            return _this.positionCurrencySwitcher("footer");
+          }
+        };
+      })(this)).trigger("resize");
+    };
+
+    CurrencyView.prototype.resetCurrency = function() {
+      return Currency.convertAll(this.defaultCurrency, this.$("[name=currencies]").val());
+    };
+
+    CurrencyView.prototype.switchCurrency = function() {
+      if (this.cookieCurrency === null) {
+        if (Theme.currency === !this.defaultCurrency) {
+          return Currency.convertAll(Theme.currency, this.defaultCurrency);
+        } else {
+          return Currency.currentCurrency = this.defaultCurrency;
+        }
+      } else if (this.$("[name=currencies]").size() && this.$("[name=currencies] option[value=" + this.cookieCurrency + "]").size() === 0) {
+        Currency.currentCurrency = Theme.currency;
+        return Currency.cookie.write(Theme.currency);
+      } else if (this.cookieCurrency === Theme.currency) {
+        return Currency.currentCurrency = Theme.currency;
+      } else {
+        return Currency.convertAll(Theme.currency, this.cookieCurrency);
+      }
+    };
+
+    CurrencyView.prototype.convertAll = function(e, variant, selector) {
+      var newCurrency;
+      newCurrency = $(e.target).val();
+      Currency.convertAll(Currency.currentCurrency, newCurrency);
+      this.$(".selected-currency").text(Currency.currentCurrency);
+      return this.cookieCurrency = newCurrency;
+    };
+
+    CurrencyView.prototype.positionCurrencySwitcher = function(position) {
+      if (position === "header") {
+        this.$el.appendTo(".action-links").toggleClass("in-header in-footer footer-module");
+        return this.$(".currency-switcher-header").remove();
+      } else if (position === "footer") {
+        return this.$el.appendTo(".main-footer").toggleClass("in-header in-footer footer-module").prepend("<h4 class='currency-switcher-header'>Currency</h4>");
+      }
+    };
+
+    return CurrencyView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.PasswordView = (function(superClass) {
+    extend(PasswordView, superClass);
+
+    function PasswordView() {
+      return PasswordView.__super__.constructor.apply(this, arguments);
+    }
+
+    PasswordView.prototype.el = document.body;
+
+    PasswordView.prototype.events = {
+      'click': 'closeModal',
+      'click .admin-login-modal': 'openModal'
+    };
+
+    PasswordView.prototype.initialize = function() {
+      this.modalWrapper = $('.password-page-modal-wrapper');
+      this.modalContent = this.modalWrapper.find('.password-page-modal');
+      this.openByDefault = this.modalWrapper.find('[data-open-modal]').length;
+      if (this.openByDefault) {
+        this.openModal();
+      }
+      return $(window).resize((function(_this) {
+        return function() {
+          return _this.positionModal();
+        };
+      })(this));
+    };
+
+    PasswordView.prototype.closeModal = function(e) {
+      if (this.$(e.target).hasClass('visible')) {
+        return this.modalWrapper.removeClass("visible").one("trend", (function(_this) {
+          return function() {
+            return _this.$el.removeClass("scroll-locked");
+          };
+        })(this));
+      }
+    };
+
+    PasswordView.prototype.openModal = function() {
+      this.$el.addClass("scroll-locked");
+      this.positionModal();
+      return this.modalWrapper.addClass("visible");
+    };
+
+    PasswordView.prototype.positionModal = function() {
+      return this.modalContent.css({
+        marginTop: -(this.modalContent.outerHeight() / 2),
+        marginLeft: -(this.modalContent.outerWidth() / 2)
+      });
+    };
+
+    return PasswordView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.GiftCardView = (function(superClass) {
+    extend(GiftCardView, superClass);
+
+    function GiftCardView() {
+      return GiftCardView.__super__.constructor.apply(this, arguments);
+    }
+
+    GiftCardView.prototype.initialize = function() {
+      return this.addQrCode();
+    };
+
+    GiftCardView.prototype.addQrCode = function() {
+      var qrWrapper;
+      qrWrapper = $('[data-qr-code]');
+      return new QRCode(qrWrapper[0], {
+        text: qrWrapper.data('qr-code'),
+        width: 120,
+        height: 120
+      });
+    };
+
+    return GiftCardView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.ThemeView = (function(superClass) {
+    extend(ThemeView, superClass);
+
+    function ThemeView() {
+      return ThemeView.__super__.constructor.apply(this, arguments);
+    }
+
+    ThemeView.prototype.el = document.body;
+
+    ThemeView.prototype.initialize = function() {
+      var body;
+      body = $(document.body);
+      if (navigator.userAgent.indexOf('MSIE 10.0') > 0) {
+        this.isIE10 === true;
+        $('html').addClass('ie10');
+      }
+      this.isHome = body.hasClass('template-index');
+      this.isCollection = body.hasClass('template-collection');
+      this.isListCollections = body.hasClass('template-list-collections');
+      this.isProduct = body.hasClass('template-product');
+      this.isCart = body.hasClass('template-cart');
+      this.isPage = body.hasClass('template-page');
+      this.isBlog = body.hasClass('template-blog') || body.hasClass('template-article');
+      this.isAccount = body.attr('class').indexOf('-customers-') > 0;
+      this.is404 = body.hasClass('template-404');
+      this.isPasswordPage = body.hasClass("template-password");
+      return this.isGiftCardPage = body.hasClass("gift-card-template");
+    };
+
+    ThemeView.prototype.render = function() {
+      var i, len, ref, rte;
+      if (($('.header-wrapper')).length) {
+        this.headerView = new HeaderView({
+          el: $('.header-wrapper')
+        });
+        this.headerView.render();
+      }
+      this.footerView = new FooterView({
+        el: $('footer')
+      });
+      this.footerView.render();
+      ref = $('.rte');
+      for (i = 0, len = ref.length; i < len; i++) {
+        rte = ref[i];
+        this.rteView = new RTEView({
+          el: rte
+        });
+      }
+      if (Theme.currencySwitcher) {
+        new CurrencyView({
+          el: $(".currency-switcher-wrapper")
+        });
+      }
+      if (this.isHome) {
+        this.homeView = new HomeView({
+          el: this.$el
+        });
+        this.homeView.render();
+      }
+      if (this.isCollection) {
+        this.collectionView = new CollectionView({
+          el: this.$el
+        });
+        this.collectionView.render();
+      }
+      if (this.isListCollections) {
+        this.listCollectionsView = new ListCollectionsView({
+          el: $('.collection-list')
+        });
+        this.listCollectionsView.render();
+      }
+      if (this.isProduct) {
+        this.productView = new ProductView({
+          el: this.$el
+        });
+        this.productView.render();
+      }
+      if (this.isCart) {
+        this.cartView = new CartView({
+          el: $('.cart.content')
+        });
+        this.cartView.render();
+      }
+      if (this.isPage) {
+        this.pageView = new PageView({
+          el: $('.page-content')
+        });
+        this.pageView.render();
+      }
+      if (this.isBlog) {
+        this.blogView = new BlogView({
+          el: this.$el
+        });
+        this.blogView.render();
+      }
+      if (this.isAccount) {
+        this.accountView = new AccountView({
+          el: this.$el
+        });
+        this.accountView.render();
+      }
+      if (this.is404) {
+        this.notFoundView = new NotFoundView({
+          el: this.$el
+        });
+        this.notFoundView.render();
+      }
+      if (this.isPasswordPage) {
+        new PasswordView();
+      }
+      if (this.isGiftCardPage) {
+        new GiftCardView();
+      }
+      if ($('html').hasClass('lt-ie10')) {
+        return this.inputPlaceholderFix();
+      }
+    };
+
+    ThemeView.prototype.inputPlaceholderFix = function() {
+      var i, input, len, placeholders, text;
+      placeholders = $('[placeholder]');
+      for (i = 0, len = placeholders.length; i < len; i++) {
+        input = placeholders[i];
+        input = $(input);
+        if (!(input.val().length > 0)) {
+          text = input.attr('placeholder');
+          input.attr('value', text);
+          input.data('original-text', text);
+        }
+      }
+      placeholders.focus(function() {
+        input = $(this);
+        if (input.val() === input.data('original-text')) {
+          return input.val('');
+        }
+      });
+      return placeholders.blur(function() {
+        input = $(this);
+        if (input.val().length === 0) {
+          return input.val(input.data('original-text'));
+        }
+      });
+    };
+
+    return ThemeView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  $(function() {
+    window.theme = new ThemeView();
+    return theme.render();
+  });
+
+}).call(this);

@@ -1,0 +1,80 @@
+<!-- see snippets/slideshow.liquid for the slideshow -->
+
+{% capture theme_settings_link %}
+	<a href="{{ shop.url }}/admin/themes">{{ 'onboarding.general.theme_settings_link' | t }}</a>
+{% endcapture %}
+
+{% if settings.display-featured-collections %}
+
+	{% assign collectionCount = 0 %}
+
+	{% if settings.featured-collection-1.size > 0 %}
+		{% assign collectionCount =  collectionCount | plus: 1 %}
+	{% endif %}
+	{% if settings.featured-collection-2.size > 0 %}
+		{% assign collectionCount =  collectionCount | plus: 1 %}
+	{% endif %}
+	{% if settings.featured-collection-3.size > 0 %}
+		{% assign collectionCount =  collectionCount | plus: 1 %}
+	{% endif %}
+
+	<div class="featured-collections collection-list grid-wrap grid-of-{{collectionCount}}">
+
+		{% if settings.featured-collections-title.size > 0 %}
+			<h4 class="section-title">{{ settings.featured-collections-title }}</h4>
+		{% endif %}
+
+		{% if settings.featured-collection-1.size > 0 or settings.featured-collection-2.size > 0 or settings.featured-collection-3.size > 0 %}
+
+			<div class="items-wrap">
+
+				{% if settings.featured-collection-1.size > 0 %}
+
+					{% capture featured_img %}featured-collection-1.jpg{% endcapture %}
+
+					<article class="collection-list-item below">
+						<a href="{{ collections[settings.featured-collection-1].url }}">
+							{{ featured_img | asset_url | img_tag }}
+							<h2>{{ collections[settings.featured-collection-1].title }}</h2>
+						</a>
+					</article>
+
+				{% endif %}
+
+				{% if settings.featured-collection-2.size > 0 %}
+
+				 {% capture featured_img %}featured-collection-2.jpg{% endcapture %}
+
+					<article class="collection-list-item below">
+						<a href="{{ collections[settings.featured-collection-2].url }}">
+								{{ featured_img | asset_url | img_tag }}
+							<h2>{{ collections[settings.featured-collection-2].title }}</h2>
+						</a>
+					</article>
+				{% endif %}
+
+				{% if settings.featured-collection-3.size > 0 %}
+
+				{% capture featured_img %}featured-collection-3.jpg{% endcapture %}
+
+					<article class="collection-list-item below">
+						<a href="{{ collections[settings.featured-collection-3].url }}">
+							{{ featured_img | asset_url | img_tag }}
+							<h2>{{ collections[settings.featured-collection-3].title }}</h2>
+						</a>
+
+					</article>
+				{% endif %}
+
+			</div>
+
+		{% else %}
+
+			<div class="home-helper">
+				<h4 class="section-title">{{ 'onboarding.general.featured_collections_title' | t }}</h4>
+				<p>{{ 'onboarding.general.featured_collections_text_html' | t: theme_settings_link: theme_settings_link }}</p>
+			</div>
+
+		{% endif %}
+	</div>
+{% endif %}

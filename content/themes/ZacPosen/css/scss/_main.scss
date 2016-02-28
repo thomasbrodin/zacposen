@@ -496,7 +496,7 @@ section {
 			margin-bottom: 50px
 		}
 	}
-	.col-4 {
+	.col-3 {
 		@include media($smallscreen) {
 			@include span-columns(1);
 			@include omega(2n);

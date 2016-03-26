@@ -105,7 +105,7 @@ jQuery( document ).ready( function( $ ) {
 	mobileMenu();
 	//FANCYBOX
 	$(".fancybox")
-			.attr('rel', 'gallery')
+			.attr('rel', 'gallery2')
 			.fancybox({
 				padding : 0,
 				margin : [70, 60, 70, 60],
@@ -126,6 +126,7 @@ jQuery( document ).ready( function( $ ) {
 					// stButtons.locateElements();
 					var bgColor = $('#collection figure').attr('class');
 					$(".fancybox-overlay").addClass(bgColor);
+					$(".socials").addClass(bgColor);
 					$(".fancybox-title").hide();
 					$(".fancybox-wrap").hover(function() {
 							$(".fancybox-title").stop(true,true).slideDown(200);
@@ -145,6 +146,44 @@ jQuery( document ).ready( function( $ ) {
 			width		: '70%',
 			height		: '70%',
 			autoSize	: false,
+	});
+	$('a.fancybox-inline')
+		.attr('rel', 'gallery')
+		.fancybox({
+			padding : 0,
+			maxWidth: "90%",
+			minHeight	: 630,
+			scrolling: "visible",
+			autoResize	: true,
+			fitToView	: false,
+			nextEffect : 'fade',
+			prevEffect : 'fade',
+			openEffect : 'elastic',
+			closeEffect : 'elastic',
+			helpers : {
+				title : {
+					type : 'over'
+				},
+				overlay : {
+						locked     : true   // if true, the content will be locked into overlay
+				}
+			},
+			afterShow : function() {
+				var bgColor = $('#collection figure').attr('class');
+				$(".fancybox-overlay").addClass(bgColor);
+				$(".socials").addClass(bgColor);
+				$(".desc-inner").addClass(bgColor);
+				$(".btn-wrap").addClass(bgColor);
+				$(".fancybox-title").hide();
+				$(".fancybox-wrap").hover(function() {
+						$(".fancybox-title").stop(true,true).slideDown(200);
+					}, function() {
+						$(".fancybox-title").stop(true,true).slideUp(200);
+				});
+			},
+			afterLoad: function() {
+				this.title = this.title ? this.title + buildShareThis(this.href) : buildShareThis(this.href);
+			},
 		});
 	// Sliders
 	$(window).load(function() {

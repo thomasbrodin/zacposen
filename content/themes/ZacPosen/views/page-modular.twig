@@ -215,13 +215,55 @@
 				<section id="collection"{% if post.get_field('sel_bg_color') %} class="{{ post.get_field('sel_bg_color') }}"{% endif %}>
 									<div class="grid">
 										{% for image in post.get_field('collection_img') %}
+											{% set attachment = TimberPost(image.id) %}
+												{% if attachment.prod1_titre %}
 													<article>
 															<figure {% if post.get_field('overlay_col') %} class="{{ post.get_field('overlay_col') }}"{% endif %}>
-																<a class="fancybox" data-fancybox-group="gallery" rel="gallery" href="{{TimberImage(image.id).get_src}}">
+																<a class="fancybox-inline" data-fancybox-group="gallery" rel="gallery" href="#inline-{{loop.index}}">
 																		<img src="{{TimberImage(image.id).get_src|resize(480)}}" />
 																</a>
 															</figure>
 													</article>
+														<div id="inline-{{loop.index}}" class="product{% if post.get_field('overlay_col') %} {{ post.get_field('overlay_col') }}{% endif %}" style="display:none">
+															<div class="col_img">
+																<img src="{{TimberImage(image.id).get_src|resize(600)}}" />
+															</div>
+															<div class="col_desc">
+																<div class="desc-inner">
+																	<h2>{{attachment.prod1_titre}}</h2>
+																	<h3>{{attachment.prod1_prix}}</h3>
+																	<p>{{attachment.prod1_desc}}</p>
+																	<div class="btn-wrap">
+																		<a class="shop-now" target="_blank" href="{{attachment.prod1_url}}">SHOP NOW</a>
+																	</div>
+																{% if attachment.prod2_titre %}
+																	<h2>{{attachment.prod2_titre}}</h2>
+																	<h3>{{attachment.prod2_prix}}</h3>
+																	<p>{{attachment.prod2_desc}}</p>
+																	<div class="btn-wrap">
+																		<a class="shop-now" target="_blank" href="{{attachment.prod2_url}}">SHOP NOW</a>
+																	</div>
+																{% endif %}
+																{% if attachment.prod3_titre %}
+																	<h2>{{attachment.prod3_titre}}</h2>
+																	<h3>{{attachment.prod3_prix}}</h3>
+																	<p>{{attachment.prod3_desc}}</p>
+																	<div class="btn-wrap">
+																		<a class="shop-now" target="_blank" href="{{attachment.prod3_url}}">SHOP NOW</a>
+																	</div>
+																{% endif %}
+																</div>
+															</div>
+														</div>
+													{% else %}
+														<article>
+																<figure {% if post.get_field('overlay_col') %} class="{{ post.get_field('overlay_col') }}"{% endif %}>
+																	<a class="fancybox" data-fancybox-group="gallery" rel="gallery2" href="{{TimberImage(image.id).get_src}}">
+																			<img src="{{TimberImage(image.id).get_src|resize(480)}}" />
+																	</a>
+																</figure>
+														</article>
+													{% endif %}
 											{% endfor %}
 									</div>
 				</section>

@@ -105,6 +105,12 @@ section {
 		@media screen and (max-width: 768px) {
 			 padding: 30px 0;
 		}
+		&#video {
+			margin: 0 80px;
+			@include media($mobile) {
+				margin: 0 30px;
+			}
+		}
 	}
 	&.colored {
 		.col-2 {
@@ -189,7 +195,14 @@ section {
 									}
 									a {
 										padding: 8px 15px 6px;
-										border: 1px solid #808080;
+										border: 1px solid transparent;
+										background-color:white;
+										color:#808080;
+										&:hover {
+											border: 1px solid white;
+											background: #808080;
+											color:white;
+										}
 										@include media($smallscreen) {
 											padding: 8px 10px 6px;
 										}
@@ -899,6 +912,7 @@ footer {
 /* Social buttons */
 .socials {
 		padding-top:2em;
+		background: transparent!important;
 		span {
 		padding:4px;
 		cursor: pointer;
@@ -909,13 +923,94 @@ footer {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		font-size: 1.3em;
+		&.colored {
+			color:white!important
+		}
+		&.transparent {
+			color:black!important
+		}
 	}
 }
-.fancybox-overlay.colored .socials span{
-	color:white!important
-}
-.fancybox-overlay.transparent .socials span{
-	color:black!important
+.fancybox-wrap {
+	.product{
+		position: relative;
+		height: 100%;
+		max-width: 720px;
+    margin: 0 auto;
+		overflow: hidden;
+		@include media($mobile) {
+			height: auto;
+		}
+		.col_img {
+			float: left;
+			width: 100%;
+			@include media($screen) {
+				float: left;
+				width: 60.5%;
+				margin:0
+			}
+		}
+		.col_desc {
+			width:100%;
+			float: left;
+			height:100%;
+			@include media($screen) {
+				width: 39.5%;
+				float: left;
+			}
+			.desc-inner {
+				padding:2em 2em 1em;
+				@include media($mobile) {
+					padding:2em 1em;
+				}
+				h2 {
+					text-align:left!important;
+					font-size: em(24);
+					font-weight: 600;
+				}
+				h3 {
+					text-align:left;
+					font-size: em(20);
+					margin-bottom: .5em;
+				}
+				p {
+					@include media($mobile) {
+						line-height:1.2;
+						font-size: em(14)
+					}
+					@include media($smallscreen) {
+						line-height:1.2;
+						font-size: em(14)
+					}
+				}
+				.btn-wrap {
+					display: block;
+			    margin: 1.5em 0 2.5em;
+					&.transparent .shop-now{
+						border: 1px solid rgba(0, 0, 0, 1);
+						color: black;
+					}
+					&.colored .shop-now{
+						border: 1px solid rgba(0, 0, 0, 0);
+						color: #808080;
+					}
+					.shop-now {
+						padding: 8px 15px 6px;
+						background-color: #FFF;
+					}
+				}
+			}
+		}
+	}
+	.fancybox-title {
+    @include media($mobile) {
+			display: block!important;
+			top: 0;
+		}
+		@include media($smallscreen) {
+			display: block!important;
+		}
+	}
 }
 .stButton .stLarge{
 	display: none!important;

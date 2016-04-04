@@ -2,7 +2,14 @@
 		{% if product.description.size > 0 %}
 			<li class="tab-link" data-tab="tab-1">{{ 'products.product.description' | t }}</li>
 		{% endif %}
-		{% if settings.display-fitting-guide %}
+
+		{% if product.collections %}
+			{% for collection in product.collections %}
+				{% assign in_collection = collection.handle %}
+			{% endfor %}
+		{% endif %}
+
+		{% if settings.display-fitting-guide and in_collection != "eyewear" and in_collection != "hand-bags" %}
 			<li class="tab-link" data-tab="tab-2">{{ 'products.product.size-guide' | t }}</li>
 		{% endif %}
 		{% if settings.display-return %}

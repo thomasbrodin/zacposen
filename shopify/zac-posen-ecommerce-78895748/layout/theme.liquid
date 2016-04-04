@@ -74,6 +74,12 @@
 			{% endif %}
 		</div>
 
+		{% if template == 'index' %}
+			<div class="footer-image">
+				<a class="footer-background" style="background-image:url('{{ 'house-of-z.jpg' | asset_url }}')" href="http://zacposen.com/houseofz/"></a>		
+			</div>
+		{% endif %}
+
 	</div><!-- .wrap -->
 
 	{% include 'footer' %}

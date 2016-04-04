@@ -169,7 +169,7 @@ $titleColor:             #{' #555e5e '};
 $navigationColor:        #{' #555e5e '};
 $navigationHoverColor:   #{' rgba(85, 94, 94, 0.5) '};
 $dropdownColor:          #{' #555e5e '};
-$dropdownHoverColor:     #{' rgba(255, 255, 255, 0.5) '};
+$dropdownHoverColor:     #{' rgba(85, 94, 94, 0.5) '};
 $navigationBorderColor:  #{' #555e5e '};
 $actionLinksBackground:  #{' #ffffff '};
 $actionLinksColor:       #{' #555e5e '};
@@ -401,10 +401,10 @@ $gutter: 17px;
 		@media (min-width: 1200px) { @content; }
 	}
 	@if $point == medium-desktop {
-		@media (min-width: 721px) and (max-width: 999px) { @content; }
+		@media (min-width: 769px) and (max-width: 999px) { @content; }
 	}
 	@else if $point == tablet {
-		@media (max-width: 720px) { @content; }
+		@media (max-width: 768px) { @content; }
 	}
 	@else if $point == phone {
 		@media (max-width: 480px) { @content; }
@@ -490,13 +490,13 @@ $placeholders: '-webkit-input-placeholder',
 	&:after {
 		border-bottom-color: $background;
 		border-width: 6px;
-		left: 23px;
+		right: 18px;
 	}
 
 	&:before {
 		border-bottom-color: $color;
 		border-width: 7px;
-		left: 22px;
+		right: 17px;
 	}
 }
 
@@ -1019,6 +1019,7 @@ input[type=checkbox], input[type=radio] {
 		color: black;
 		opacity: 0;
 		filter: alpha(opacity=0); /* IE8 */
+		background:white;
 		position: absolute;
 		top: 0; right: 0;
 		bottom: 0; left: 0;
@@ -1200,10 +1201,8 @@ iframe {
 	font-size: 16px;
 }
 .breadcrumbs {
-	margin-bottom: $gutter*2;
+	margin-bottom: $gutter;
 	text-align: center;
-	padding-top: $gutter
-
 	a, span {
 		line-height: 21px;
 	}
@@ -1491,9 +1490,13 @@ iframe {
 .header-wrapper {
 	background: $headerBackground;
 	padding: 0 $gutter*2;
-
-		@include breakpoint(phone) {
+	position: fixed;
+  z-index: 9999;
+  width: 100%;
+	top:0;
+		@include breakpoint(tablet) {
 			padding: 0 $gutter;
+			position: relative;
 		}
 
 	.main-header {
@@ -1506,7 +1509,6 @@ iframe {
 
 .main-header {
 	position: relative;
-	padding: $gutter 0 $gutter 0;
 	margin: 0 $gutter*2;
 	padding-right: 330px;
 	&.accounts {
@@ -1524,7 +1526,7 @@ iframe {
 
 	@include breakpoint(tablet) {
 		margin: 0 $gutter;
-		padding: 18px 0 28px;
+		padding: $gutter 0 $gutter;
 		text-align: center;
 	}
 }
@@ -1608,6 +1610,7 @@ iframe {
 
 	@include breakpoint(tablet) {
 		display: block;
+		margin-top:0
 	}
 }
 
@@ -1752,7 +1755,7 @@ iframe {
 					color: $navigationColor;
 					content: "\f107";
 					position: absolute;
-					right: $gutter;
+					right: -$gutter / 4 * 3;
 					opacity: 0.8;
 					@include iconFont(16px);
 					line-height: 19px;
@@ -1774,7 +1777,7 @@ iframe {
 	@include breakpoint(tablet) {
 		ul li.has-dropdown > a:after {
 			color: $navigationHoverColor;
-			content: '\E015';
+			content: "\f107";
 			position: absolute;
 			right: $gutter;
 			opacity: 0.6;
@@ -1783,7 +1786,7 @@ iframe {
 		}
 
 		ul li.has-dropdown.expanded > a:after {
-			content: '\E016';
+			content: "\f106";
 		}
 
 		ul li.has-dropdown > a:hover:after {
@@ -1807,7 +1810,7 @@ iframe {
 		position: absolute;
 		width: 204px;
 		top: 100%;
-		left: 6px;
+		left: 2px;
 		background: $bodyBackground;
 		padding: 7px $gutter;
 		border: 1px solid $navigationBorderColor;
@@ -1826,11 +1829,14 @@ iframe {
 		}
 
 		li {
-			float: left;
-			clear: left;
-			padding: 8px 0;
+			// float: left;
+			// clear: left;
+			text-align: center;
+			text-transform: uppercase;
+			padding: 4px 0;
 			display: inline-block;
 			vertical-align: middle;
+			font-size: 0.9em;
 
 			@include breakpoint(tablet) {
 				border-top: 1px solid $navigationBorderColor;
@@ -1909,7 +1915,7 @@ iframe {
 .action-links {
 	position: absolute;
 	right: 0;
-	top: 45px;
+	top: 28px;
 	font-size: 0;
 	visibility: hidden;
 	font-family: $metaFont;
@@ -1947,8 +1953,23 @@ iframe {
 
 		&.main-website {
 			padding:0 12px;
-			border:1px solid $bodyColor;
-			margin-left:$gutter*3
+			margin-left:$gutter*3;
+			background-color: $bodyColor;
+			border: 1px solid white;
+			&:hover {
+				color: $bodyColor;
+				background-color: white;
+				border: 1px solid $bodyColor;
+				a {
+					color:$bodyColor
+				}
+			}
+			a {
+				color:white;
+				&:hover {
+					color: $bodyColor;
+				}
+			}
 		}
 	}
 }
@@ -2177,15 +2198,17 @@ iframe {
 }
 .product-list-item {
 	width: 33.33%;
-	padding: 0 $gutter;
+	padding: 0 $gutter*6;
 	display: inline-block;
 	vertical-align: top;
 	font-size: 16px; /* reset base font size */
 	text-align: center;
-	margin-bottom: 45px;
+	margin-bottom: 145px;
 	max-width: 560px;
 
 	@include breakpoint(tablet) {
+		padding: 0 $gutter;
+		margin-bottom: 45px;
 		width: 75%;
 		min-width: 286px;
 	}
@@ -2221,7 +2244,7 @@ iframe {
 		color: $lightColor;
 	}
 	.product-price {
-		font-size: 24px;
+		font-size: 18px;
 	}
 
 	.title {
@@ -2760,32 +2783,25 @@ iframe {
 	}
 }
 
-.filter {
-	@extend .select-wrapper;
-	margin: 0 auto $gutter*4;
-	display: block;
+.collection-sorting {
 	text-align: center;
+	margin-bottom:$gutter*2;
+	.filter, .sort {
+		@extend .select-wrapper;
+		display: inline-block;
+		width: 27%;
+		margin:0 $gutter;
 
-	&.rows-of-2 {
-		width: 35%;
-	}
-
-	&.rows-of-3 {
-		width: 30%;
-	}
-
-	&.rows-of-4 {
-		width: 25%;
-	}
-
-	@include breakpoint(tablet) {
-		&.collection-tags {
-			width: 73.7%; /* not 75%, due to lack of padding on the left/right */
-			min-width: 252px;
-			margin-bottom: $gutter*2;
+		@include breakpoint(tablet) {
+			&.collection-tags {
+				width: 73.7%; /* not 75%, due to lack of padding on the left/right */
+				min-width: 252px;
+				margin-bottom: $gutter*2;
+			}
 		}
 	}
 }
+
 
 .product-listing {
 	font-size: 0;
@@ -2806,7 +2822,7 @@ iframe {
 
 	label {
 		margin: 0;
-		color: $bodyBackground;
+		color: #232323;
 		line-height: 1;
 		font-size: 12px;
 		text-transform: uppercase;
@@ -2870,10 +2886,10 @@ iframe {
 ------------------------- */
 
 .slideshow {
-
+	padding-top:95px;
 	@include breakpoint(tablet) {
 		overflow: hidden;
-
+		padding-top:0;
 		&.has-offset-slide {
 			margin-bottom: -$gutter*2;
 		}

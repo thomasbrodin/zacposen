@@ -143,6 +143,17 @@
         "max-width": 500,
         "label": "Image",
         "info": "500 x 500px recommended"
+      },
+      {
+        "type": "header",
+        "content": "House Of Z banner"
+      },
+      {
+        "type": "image",
+        "id": "house-of-z.jpg",
+        "max-width": 9999,
+        "label": "Image",
+        "info": "2000 x 1000px recommended"
       }
     ]
   },

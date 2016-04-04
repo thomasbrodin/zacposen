@@ -30,7 +30,11 @@ footer, .wrap:after {
 }
 
 .main-content {
-	margin-bottom: $gutter*2
+	margin-bottom: $gutter*2;
+	padding-top:$gutter*2;
+	@include breakpoint(tablet) {
+		padding-top: $gutter
+	}
 }
 
 .icon:before {
@@ -53,7 +57,30 @@ footer, .wrap:after {
 	content: "\f007";
 }
 
-
+.footer-image {
+	position: relative;
+	background-color: white;
+	overflow: hidden;
+	height: 620px;
+	width: 100%;
+	@include breakpoint(phone) {
+		height: 300px;
+	}
+	.footer-background {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		display: block;
+		background-repeat: no-repeat;
+		background-position: top center;
+		background-size: cover;
+		&:hover {
+			opacity: 0.9
+		}
+	}
+}
 
 .quick_shop {
 	display:none;
@@ -85,13 +112,16 @@ footer, .wrap:after {
 	-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .25), 0 1px 5px 3px rgba(0, 0, 0, .05), 0 5px 4px -3px rgba(0, 0, 0, .06);
 	-moz-box-shadow: 0 0 1px rgba(0, 0, 0, .25), 0 1px 5px 3px rgba(0, 0, 0, .05), 0 5px 4px -3px rgba(0, 0, 0, .06);
 	box-shadow: 0 0 1px rgba(0, 0, 0, .25), 0 1px 5px 3px rgba(0, 0, 0, .05), 0 5px 4px -3px rgba(0, 0, 0, .06);
-	padding:40px;
+	padding:40px 40px 20px;
 	.product-slideshow {
 		margin-bottom: 0
 	}
 	.view_product_info {
 		margin-top: $gutter;
 		display:block
+	}
+	.product-description {
+		display: none;
 	}
 	select.select-wrapper {
 		color: #000;
@@ -102,7 +132,6 @@ footer, .wrap:after {
 		-webkit-appearance: none;
 		border-radius: 0;
 		border: 1px solid rgba(85, 94, 94, 0.5);
-		color: rgba(85, 94, 94, 0.5);
 		padding: 12px 34px 11px 15px;
 		&:after {
 			color: $lightColor;
@@ -133,9 +162,9 @@ footer, .wrap:after {
 		position: relative;
 		background-color: white;
 		overflow: hidden;
-		height: 650px;
+		height: 415px;
 		width: 100%;
-		margin-bottom: $gutter*3;
+		margin-bottom: $gutter*2;
 		@include breakpoint(phone) {
 			height: 400px;
 		}
@@ -146,7 +175,7 @@ footer, .wrap:after {
 			top: 0;
 			left: 0;
 			background-repeat: no-repeat;
-			background-position: top center;
+			background-position: 100% 2%;
 			background-size: cover;
 		}
 	}

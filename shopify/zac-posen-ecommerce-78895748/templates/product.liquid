@@ -99,10 +99,14 @@
 		<script type="text/javascript" charset="utf-8">
 		//<![CDATA[
 		  var recommendations = [];
-		  {% for tag in product.tags limit: 3 %}
-		  	recommendations.push('{{ tag | handle }}');
-		  {% endfor %}
-		  if (recommendations.length) {
+			{% if product.metafields.recommendations.productHandles %}
+				recommendations = jQuery.trim({{ product.metafields.recommendations.productHandles | json }}).split(/[\s,;]+/);
+			{% else %}
+				{% for tag in product.tags limit: 3 %}
+					recommendations.push('{{ tag | handle }}');
+				{% endfor %}
+			{% endif %}
+		  if (recommendations.length && recommendations[0] !== '') {
 		    var list = jQuery('.items-wrap');
 		    for (var i=0; i<recommendations.length; i++) {
 		      jQuery.getJSON(recommendations[i] + '.js', function(product) {

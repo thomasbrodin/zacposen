@@ -144,12 +144,11 @@
     },
     "collection": {
       "all_products": "All",
-      "all_tags": "All tags",
+      "all_tags": "Categories",
       "empty": "This collection is empty!"
     },
     "sorting": {
-      "title": "Sort by",
-      "featured": "Featured",
+      "manual": "Sort by",
       "best_selling": "Best Selling",
       "az": "Alphabetically, A-Z",
       "za": "Alphabetically, Z-A",
